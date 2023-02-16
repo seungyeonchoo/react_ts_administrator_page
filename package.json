@@ -26,7 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
     "eject": "react-scripts eject",
     "postinstall": "husky install && chmod ug+x .husky/*",
     "format": "prettier --cache --write .",
@@ -57,6 +57,8 @@
     "axios-mock-adapter": "^1.21.2",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.3"
-  }
+    "husky": "^8.0.3",
+    "nock": "^13.3.0"
+  },
+  "type": "module"
 }

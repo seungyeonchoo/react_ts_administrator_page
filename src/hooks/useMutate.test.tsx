@@ -1,7 +1,9 @@
+// url, method, item? => return data, handleMutation
+
 import { renderHook, waitFor } from '@testing-library/react';
 import { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import useFetch from './useFetch';
+import useMutate from './useFetch';
 import MockAdapter from 'axios-mock-adapter';
 import instance from '../service/http';
 
@@ -18,18 +20,17 @@ const createWrapper = () => {
   );
 };
 
-describe('useFetch custom hook', () => {
-  it('fetch data', async () => {
-    mock.onGet('/users').reply(200, { users: [{ id: 1, name: 'Jonh' }] });
+describe('useMutate custom hook', () => {
+  it('post data using custom hook', async () => {
+    mock.onPost('/signin').reply(200, { access_Token: 'token', user: { name: 'Choo', id: 1 } });
 
-    const { result } = renderHook(() => useFetch('/users', ['users']), {
-      wrapper: createWrapper(),
-    });
+    const { result } = renderHook(
+      () => useMutate('/signin', 'post', { email: 'abc@abc.com', password: '12345678' }),
+      { wrapper: createWrapper() }
+    );
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-    expect(result.current.data).toEqual({ users: [{ id: 1, name: 'Jonh' }] });
+    expect(result.current.data).toEqual({ access_Token: 'token', user: { name: 'Choo', id: 1 } });
   });
 });
-
-export default {};
