@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import useToggle from './useToggle';
+import useToggle from '../useToggle';
 
 describe('useToggle custom hook', () => {
   it('update state from false to true when it is called', () => {

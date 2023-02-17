@@ -4,8 +4,8 @@ interface Api {
   url: string;
   get: (params?: object) => Promise<any>;
   post: (item: object) => Promise<any>;
-  patch: (item: object) => void;
-  delete: () => void;
+  patch: (item: object) => Promise<any>;
+  delete: (item?: object) => Promise<any>;
 }
 
 class ApiService implements Api {
@@ -24,12 +24,14 @@ class ApiService implements Api {
     return data;
   };
 
-  patch: (item: object) => void = async item => {
-    await instance.patch(this.url, item);
+  patch: (item: object) => Promise<any> = async item => {
+    const { data } = await instance.patch(this.url, item);
+    return data;
   };
 
-  delete: () => void = async () => {
-    await instance.delete(this.url);
+  delete: (item?: object) => Promise<any> = async () => {
+    const { data } = await instance.delete(this.url);
+    return data;
   };
 }
 

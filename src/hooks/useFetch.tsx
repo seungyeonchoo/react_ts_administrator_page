@@ -1,14 +1,12 @@
+import { UseQueryResult, useQuery } from 'react-query';
+import { AxiosError } from 'axios';
 import ApiService from '../service/api';
-import { useQuery } from 'react-query';
 
-type FetchHook = (
-  url: string,
-  queryKey: [keyNmae: string, option?: object],
-  params?: object
-) => { data: Promise<Group[]>; isSuccess: boolean; isLoading: boolean; error: any };
+type FetchData = (url: string, params?: object) => UseQueryResult<Promise<Array<any>>, AxiosError>;
 
-const useFetch: FetchHook = (url, queryKey, params?) => {
-  return useQuery(queryKey, () => new ApiService(url).get(params));
+const useFetch: FetchData = (url, params?) => {
+  const fetchData = () => new ApiService(url).get(params);
+  return useQuery([url, params], fetchData);
 };
 
 export default useFetch;

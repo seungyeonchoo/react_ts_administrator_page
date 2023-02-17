@@ -1604,6 +1604,16 @@
       "email": "admin@admin.com",
       "password": "$2a$10$Zljkj/LoXo8ZjeRsCpWYNOg./akb/hg1zIzp1B2KM3H4p.2X.FoGy",
       "id": 101
+    },
+    {
+      "email": "cos4338@gmail.com",
+      "password": "$2a$10$UxrCA0L7xb2vg58N6d6cVOB3grQnG.pVpMTgP9YZNA0kWYAjmJNpS",
+      "id": 102
+    },
+    {
+      "email": "cos4438@gmail.com",
+      "password": "$2a$10$YD5oOZCXTQncz0Dgd/OwE.DomJEYdLi/CAHjuqSRrWJfnpbAOHVwO",
+      "id": 103
     }
   ],
   "userSetting": [

@@ -1,10 +1,7 @@
-import { useEffect } from 'react';
-import useFetch from './hooks/useFetch';
-import ApiService from './service/api';
+import useMutate from './hooks/useMutate';
 
 function App() {
-  const { data } = useFetch('users', ['users']);
-  return <div>app</div>;
+  return <button>app</button>;
 }
 
 export default App;
