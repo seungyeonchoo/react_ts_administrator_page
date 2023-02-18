@@ -23,7 +23,7 @@ const mockReq = {
 describe('useMutate custom hook', () => {
   describe('post method', () => {
     it('with Success', async () => {
-      mock.onPost('signin').reply(200, mockRes);
+      mock.onPost('/signin').reply(200, mockRes);
 
       const { result } = renderHook(() => useMutate('signin', 'post'), {
         wrapper: createWrapper(),
@@ -37,7 +37,7 @@ describe('useMutate custom hook', () => {
     });
 
     it('with Error', async () => {
-      mock.onPost('signin').reply(500);
+      mock.onPost('/signin').reply(500);
 
       const { result } = renderHook(() => useMutate('signin', 'post'), {
         wrapper: createWrapper(),

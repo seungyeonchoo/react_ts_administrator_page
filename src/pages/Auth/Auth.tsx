@@ -9,7 +9,9 @@ const Auth = () => {
     password: '',
   });
 
-  const isValidInput = !loginInput.email.includes('@') && loginInput.password.length < 8;
+  const { mutate } = useMutate('/signin', 'post', loginInput);
+
+  const isValidInput = !loginInput.email.includes('@') || loginInput.password.length < 8;
 
   return (
     <div>
@@ -33,7 +35,9 @@ const Auth = () => {
           onChange={handleInputChange}
         />
       </label>
-      <button disabled={isValidInput}>login</button>
+      <button disabled={isValidInput} onClick={mutate}>
+        login
+      </button>
     </div>
   );
 };

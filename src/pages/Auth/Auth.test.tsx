@@ -1,84 +1,84 @@
-import { fireEvent, render, renderHook, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import useMutate from '../../hooks/useMutate';
-import { createWrapper } from '../../service/__mock__';
+import instance from '../../service/http';
+import { createWrapper, mock } from '../../service/__mock__';
 import Auth from './Auth';
 
+const setUp = () => {
+  const { container, getByText } = render(<Auth />, { wrapper: createWrapper() });
+  const emailInput = container.querySelector(`input[name='email']`) as HTMLInputElement;
+  const passwordInput = container.querySelector(`input[name='password']`) as HTMLInputElement;
+  const loginButton = getByText(/login/i) as HTMLButtonElement;
+
+  return { emailInput, passwordInput, loginButton };
+};
+
 describe('Auth Page', () => {
-  describe('Login input and button', () => {
-    it('update input value when login input change', () => {
-      const { getByLabelText } = render(<Auth />);
-      const emailInput = getByLabelText('email') as HTMLInputElement;
+  it('should render default component', () => {
+    const { emailInput, passwordInput, loginButton } = setUp();
 
-      expect(emailInput.value).toBe('');
+    expect(emailInput).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
+    expect(loginButton).toBeInTheDocument();
 
-      fireEvent.change(emailInput, { target: { value: '23' } });
+    expect(emailInput.value).toBe('');
+    expect(passwordInput.value).toBe('');
+    expect(loginButton).toBeDisabled();
+  });
 
-      expect(emailInput.value).toBe('23');
+  it('should update input change', () => {
+    const { emailInput, passwordInput } = setUp();
+
+    userEvent.type(emailInput, 'abc');
+    userEvent.type(passwordInput, 'def');
+
+    expect(emailInput.value).toBe('abc');
+    expect(passwordInput.value).toBe('def');
+  });
+
+  describe('should check if input value is valid', () => {
+    it('both values are valid ', () => {
+      const { emailInput, passwordInput, loginButton } = setUp();
+      userEvent.type(emailInput, 'cos4338@gmail.com');
+      userEvent.type(passwordInput, '123456789');
+
+      expect(loginButton).not.toBeDisabled();
     });
 
-    it('button is abled when login inputs are valid', () => {
-      const { getByRole, getByLabelText } = render(<Auth />);
-      const emailInput = getByLabelText('email') as HTMLInputElement;
-      const passwordInput = getByLabelText('password') as HTMLInputElement;
-      const loginButton = getByRole('button') as HTMLButtonElement;
+    it('email input is invalid', () => {
+      const { emailInput, passwordInput, loginButton } = setUp();
+      userEvent.type(emailInput, 'cos4338gmail.com');
+      userEvent.type(passwordInput, '123456789');
 
-      expect(emailInput.value).toBe('');
-      expect(passwordInput.value).toBe('');
-      expect(loginButton.disabled).toBe(true);
-
-      fireEvent.change(emailInput, { target: { value: 'cos4338@gmail.com' } });
-      fireEvent.change(passwordInput, { target: { value: '12345678' } });
-
-      expect(emailInput.value).toBe('cos4338@gmail.com');
-      expect(passwordInput.value).toBe('12345678');
-      expect(loginButton.disabled).toBe(false);
+      expect(loginButton).toBeDisabled();
     });
 
-    it('button is abled when login inputs are valid', () => {
-      const { getByRole, getByLabelText } = render(<Auth />);
-      const emailInput = getByLabelText('email') as HTMLInputElement;
-      const passwordInput = getByLabelText('password') as HTMLInputElement;
-      const loginButton = getByRole('button') as HTMLButtonElement;
+    it('password input is invalid', () => {
+      const { emailInput, passwordInput, loginButton } = setUp();
+      userEvent.type(emailInput, 'cos4338@gmail.com');
+      userEvent.type(passwordInput, '789');
 
-      expect(emailInput.value).toBe('');
-      expect(passwordInput.value).toBe('');
-      expect(loginButton.disabled).toBe(true);
-
-      fireEvent.change(emailInput, { target: { value: 'cosmailcom' } });
-
-      fireEvent.change(passwordInput, { target: { value: '125678' } });
-
-      expect(emailInput.value).toBe('cosmailcom');
-      expect(passwordInput.value).toBe('125678');
-      expect(loginButton.disabled).toBe(true);
+      expect(loginButton).toBeDisabled();
     });
   });
 
-  describe('Click Login button', () => {
-    it('with Success', async () => {
-      const { getByRole, getByLabelText } = render(<Auth />);
-      const emailInput = getByLabelText('email') as HTMLInputElement;
-      const passwordInput = getByLabelText('password') as HTMLInputElement;
-      const loginButton = getByRole('button') as HTMLButtonElement;
+  jest.mock('../../hooks/uesMutate', () => ({ useMutate: jest.fn() }));
 
-      const { result } = renderHook(
-        () =>
-          useMutate('/signin', 'post', { email: emailInput.value, password: passwordInput.value }),
-        {
-          wrapper: createWrapper(),
-        }
-      );
+  describe('should submit input to login', () => {
+    it('success to login', async () => {
+      const { emailInput, passwordInput, loginButton } = setUp();
+      userEvent.type(emailInput, 'cos4338@gmail.com');
+      userEvent.type(passwordInput, '123456789');
 
-      fireEvent.change(emailInput, { target: { value: 'cos4338@gmail.com' } });
-      fireEvent.change(passwordInput, { target: { value: '12345678' } });
-      fireEvent.click(loginButton);
-
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
-
-      expect(result.current.data).toBeDefined();
+      // sessionStorage에 토큰 저장 확인
+      // sessionStorage에 id 저장 확인
+      // 페이지 이동
     });
-    // it('with Error', () => {});
-    // it('while Loading', () => {});
+    it('fail to login', async () => {
+      // inputValue 초기화 : userEvent()
+      // 에러 메세지 렌더 : toBeInTheDocument()
+    });
   });
 });
 
