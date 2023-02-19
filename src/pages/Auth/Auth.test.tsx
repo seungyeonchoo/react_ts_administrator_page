@@ -1,17 +1,16 @@
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import useMutate from '../../hooks/useMutate';
-import instance from '../../service/http';
-import { createWrapper, mock } from '../../service/__mock__';
+import { act } from 'react-dom/test-utils';
+import { providerWrapper, mock, mockNav } from '../../service/__mock__';
 import Auth from './Auth';
 
 const setUp = () => {
-  const { container, getByText } = render(<Auth />, { wrapper: createWrapper() });
+  const { container, getByText } = render(<Auth />, { wrapper: providerWrapper() });
   const emailInput = container.querySelector(`input[name='email']`) as HTMLInputElement;
   const passwordInput = container.querySelector(`input[name='password']`) as HTMLInputElement;
   const loginButton = getByText(/login/i) as HTMLButtonElement;
 
-  return { emailInput, passwordInput, loginButton };
+  return { emailInput, passwordInput, loginButton, getByText };
 };
 
 describe('Auth Page', () => {
@@ -63,21 +62,35 @@ describe('Auth Page', () => {
     });
   });
 
-  jest.mock('../../hooks/uesMutate', () => ({ useMutate: jest.fn() }));
-
   describe('should submit input to login', () => {
     it('success to login', async () => {
       const { emailInput, passwordInput, loginButton } = setUp();
       userEvent.type(emailInput, 'cos4338@gmail.com');
       userEvent.type(passwordInput, '123456789');
 
-      // sessionStorage에 토큰 저장 확인
-      // sessionStorage에 id 저장 확인
-      // 페이지 이동
+      mock.onPost('/signin').reply(200, { accessToken: 'a', user: { id: 1 } });
+
+      await waitFor(() => userEvent.click(loginButton));
+
+      await waitFor(() => expect(emailInput.value).toBe(''));
+      await waitFor(() => expect(mockNav).toHaveBeenCalledWith('/users'));
+
+      expect(window.sessionStorage.getItem('access_token')).toBe('a');
+      expect(sessionStorage.getItem('user_id')).toBe(1);
     });
+
     it('fail to login', async () => {
-      // inputValue 초기화 : userEvent()
-      // 에러 메세지 렌더 : toBeInTheDocument()
+      const { emailInput, passwordInput, loginButton, getByText } = setUp();
+
+      userEvent.type(emailInput, 'cos4338@gmail.com');
+      userEvent.type(passwordInput, '123456789');
+
+      mock.onPost('/signin').reply(500, {});
+
+      await waitFor(() => userEvent.click(loginButton));
+
+      await waitFor(() => expect(emailInput.value).toBe(''));
+      await waitFor(() => expect(getByText(/Error/)).toBeInTheDocument());
     });
   });
 });

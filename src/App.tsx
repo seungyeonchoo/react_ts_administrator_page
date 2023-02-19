@@ -1,7 +1,9 @@
 import useMutate from './hooks/useMutate';
+import Auth from './pages/Auth/Auth';
+import Router from './Router';
 
 function App() {
-  return <button>app</button>;
+  return <Router />;
 }
 
 export default App;

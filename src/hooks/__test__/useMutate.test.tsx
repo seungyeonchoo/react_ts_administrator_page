@@ -4,9 +4,9 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 
 import useMutate from '../useMutate';
 
-import { createWrapper, mock } from '../../service/__mock__';
+import { providerWrapper, mock } from '../../service/__mock__';
 
-const mockRes = {
+const response = {
   accessToken:
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5ld2ZhY2VAZGNvLmNvbSIsImlhdCI6MTY2MDYxNjA2NCwiZXhwIjoxNjYwNjE5NjY0LCJzdWIiOiIxMDEifQ.j7LFrULPlp4AZTFGTatmWnne_P3xLRpyI2-8ko4_Xs8',
   user: {
@@ -14,8 +14,7 @@ const mockRes = {
     id: 101,
   },
 };
-
-const mockReq = {
+const requestInput = {
   email: 'abc@abc.com',
   password: 'abcd',
 };
@@ -23,27 +22,27 @@ const mockReq = {
 describe('useMutate custom hook', () => {
   describe('post method', () => {
     it('with Success', async () => {
-      mock.onPost('/signin').reply(200, mockRes);
-
       const { result } = renderHook(() => useMutate('signin', 'post'), {
-        wrapper: createWrapper(),
+        wrapper: providerWrapper(),
       });
 
-      act(() => result.current.mutate(mockReq));
+      mock.onPost('/signin').reply(200, response);
+
+      act(() => result.current.mutate(requestInput));
 
       await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-      expect(result.current.data).toEqual(mockRes);
+      expect(result.current.data).toEqual(response);
     });
 
     it('with Error', async () => {
-      mock.onPost('/signin').reply(500);
-
       const { result } = renderHook(() => useMutate('signin', 'post'), {
-        wrapper: createWrapper(),
+        wrapper: providerWrapper(),
       });
 
-      act(() => result.current.mutate(mockReq));
+      mock.onPost('/signin').reply(500);
+
+      act(() => result.current.mutate(response));
 
       await waitFor(() => expect(result.current.isError).toBe(true));
 

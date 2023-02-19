@@ -1,44 +1,65 @@
 import useMutate from '../../hooks/useMutate';
 import useInput from '../../hooks/useInput';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 type InitialInput = { email: string; password: string };
 
 const Auth = () => {
-  const { inputValue: loginInput, handleInputChange } = useInput<InitialInput>({
-    email: '',
-    password: '',
-  });
+  const nav = useNavigate();
+  const initialInput = { email: '', password: '' };
+  const { inputValue: loginInput, handleInputChange, reset } = useInput<InitialInput>(initialInput);
+  const { mutate, isError, error } = useMutate('/signin', 'post', loginInput);
 
-  const { mutate } = useMutate('/signin', 'post', loginInput);
+  const handleLogin = () => {
+    mutate(loginInput, {
+      onSuccess: data => {
+        nav('/users');
+        sessionStorage.setItem('access_token', data.accessToken);
+        sessionStorage.setItem('user_id', data.user.id);
+      },
+      onSettled: () => {
+        reset();
+      },
+    });
+  };
 
-  const isValidInput = !loginInput.email.includes('@') || loginInput.password.length < 8;
+  useEffect(() => {
+    if (sessionStorage.getItem('access_token')) nav('/users');
+  }, []);
 
   return (
-    <div>
-      <label>
-        <span>email</span>
-        <input
-          type="email"
-          name="email"
-          aria-label="email"
-          value={loginInput.email}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        <span>password</span>
-        <input
-          type="password"
-          name="password"
-          aria-label="password"
-          value={loginInput.password}
-          onChange={handleInputChange}
-        />
-      </label>
-      <button disabled={isValidInput} onClick={mutate}>
-        login
-      </button>
-    </div>
+    <>
+      {isError && <div>Error : {error.name}</div>}
+      <div>
+        <label>
+          <span>email</span>
+          <input
+            type="email"
+            name="email"
+            aria-label="email"
+            value={loginInput.email}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          <span>password</span>
+          <input
+            type="password"
+            name="password"
+            aria-label="password"
+            value={loginInput.password}
+            onChange={handleInputChange}
+          />
+        </label>
+        <button
+          disabled={!loginInput.email.includes('@') || loginInput.password.length < 8}
+          onClick={handleLogin}
+        >
+          login
+        </button>
+      </div>
+    </>
   );
 };
 
