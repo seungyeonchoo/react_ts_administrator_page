@@ -33,8 +33,9 @@ for (let i = 1; i < 101; i++) {
     updated_at: faker.date.between('2019-04-01', '2022-08-01'),
   }
   const setting = {
-    id,
+    id: i,
     uuid,
+    userId: i,
     allow_marketing_push: faker.datatype.boolean(),
     allow_invest_push: faker.datatype.boolean(),
     is_active: faker.datatype.boolean(),
