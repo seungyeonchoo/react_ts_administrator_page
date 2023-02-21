@@ -1,8 +1,9 @@
 import useFetch from '../../hooks/useFetch';
 import useToggle from '../../hooks/useToggle';
 import { TUser, TUserSetting } from '../../types/user_types';
-import UserItem from './components/UserItem';
+import UserTableItem from './components/UserTableItem';
 import UserModal from './components/UserModal';
+import UserTableHead from './components/UserTableHead';
 
 const UserList = () => {
   const { toggle: modalToggle, handleToggle: handleModalToggle } = useToggle();
@@ -23,17 +24,18 @@ const UserList = () => {
   if (usersIsLoading || settingsIsLoading) return <div>Loading...</div>;
 
   if (usersIsError || settingsIsError)
-    return <div>Error: {(usersError || settingsError)?.message}</div>;
+    return <div>{`Error: ${(usersError || settingsError)?.response?.data}`}</div>;
 
   return (
     <>
-      <button onClick={() => handleModalToggle()}>Create</button>
-      {modalToggle && <UserModal showModal={modalToggle} />}
+      <button onClick={() => handleModalToggle()}>add</button>
+      <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />
       <table>
+        <UserTableHead />
         <tbody>
           {users?.map((user: TUser) => {
             const userSetting = settings?.filter((el: TUserSetting) => el.id === user.id)[0];
-            return <UserItem key={user.id} user={user} setting={userSetting} />;
+            return <UserTableItem key={user.id} user={user} setting={userSetting} />;
           })}
         </tbody>
       </table>

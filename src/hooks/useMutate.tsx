@@ -10,7 +10,7 @@ type MutateData = (
 
 const useMutate: MutateData = (url, method, item?) => {
   const mutateData = new ApiService(url)[method];
-  return useMutation(input => mutateData(item as object));
+  return useMutation(() => mutateData(item as object));
 };
 
 export default useMutate;

@@ -1,20 +1,19 @@
-const UserModal = ({ showModal }: { showModal: boolean }) => {
+import UserModalInput from './UserModalInput';
+
+const UserModal = ({
+  showModal,
+  handleShowModal,
+}: {
+  showModal: boolean;
+  handleShowModal: () => void;
+}) => {
   return (
     <dialog open={showModal}>
-      <span>create new user</span>
-      <form>
-        <input type="text" name="name" />
-        <input type="number" name="phone_number" />
-        <input type="date" name="birth_date" />
-        <input type="email" name="email" />
-        <select name="gender_origin">
-          <option value={1}>Mr.</option>
-          <option value={2}>Mrs.</option>
-        </select>
-      </form>
+      <h1>create new user</h1>
+      <UserModalInput />
       <div>
         <button>create</button>
-        <button>cancel</button>
+        <button onClick={() => handleShowModal()}>cancel</button>
       </div>
     </dialog>
   );

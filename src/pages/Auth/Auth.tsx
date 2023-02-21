@@ -30,7 +30,7 @@ const Auth = () => {
 
   return (
     <>
-      {isError && <div>Error : {error.name}</div>}
+      {isError && <div>{`Error status ${error.response?.status} : ${error.response?.data}`}</div>}
       <div>
         <label>
           <span>email</span>

@@ -1,11 +1,22 @@
-import { render } from '@testing-library/react';
+import { render, renderHook, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { act } from 'react-dom/test-utils';
 import { mock, providerWrapper } from '../../../../service/__mock__';
+import UserList from '../../UserList';
 import UserModal from '../UserModal';
+import useToggle from '../../../../hooks/useToggle';
 
 const setUp = () => {
-  const { container, getByText } = render(<UserModal showModal={true} />, {
-    wrapper: providerWrapper(),
-  });
+  let showModal = true;
+  const handleShowModal = () => {
+    showModal = !showModal;
+  };
+  const { container, getByText } = render(
+    <UserModal showModal={showModal} handleShowModal={handleShowModal} />,
+    {
+      wrapper: providerWrapper(),
+    }
+  );
 
   const nameInput = container.querySelector(`input[name='name']`);
   const emailInput = container.querySelector(`input[name='email']`);
@@ -14,6 +25,7 @@ const setUp = () => {
   const phoneNumberInput = container.querySelector(`input[name='phone_number']`);
   const createBtn = getByText('create') as HTMLButtonElement;
   const cancelBtn = getByText(/cancel/i) as HTMLButtonElement;
+  const modal = container.querySelector('dialog') as HTMLDialogElement;
 
   return {
     nameInput,
@@ -23,6 +35,7 @@ const setUp = () => {
     phoneNumberInput,
     createBtn,
     cancelBtn,
+    modal,
   };
 };
 
@@ -47,10 +60,15 @@ describe('User Modal Component', () => {
     expect(cancelBtn).toBeInTheDocument();
   });
 
-  //   it('should handel show modal toggle', () => {
-  //     // cancel/create click => show modal false
-  //     // background clock => show modal false
-  //   });
+  it('should handel show modal toggle', async () => {
+    const { cancelBtn, modal } = setUp();
+
+    expect(modal.open).toBe(true);
+
+    act(() => userEvent.click(cancelBtn));
+
+    waitFor(() => expect(modal.open).toBe(false));
+  });
 
   //   describe('should post user input', async () => {
   //     it('should update user input value', () => {
@@ -65,15 +83,3 @@ describe('User Modal Component', () => {
 });
 
 export default {};
-
-// - 고객명(name) : 가운데 글자 마스킹 필요, 두글자일 경우 성을 제외한 이름 마스킹 처리, 4글자 이상일 경우 마스킹 처리 후 앞뒤 한글자만 표기
-//     - 고객명을 누를 경우 사용자 상세화면으로 이동합니다.
-// - 보유중인 계좌수(account_count) : (해당 API 호출 후 데이터를 정제하여 표기)
-// - 이메일 주소 (email)
-// - 주민등록상 성별코드 (gender_origin)
-// - 생년월일 (yyyy-mm-dd) (birth_date)
-// - 휴대폰 번호 (가운데 4자리 `***` 로 마스킹 필요) (phone_number)
-// - 최근로그인 (last_login)
-// - 혜택 수신 동의 여부 (해당 API 호출 후 데이터를 정제하여 표기) (allow_marketing_push)
-// - 활성화 여부 (해당 API 호출 후 데이터를 정제하여 표기) (is_active)
-// - 가입일 (created_at)
