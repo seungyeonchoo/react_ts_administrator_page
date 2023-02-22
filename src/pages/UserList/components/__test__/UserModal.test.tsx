@@ -6,19 +6,17 @@ import UserList from '../../UserList';
 import UserModal from '../UserModal';
 import useToggle from '../../../../hooks/useToggle';
 
-const setUp = () => {
-  let showModal = true;
-  const handleShowModal = () => {
-    showModal = !showModal;
-  };
-  const { container, getByText } = render(
-    <UserModal showModal={showModal} handleShowModal={handleShowModal} />,
-    {
-      wrapper: providerWrapper(),
-    }
-  );
+const ModalProps = {
+  showModal: true,
+  handleShowModal: jest.fn(),
+};
 
-  const nameInput = container.querySelector(`input[name='name']`);
+const setUp = () => {
+  const { container, getByText } = render(<UserModal {...ModalProps} />, {
+    wrapper: providerWrapper(),
+  });
+
+  const nameInput = container.querySelector(`input[name='name']`) as HTMLInputElement;
   const emailInput = container.querySelector(`input[name='email']`);
   const genderInput = container.querySelector(`select[name='gender_origin']`);
   const birthdayInput = container.querySelector(`input[name='birth_date']`);
@@ -67,19 +65,23 @@ describe('User Modal Component', () => {
 
     act(() => userEvent.click(cancelBtn));
 
-    waitFor(() => expect(modal.open).toBe(false));
+    expect(ModalProps.handleShowModal).toHaveBeenCalled();
   });
 
-  //   describe('should post user input', async () => {
-  //     it('should update user input value', () => {
-  //       // userEvent.type => inputValue update by using useInput
-  //     });
-  //     describe('should post user input when create button is clicked', () => {
-  //       it('with success', async () => {});
-  //       it('with error', async () => {});
-  //       it('while loading', async () => {});
-  //     });
-  //   });
+  describe('should post user input', () => {
+    it('should update user input value', () => {
+      const { nameInput } = setUp();
+
+      userEvent.type(nameInput, 'choo');
+
+      expect(nameInput.value).toBe('choo');
+    });
+    // describe('should post user input when create button is clicked', () => {
+    //   it('with success', async () => {});
+    //   it('with error', async () => {});
+    //   it('while loading', async () => {});
+    // });
+  });
 });
 
 export default {};
