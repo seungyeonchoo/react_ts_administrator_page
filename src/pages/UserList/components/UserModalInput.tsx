@@ -5,6 +5,7 @@ import useInput from '../../../hooks/useInput';
 interface InitialUser {
   photo: string;
   name: string;
+  password: string;
   email: string;
   age: number; // new Date().getFullYear() - new Date(birth_date).getFullYear()
   gender_origin: number;
@@ -30,15 +31,15 @@ interface TProps {
   userInput: InitialUser;
   settingInput: InitialUserSetting;
   handleUserInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
-  //   handleSettingInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  handleSettingInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }
 
 const UserModalInput = ({
   userInput,
   settingInput,
   handleUserInputChange,
-}: //   handleSettingInputChange,
-TProps) => {
+  handleSettingInputChange,
+}: TProps) => {
   return (
     <form>
       <LabelWithInput labelTitle="name">
@@ -99,8 +100,7 @@ TProps) => {
           <option value={2}>Female</option>
         </select>
       </LabelWithInput>
-
-      {/* <LabelWithInput labelTitle="is staff">
+      <LabelWithInput labelTitle="is staff">
         <input type="checkbox" name="is_staff" />
       </LabelWithInput>
 
@@ -113,8 +113,8 @@ TProps) => {
       </LabelWithInput>
 
       <LabelWithInput labelTitle="is active">
-        <input type="checkbox" name="is_active" /> */}
-      {/* </LabelWithInput> */}
+        <input type="checkbox" name="is_active" />
+      </LabelWithInput>
     </form>
   );
 };

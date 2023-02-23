@@ -44,8 +44,10 @@ const initialUser = {
   updated_at: new Date().toString(), // new Date()
 };
 
+let userId = 101;
+
 const initialUserSetting = {
-  userId: 0,
+  userId: ++userId,
   allow_marketing_push: false,
   allow_invest_push: false,
   is_active: false,
@@ -64,7 +66,7 @@ const UserModal = ({
   const { inputValue: userInput, handleInputChange: handleUserInputChange } =
     useInput<InitialUser>(initialUser);
 
-  const { inputValue: settingInput, handleInputChange: handleSettingInputChage } =
+  const { inputValue: settingInput, handleCheckInputChange: handleSettingInputChage } =
     useInput<InitialUserSetting>(initialUserSetting);
 
   const { mutate: createUser } = useMutate('/signup', 'post', userInput);
@@ -76,7 +78,7 @@ const UserModal = ({
         userInput={userInput}
         settingInput={settingInput}
         handleUserInputChange={handleUserInputChange}
-        // handleSettingInputChage={handleSettingInputChage}
+        handleSettingInputChange={handleSettingInputChage}
       />
       <div>
         <button

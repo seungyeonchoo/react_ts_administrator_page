@@ -11,11 +11,17 @@ const useInput = <Type,>(initialInput: Type) => {
     setInputValue({ ...inputValue, [name]: value });
   };
 
+  const handleCheckInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void = e => {
+    const { name, checked } = e.target;
+
+    setInputValue({ ...inputValue, [name]: checked });
+  };
+
   const reset = () => {
     setInputValue(initialInput);
   };
 
-  return { inputValue, handleInputChange, reset };
+  return { inputValue, handleInputChange, handleCheckInputChange, reset };
 };
 
 export default useInput;
