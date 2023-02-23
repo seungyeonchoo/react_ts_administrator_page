@@ -3,7 +3,10 @@ import useInput from '../../hooks/useInput';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-type InitialInput = { email: string; password: string };
+interface InitialInput {
+  email: string;
+  password: string;
+}
 
 const Auth = () => {
   const nav = useNavigate();
