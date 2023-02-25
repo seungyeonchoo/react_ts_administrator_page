@@ -30,8 +30,9 @@ interface InitialUserSetting {
 interface TProps {
   userInput: InitialUser;
   settingInput: InitialUserSetting;
-  handleUserInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
-  handleSettingInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  handleUserInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSettingInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const UserModalInput = ({
@@ -39,6 +40,7 @@ const UserModalInput = ({
   settingInput,
   handleUserInputChange,
   handleSettingInputChange,
+  handleSelectChange,
 }: TProps) => {
   return (
     <form>
@@ -91,11 +93,7 @@ const UserModalInput = ({
       </LabelWithInput>
 
       <LabelWithInput labelTitle="gender">
-        <select
-          name="gender_origin"
-          value={userInput.gender_origin}
-          onChange={handleUserInputChange}
-        >
+        <select name="gender_origin" value={userInput.gender_origin} onChange={handleSelectChange}>
           <option value={1}>Male</option>
           <option value={2}>Female</option>
         </select>

@@ -2,6 +2,7 @@ import useMutate from '../../hooks/useMutate';
 import useInput from '../../hooks/useInput';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import AuthInput from './components/AuthInput';
 
 interface InitialInput {
   email: string;
@@ -12,10 +13,14 @@ const Auth = () => {
   const nav = useNavigate();
   const initialInput = { email: '', password: '' };
   const { inputValue: loginInput, handleInputChange, reset } = useInput<InitialInput>(initialInput);
-  const { mutate, isError, error } = useMutate('/signin', 'post', loginInput);
+  const {
+    mutate: handleSignin,
+    isError: isSigninError,
+    error: signinError,
+  } = useMutate('/signin', 'post', loginInput);
 
   const handleLogin = () => {
-    mutate(loginInput, {
+    handleSignin(loginInput, {
       onSuccess: data => {
         nav('/users');
         sessionStorage.setItem('access_token', data.accessToken);
@@ -33,28 +38,11 @@ const Auth = () => {
 
   return (
     <>
-      {isError && <div>{`Error status ${error.response?.status} : ${error.response?.data}`}</div>}
+      {isSigninError && (
+        <div>{`Error status ${signinError.response?.status} : ${signinError.response?.data}`}</div>
+      )}
       <div>
-        <label>
-          <span>email</span>
-          <input
-            type="email"
-            name="email"
-            aria-label="email"
-            value={loginInput.email}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          <span>password</span>
-          <input
-            type="password"
-            name="password"
-            aria-label="password"
-            value={loginInput.password}
-            onChange={handleInputChange}
-          />
-        </label>
+        <AuthInput loginInput={loginInput} handleInputChange={handleInputChange} />
         <button
           disabled={!loginInput.email.includes('@') || loginInput.password.length < 8}
           onClick={handleLogin}
