@@ -1,4 +1,5 @@
 import React from 'react';
+import Input from '../../../component/Common/Input';
 import LabelWithInput from '../../../component/Common/LabelWithInput';
 import useInput from '../../../hooks/useInput';
 
@@ -45,15 +46,15 @@ const UserModalInput = ({
   return (
     <form>
       <LabelWithInput labelTitle="name">
-        <input type="text" name="name" value={userInput.name} onChange={handleUserInputChange} />
+        <Input type="text" name="name" value={userInput.name} onChange={handleUserInputChange} />
       </LabelWithInput>
 
       <LabelWithInput labelTitle="profile image">
-        <input type="file" name="photo" value={userInput.photo} onChange={handleUserInputChange} />
+        <Input type="file" name="photo" value={userInput.photo} onChange={handleUserInputChange} />
       </LabelWithInput>
 
       <LabelWithInput labelTitle="phone number">
-        <input
+        <Input
           type="text"
           name="phone_number"
           value={userInput.phone_number}
@@ -62,7 +63,7 @@ const UserModalInput = ({
       </LabelWithInput>
 
       <LabelWithInput labelTitle="birth day">
-        <input
+        <Input
           type="date"
           name="birth_date"
           value={userInput.birth_date}
@@ -71,11 +72,11 @@ const UserModalInput = ({
       </LabelWithInput>
 
       <LabelWithInput labelTitle="email">
-        <input type="email" name="email" value={userInput.email} onChange={handleUserInputChange} />
+        <Input type="email" name="email" value={userInput.email} onChange={handleUserInputChange} />
       </LabelWithInput>
 
       <LabelWithInput labelTitle="address">
-        <input
+        <Input
           type="text"
           name="address"
           value={userInput.address}
@@ -84,7 +85,7 @@ const UserModalInput = ({
       </LabelWithInput>
 
       <LabelWithInput labelTitle="detail address">
-        <input
+        <Input
           type="text"
           name="detail_address"
           value={userInput.detail_address}
@@ -99,19 +100,19 @@ const UserModalInput = ({
         </select>
       </LabelWithInput>
       <LabelWithInput labelTitle="is staff">
-        <input type="checkbox" name="is_staff" />
+        <Input type="checkbox" name="is_staff" />
       </LabelWithInput>
 
       <LabelWithInput labelTitle="allow invest push">
-        <input type="checkbox" name="allow_invest_push" />
+        <Input type="checkbox" name="allow_invest_push" />
       </LabelWithInput>
 
       <LabelWithInput labelTitle="allow marketing push">
-        <input type="checkbox" name="allow_marketing_push" />
+        <Input type="checkbox" name="allow_marketing_push" />
       </LabelWithInput>
 
       <LabelWithInput labelTitle="is active">
-        <input type="checkbox" name="is_active" />
+        <Input type="checkbox" name="is_active" />
       </LabelWithInput>
     </form>
   );
