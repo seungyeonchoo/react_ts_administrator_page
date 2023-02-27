@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { useMutation, UseMutationResult } from 'react-query';
+import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
 import ApiService from '../service/api';
 
 type MutateData = (
@@ -9,8 +9,13 @@ type MutateData = (
 ) => UseMutationResult<any, AxiosError>;
 
 const useMutate: MutateData = (url, method, item?) => {
+  const queryClient = useQueryClient();
   const mutateData = new ApiService(url)[method];
-  return useMutation(() => mutateData(item as object));
+  return useMutation(() => mutateData(item as object), {
+    onSuccess: () => {
+      queryClient.invalidateQueries();
+    },
+  });
 };
 
 export default useMutate;

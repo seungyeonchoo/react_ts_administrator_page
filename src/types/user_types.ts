@@ -27,17 +27,9 @@ export interface TUser {
   last_login: string;
   created_at: string;
   updated_at: string;
-  accounts: TAccount[];
-}
-
-export interface TUserSetting {
-  id: number;
-  uuid: string;
-  userId: number;
   allow_marketing_push: boolean;
   allow_invest_push: boolean;
   is_active: boolean;
   is_staff: boolean;
-  created_at: string;
-  updated_at: string;
+  accounts: TAccount[];
 }

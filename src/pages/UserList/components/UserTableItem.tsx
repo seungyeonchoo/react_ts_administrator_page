@@ -1,13 +1,13 @@
 import { useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import useMutate from '../../../hooks/useMutate';
-import { TUser, TUserSetting } from '../../../types/user_types';
+import { TUser } from '../../../types/user_types';
 import convertDate from '../../../utils/convertData';
 import convertGender from '../../../utils/convertGender';
 import convertPhoneNumber from '../../../utils/convertPhoneNumber';
 import UserTableData from './UserTableData';
 
-const UserTableItem = ({ user, setting }: { user: TUser; setting: TUserSetting }) => {
+const UserTableItem = ({ user }: { user: TUser }) => {
   const nav = useNavigate();
   const queryClient = useQueryClient();
   const { mutate } = useMutate(`/users/${user?.id}`, 'delete');
@@ -30,8 +30,8 @@ const UserTableItem = ({ user, setting }: { user: TUser; setting: TUserSetting }
       <UserTableData data={convertPhoneNumber(user?.phone_number)} />
       <UserTableData data={convertDate(user?.last_login)} />
       <UserTableData data={convertDate(user?.created_at)} />
-      <UserTableData data={setting?.allow_marketing_push ? 'allow' : 'not allow'} />
-      <UserTableData data={setting?.is_active ? 'active' : 'inactive'} />
+      <UserTableData data={user?.allow_marketing_push ? 'allow' : 'not allow'} />
+      <UserTableData data={user?.is_active ? 'active' : 'inactive'} />
       <td onClick={handleDelete}>delete</td>
     </tr>
   );

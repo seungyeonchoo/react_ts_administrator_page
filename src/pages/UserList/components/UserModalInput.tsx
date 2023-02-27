@@ -1,7 +1,6 @@
 import React from 'react';
 import Input from '../../../component/Common/Input';
 import LabelWithInput from '../../../component/Common/LabelWithInput';
-import useInput from '../../../hooks/useInput';
 
 interface InitialUser {
   photo: string;
@@ -15,22 +14,16 @@ interface InitialUser {
   address: string;
   detail_address: string;
   last_login: string;
-  created_at: string; // new Date()
-  updated_at: string; // new Date()
-}
-
-interface InitialUserSetting {
-  userId: number;
   allow_marketing_push: boolean;
   allow_invest_push: boolean;
   is_active: boolean;
   is_staff: boolean;
-  created_at: string;
-  updated_at: string;
+  created_at: string; // new Date()
+  updated_at: string; // new Date()
 }
+
 interface TProps {
   userInput: InitialUser;
-  settingInput: InitialUserSetting;
   handleUserInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSettingInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -38,7 +31,6 @@ interface TProps {
 
 const UserModalInput = ({
   userInput,
-  settingInput,
   handleUserInputChange,
   handleSettingInputChange,
   handleSelectChange,
@@ -100,19 +92,19 @@ const UserModalInput = ({
         </select>
       </LabelWithInput>
       <LabelWithInput labelTitle="is staff">
-        <Input type="checkbox" name="is_staff" />
+        <Input type="checkbox" name="is_staff" onChange={handleSettingInputChange} />
       </LabelWithInput>
 
       <LabelWithInput labelTitle="allow invest push">
-        <Input type="checkbox" name="allow_invest_push" />
+        <Input type="checkbox" name="allow_invest_push" onChange={handleSettingInputChange} />
       </LabelWithInput>
 
       <LabelWithInput labelTitle="allow marketing push">
-        <Input type="checkbox" name="allow_marketing_push" />
+        <Input type="checkbox" name="allow_marketing_push" onChange={handleSettingInputChange} />
       </LabelWithInput>
 
       <LabelWithInput labelTitle="is active">
-        <Input type="checkbox" name="is_active" />
+        <Input type="checkbox" name="is_active" onChange={handleSettingInputChange} />
       </LabelWithInput>
     </form>
   );

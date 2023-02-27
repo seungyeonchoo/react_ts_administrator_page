@@ -5,13 +5,22 @@ import { ReducerType } from '../../store';
 import convertDate from '../../utils/convertData';
 import convertGender from '../../utils/convertGender';
 import convertPhoneNumber from '../../utils/convertPhoneNumber';
+import useToggle from '../../hooks/useToggle';
+import useInput from '../../hooks/useInput';
+import useMutate from '../../hooks/useMutate';
 
 const UserDetail = () => {
   const nav = useNavigate();
   const { id } = useParams();
   const { userParams } = useSelector((state: ReducerType) => state.params);
-  const { data, isError, isLoading, error } = useFetch(`/users/${id}`, userParams);
-  console.log(data);
+  const { toggle, handleToggle } = useToggle(false);
+  const { data, isError, isLoading } = useFetch(`/users/${id}`, userParams);
+  const { inputValue, handleInputChange, handleSetInput } = useInput({ name: '' });
+  const { mutate } = useMutate(`users/${id}`, 'patch', inputValue);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error...</div>;
+
   return (
     <>
       {/* user info */}
@@ -25,7 +34,37 @@ const UserDetail = () => {
       <div>{data?.email}</div>
       <div>{data?.age}</div>
       <img src={data?.photo} alt="img" />
-      <div>{data?.name}</div>
+      {toggle ? (
+        <input type="text" name="name" value={inputValue.name} onChange={handleInputChange} />
+      ) : (
+        <div>{data?.name}</div>
+      )}
+      {toggle ? (
+        <>
+          <button
+            onClick={() => {
+              mutate(inputValue);
+              handleToggle();
+            }}
+          >
+            저장
+          </button>
+          <button onClick={handleToggle}>취소</button>
+        </>
+      ) : (
+        <button
+          onClick={() => {
+            handleSetInput({ name: data?.name });
+            handleToggle();
+          }}
+        >
+          변경
+        </button>
+      )}
+      <div>{data?.allow_marketing_push ? 'allow' : 'not allow'}</div>
+      <div>{data?.allow_invest_push ? 'allow' : 'not allow'}</div>
+      <div>{data?.is_staff ? 'staff' : 'customer'}</div>
+      <div>{data?.is_active ? 'active' : 'inactive'}</div>
       <div>{convertPhoneNumber(data?.phone_number)}</div>
       {/* user account */}
       <ul>

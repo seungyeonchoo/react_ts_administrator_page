@@ -4,7 +4,7 @@ import useFetch from '../../hooks/useFetch';
 import useToggle from '../../hooks/useToggle';
 import useInput from '../../hooks/useInput';
 
-import { TUser, TUserSetting } from '../../types/user_types';
+import { TUser } from '../../types/user_types';
 import { AppDispatch, ReducerType } from '../../store';
 
 import UserTableItem from './components/UserTableItem';
@@ -12,6 +12,7 @@ import UserModal from './components/UserModal';
 import UserTableHead from './components/UserTableHead';
 import { useEffect } from 'react';
 import { updateUserParams } from '../../store/slices/paramSlice';
+import UserFilter from './components/UserFilter';
 
 const UserList = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,29 +34,21 @@ const UserList = () => {
     isError: usersIsError,
   } = useFetch('/users', userParams);
 
-  const {
-    data: settings,
-    error: settingsError,
-    isLoading: settingsIsLoading,
-    isError: settingsIsError,
-  } = useFetch('/usersetting');
+  if (usersIsLoading) return <div>Loading...</div>;
 
-  if (usersIsLoading || settingsIsLoading) return <div>Loading...</div>;
-
-  if (usersIsError || settingsIsError)
-    return <div>{`Error: ${(usersError || settingsError)?.response?.data}`}</div>;
+  if (usersIsError) return <div>{`Error: ${usersError?.response?.data}`}</div>;
 
   return (
     <>
       <input type="text" name="q" value={searchInput.q} onChange={handleSearchInputChange} />
+      <UserFilter />
       <button onClick={() => handleModalToggle()}>add</button>
       <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />
       <table>
         <UserTableHead />
         <tbody>
           {users?.map((user: TUser) => {
-            const userSetting = settings?.filter((el: TUserSetting) => el.id === user.id)[0];
-            return <UserTableItem key={user.id} user={user} setting={userSetting} />;
+            return <UserTableItem key={user.id} user={user} />;
           })}
         </tbody>
       </table>

@@ -28,23 +28,15 @@ for (let i = 1; i < 101; i++) {
     phone_number: faker.phone.number('010-####-####'),
     address: `${faker.address.country()} ${faker.address.city()}`,
     detail_address: faker.address.streetAddress(true),
-    last_login: faker.date.between('2022-01-01', '2022-08-01'),
-    created_at: faker.date.between('2019-04-01', '2022-08-01'),
-    updated_at: faker.date.between('2019-04-01', '2022-08-01'),
-  }
-  const setting = {
-    id: i,
-    uuid,
-    userId: i,
     allow_marketing_push: faker.datatype.boolean(),
     allow_invest_push: faker.datatype.boolean(),
     is_active: faker.datatype.boolean(),
     is_staff: faker.datatype.boolean(),
+    last_login: faker.date.between('2022-01-01', '2022-08-01'),
     created_at: faker.date.between('2019-04-01', '2022-08-01'),
     updated_at: faker.date.between('2019-04-01', '2022-08-01'),
   }
   users.push(user)
-  userSetting.push(setting)
 
   // generate fake accounts
   for (let j = 1; j < faker.datatype.number({ min: 2, max: 11 }); j++) {
@@ -68,6 +60,6 @@ for (let i = 1; i < 101; i++) {
   }
 }
 
-const data = { users, userSetting, accounts }
+const data = { users, accounts }
 fs.writeFileSync('db.json', JSON.stringify(data))
 console.log('...generated db.json')

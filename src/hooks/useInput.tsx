@@ -21,6 +21,10 @@ const useInput = <Type,>(initialInput: Type) => {
     setInputValue({ ...inputValue, [name]: checked });
   };
 
+  const handleSetInput: (input: Type) => void = input => {
+    setInputValue(input);
+  };
+
   const reset = () => {
     setInputValue(initialInput);
   };
@@ -30,6 +34,7 @@ const useInput = <Type,>(initialInput: Type) => {
     handleInputChange,
     handleSelectChange,
     handleCheckInputChange,
+    handleSetInput,
     reset,
   };
 };
