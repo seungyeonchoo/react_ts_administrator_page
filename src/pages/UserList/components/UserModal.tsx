@@ -76,6 +76,7 @@ const UserModal = ({
         <button onClick={handleCreateUser}>create</button>
         <button onClick={() => handleShowModal()}>cancel</button>
       </div>
+      {/* button wrapper */}
     </dialog>
   );
 };
