@@ -1,10 +1,12 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import useFetch from '../../hooks/useFetch';
 import useToggle from '../../hooks/useToggle';
 
 import { TUser } from '../../types/user_types';
-import { ReducerType } from '../../store';
+import { AppDispatch, ReducerType } from '../../store';
 
 import UserTableItem from './components/UserTableItem';
 import UserModal from './components/UserModal';
@@ -12,11 +14,11 @@ import UserTableHead from './components/UserTableHead';
 import UserFilter from './components/UserFilter';
 import UserSearchInput from './components/UserSearchInput';
 import UserCreateButton from './components/UserCreateButton';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { updateUserParams } from '../../store/slices/paramSlice';
 
 const UserList = () => {
   const nav = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const { userParams } = useSelector((state: ReducerType) => state.params);
   const { toggle: modalToggle, handleToggle: handleModalToggle } = useToggle();
 
@@ -54,6 +56,24 @@ const UserList = () => {
           ))}
         </tbody>
       </table>
+      <div>
+        <button
+          onClick={() => {
+            dispatch(updateUserParams({ _page: userParams._page - 1 }));
+          }}
+          disabled={userParams._page === 1}
+        >
+          prev
+        </button>
+        <button
+          onClick={() => {
+            dispatch(updateUserParams({ _page: userParams._page + 1 }));
+          }}
+          disabled={users?.length < 20}
+        >
+          next
+        </button>
+      </div>
     </>
   );
 };

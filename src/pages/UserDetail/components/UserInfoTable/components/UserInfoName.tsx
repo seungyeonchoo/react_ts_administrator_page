@@ -1,9 +1,8 @@
-import useInput from '../../../../hooks/useInput';
-import useMutate from '../../../../hooks/useMutate';
-import useToggle from '../../../../hooks/useToggle';
-import { TUser } from '../../../../types/user_types';
+import useInput from '../../../../../hooks/useInput';
+import useMutate from '../../../../../hooks/useMutate';
+import useToggle from '../../../../../hooks/useToggle';
+import { TUser } from '../../../../../types/user_types';
 import UserInfoTableData from './UserInfoTableData';
-import UserNameInput from './UserNameInput';
 
 const UserInfoName = ({ id, data }: { id: string; data: TUser }) => {
   const { toggle, handleToggle } = useToggle(false);
@@ -22,7 +21,7 @@ const UserInfoName = ({ id, data }: { id: string; data: TUser }) => {
 
   return toggle ? (
     <UserInfoTableData>
-      <UserNameInput input={inputValue} handleInputChange={handleInputChange} />
+      <input type="text" name="name" value={inputValue.name} onChange={handleInputChange} />
       <button onClick={handleSaveChange}>저장</button>
       <button onClick={handleToggle}>취소</button>
     </UserInfoTableData>

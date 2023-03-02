@@ -6,7 +6,6 @@ const accountStatus = require('./accountStatus.json')
 faker.setLocale('ko')
 
 const users = []
-const userSetting = []
 const accounts = []
 
 const brokercode = Object.keys(brokers)

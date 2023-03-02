@@ -6,17 +6,20 @@ import UserSettingInfo from './UserInfoTable/UserSettingInfo';
 
 const UserInfoTable = ({ data, id }: { data: TUser; id: string }) => {
   return (
-    <table>
-      <tbody>
+    <section>
+      <span>user information</span>
+      <div>
         <img src={data?.photo} alt="img" />
-        <td>
-          <UserBasicInfo id={id} data={data} />
-          <UserContactInfo data={data} />
-          <UserAccountInfo data={data} />
-          <UserSettingInfo data={data} />
-        </td>
-      </tbody>
-    </table>
+        <table>
+          <tbody>
+            <UserBasicInfo id={id} data={data} />
+            <UserContactInfo data={data} />
+            <UserAccountInfo data={data} />
+            <UserSettingInfo data={data} />
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 };
 

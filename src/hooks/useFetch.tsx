@@ -6,7 +6,7 @@ export type FetchData = (url: string, params?: object) => UseQueryResult<any, Ax
 
 const useFetch: FetchData = (url, params?) => {
   const fetchData = () => new ApiService(url).get(params);
-  return useQuery([url, params], fetchData);
+  return useQuery([url, params], fetchData, { keepPreviousData: true });
 };
 
 export default useFetch;
