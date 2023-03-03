@@ -1,4 +1,4 @@
-export const userListData = [
+export const mockUsers = [
   {
     id: 1,
     uuid: 'c0100979-9b0d-4aff-aeb0-68e11bcc0e92',
@@ -15,6 +15,10 @@ export const userListData = [
     last_login: '2022-07-31T16:12:53.915Z',
     created_at: '2021-03-11T06:47:36.909Z',
     updated_at: '2020-10-05T22:18:37.408Z',
+    allow_marketing_push: false,
+    allow_invest_push: false,
+    is_active: false,
+    is_staff: false,
     accounts: [
       {
         id: 6,
@@ -61,40 +65,3 @@ export const userListData = [
     ],
   },
 ];
-
-export const userSettingData = [
-  {
-    id: 1,
-    uuid: 'e7b5d524-7d32-40b7-b2b6-a88ae6bff1ac',
-    userId: 1,
-    allow_marketing_push: false,
-    allow_invest_push: false,
-    is_active: false,
-    is_staff: false,
-    created_at: '2019-12-08T01:01:22.486Z',
-    updated_at: '2021-07-28T23:57:09.140Z',
-  },
-];
-
-export const createUser = {
-  id: 2,
-  uuid: 'c9900979-9b0d-4aff-aeb0-68e11bcc0e92',
-  photo:
-    'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/475.jpg',
-  name: 'Joey 추',
-  email: '.38@yahoo.co.kr',
-  age: 36,
-  gender_origin: 3,
-  birth_date: '1967-08-16T09:33:18.562Z',
-  phone_number: '010-2224-0873',
-  address: 'Tunisia 성남시',
-  detail_address: '71971 장유읍 Apt. 997',
-  last_login: '2022-07-31T16:12:53.915Z',
-  created_at: '2021-03-11T06:47:36.909Z',
-  updated_at: '2020-10-05T22:18:37.408Z',
-  accounts: [
-    { id: 1, name: 1 },
-    { id: 2, name: 2 },
-    { id: 3, name: 3 },
-  ],
-};

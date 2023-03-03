@@ -1,6 +1,5 @@
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
 import { providerWrapper, mock, mockNav } from '../../service/__mock__';
 import Auth from './Auth';
 

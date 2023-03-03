@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import logger from 'redux-logger';
 import paramSlice from './slices/paramSlice';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   params: paramSlice,
 });
 
