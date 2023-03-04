@@ -20,7 +20,7 @@ const UserList = () => {
   const nav = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { userParams } = useSelector((state: ReducerType) => state.params);
-  const { toggle: modalToggle, handleToggle: handleModalToggle } = useToggle();
+  const { toggle: modalToggle, handleToggle: handleModalToggle } = useToggle(false);
 
   const {
     data: users,
@@ -47,7 +47,7 @@ const UserList = () => {
       <UserSearchInput />
       <UserFilter />
       <UserCreateButton handleModalToggle={handleModalToggle} />
-      <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />
+      {modalToggle && <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />}
       <table>
         <UserTableHead />
         <tbody>

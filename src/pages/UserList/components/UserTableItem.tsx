@@ -32,6 +32,7 @@ const UserTableItem = ({ user }: { user: TUser }) => {
       <UserTableData data={convertDate(user?.created_at)} />
       <UserTableData data={user?.allow_marketing_push ? 'allow' : 'not allow'} />
       <UserTableData data={user?.is_active ? 'active' : 'inactive'} />
+      <UserTableData data={user?.is_staff ? 'staff' : 'no staff'} />
       <td onClick={handleDelete}>delete</td>
     </tr>
   );

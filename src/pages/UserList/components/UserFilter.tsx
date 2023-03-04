@@ -17,14 +17,14 @@ const UserFilter = () => {
 
   return (
     <div>
-      <LabelWithInput labelTitle="staff">
+      <LabelWithInput labelTitle="filter staff">
         <select name="is_staff" onChange={handleFilter} value={userParams.is_staff || 'all'}>
           <option value="all">all</option>
           <option value="true">staff</option>
           <option value="false">non-staff</option>
         </select>
       </LabelWithInput>
-      <LabelWithInput labelTitle="active">
+      <LabelWithInput labelTitle="filter active">
         <select name="is_active" onChange={handleFilter} value={userParams.is_active || 'all'}>
           <option value="all">all</option>
           <option value="true">active</option>

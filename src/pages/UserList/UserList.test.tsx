@@ -1,5 +1,6 @@
-import { render, waitFor } from '@testing-library/react';
-import { mockUsers } from '../../fixture/mockUserData';
+import { act, render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { filteredMockUser, mockUsers } from '../../fixture/mockUserData';
 import { mock, mockNav, providerWrapper } from '../../service/__mock__';
 import UserList from './UserList';
 
@@ -43,9 +44,52 @@ describe('UserList Page', () => {
     });
   });
 
-  describe('should filter list by both staff and active', () => {
-    it('render all list as default', async () => {});
+  it('should navigate to user detail page when user name is clicked', async () => {
+    mock.onGet('/users').replyOnce(200, mockUsers);
+
+    const { getByText } = render(<UserList />, { wrapper: providerWrapper() });
+
+    await waitFor(() => expect(getByText(/Joey/)).toBeInTheDocument());
+
+    expect(getByText(/Joey/)).toBeInTheDocument();
+
+    userEvent.click(getByText(/Joey/));
+
+    expect(mockNav).toHaveBeenCalledWith('/users/1');
   });
+
+  it('should show user create modal when add button is clicked', async () => {
+    mock.onGet('/users').replyOnce(200, mockUsers);
+
+    const { getByText } = render(<UserList />, { wrapper: providerWrapper() });
+
+    await waitFor(() => expect(getByText(/Joey/)).toBeInTheDocument());
+
+    expect(getByText('add')).toBeInTheDocument();
+
+    act(() => userEvent.click(getByText('add')));
+
+    expect(getByText('create new user')).toBeInTheDocument();
+  });
+
+  //   describe('should filter list by both staff and active', () => {
+  //     it('render staff list when select staff option in select element', async () => {
+  //       mock.onGet('/users').replyOnce(200, mockUsers);
+  //       mock.onGet('/users', { params: { is_staff: 'true' } }).replyOnce(200, filteredMockUser);
+
+  //       const { getByText, getByLabelText } = render(<UserList />, { wrapper: providerWrapper() });
+
+  //       await waitFor(() => expect(getByLabelText(/filter staff/)).toBeInTheDocument());
+
+  //       expect(getByText(/joey/i)).toBeInTheDocument();
+
+  //       userEvent.selectOptions(getByLabelText(/filter staff/), 'staff');
+
+  //       await waitFor(() => expect(getByText(/marvin/i)).toBeInTheDocument());
+
+  //       expect(getByText(/joey/i)).not.toBeInTheDocument();
+  //     });
+  //   });
   //
   // render another page when click page move button => prev ? page - 1 : page + 1
 });
