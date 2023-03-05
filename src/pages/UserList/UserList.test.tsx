@@ -1,6 +1,8 @@
 import { act, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { filteredMockUser, mockUsers } from '../../fixture/mockUserData';
+import instance from '../../service/http';
 import { mock, mockNav, providerWrapper } from '../../service/__mock__';
 import UserList from './UserList';
 
@@ -72,6 +74,19 @@ describe('UserList Page', () => {
     expect(getByText('create new user')).toBeInTheDocument();
   });
 
+  it('should delete user data when delete button is clicked', async () => {
+    mock.onGet('/users').replyOnce(200, [mockUsers[0]]).onDelete('/users/1').replyOnce(200);
+
+    const { getByText } = render(<UserList />, { wrapper: providerWrapper() });
+
+    await waitFor(() => expect(getByText('delete')).toBeInTheDocument());
+
+    userEvent.click(getByText('delete'));
+
+    await waitFor(() => expect(mock.history.delete.length).toBe(1));
+
+    expect(mock.history.delete.length).toBe(1);
+  });
   //   describe('should filter list by both staff and active', () => {
   //     it('render staff list when select staff option in select element', async () => {
   //       mock.onGet('/users').replyOnce(200, mockUsers);
