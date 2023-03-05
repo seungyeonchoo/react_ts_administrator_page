@@ -77,32 +77,38 @@ describe('UserList Page', () => {
   it('should delete user data when delete button is clicked', async () => {
     mock.onGet('/users').replyOnce(200, [mockUsers[0]]).onDelete('/users/1').replyOnce(200);
 
-    const { getByText } = render(<UserList />, { wrapper: providerWrapper() });
+    const { getByText, queryByText } = render(<UserList />, { wrapper: providerWrapper() });
 
     await waitFor(() => expect(getByText('delete')).toBeInTheDocument());
 
-    userEvent.click(getByText('delete'));
+    act(async () => {
+      userEvent.click(getByText('delete'));
 
-    await waitFor(() => expect(mock.history.delete.length).toBe(1));
+      await waitFor(() => expect(mock.history.delete.length).toBe(1));
 
-    expect(mock.history.delete.length).toBe(1);
+      expect(queryByText(/joey/i)).not.toBeInTheDocument();
+    });
   });
   //   describe('should filter list by both staff and active', () => {
   //     it('render staff list when select staff option in select element', async () => {
   //       mock.onGet('/users').replyOnce(200, mockUsers);
   //       mock.onGet('/users', { params: { is_staff: 'true' } }).replyOnce(200, filteredMockUser);
 
-  //       const { getByText, getByLabelText } = render(<UserList />, { wrapper: providerWrapper() });
+  //       const { getByText, getByLabelText, queryByText } = render(<UserList />, {
+  //         wrapper: providerWrapper(),
+  //       });
 
-  //       await waitFor(() => expect(getByLabelText(/filter staff/)).toBeInTheDocument());
+  //       await waitFor(() => expect(getByText(/joey/i)).toBeInTheDocument());
 
   //       expect(getByText(/joey/i)).toBeInTheDocument();
 
-  //       userEvent.selectOptions(getByLabelText(/filter staff/), 'staff');
+  //       act(async () => {
+  //         userEvent.selectOptions(getByLabelText(/filter staff/), 'staff');
 
-  //       await waitFor(() => expect(getByText(/marvin/i)).toBeInTheDocument());
+  //         await waitFor(() => expect(queryByText(/marvin/i)).toBeInTheDocument());
 
-  //       expect(getByText(/joey/i)).not.toBeInTheDocument();
+  //         expect(queryByText(/joey/i)).not.toBeInTheDocument();
+  //       });
   //     });
   //   });
   //
