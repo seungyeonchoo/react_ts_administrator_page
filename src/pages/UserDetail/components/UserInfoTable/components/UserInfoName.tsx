@@ -22,13 +22,13 @@ const UserInfoName = ({ id, data }: { id: string; data: TUser }) => {
   return toggle ? (
     <UserInfoTableData>
       <input type="text" name="name" value={inputValue.name} onChange={handleInputChange} />
-      <button onClick={handleSaveChange}>저장</button>
-      <button onClick={handleToggle}>취소</button>
+      <button onClick={handleSaveChange}>save</button>
+      <button onClick={handleToggle}>cancel</button>
     </UserInfoTableData>
   ) : (
     <UserInfoTableData>
       <span>{data?.name}</span>
-      <button onClick={handleUpdateName}>변경</button>
+      <button onClick={handleUpdateName}>update</button>
     </UserInfoTableData>
   );
 };
