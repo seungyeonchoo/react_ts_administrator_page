@@ -1,6 +1,6 @@
 import React from 'react';
-import Input from '../../../component/Common/Input';
-import LabelWithInput from '../../../component/Common/LabelWithInput';
+import Input from '../../../../component/Common/Input';
+import LabelWithInput from '../../../../component/Common/LabelWithInput';
 
 interface InitialUser {
   photo: string;

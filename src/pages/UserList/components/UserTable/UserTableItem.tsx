@@ -1,11 +1,14 @@
 import { useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import useMutate from '../../../hooks/useMutate';
-import { TUser } from '../../../types/user_types';
-import convertDate from '../../../utils/convertData';
-import convertGender from '../../../utils/convertGender';
-import convertPhoneNumber from '../../../utils/convertPhoneNumber';
+
+import useMutate from '../../../../hooks/useMutate';
+
 import UserTableData from './UserTableData';
+import { TUser } from '../../../../types/user_types';
+
+import convertDate from '../../../../utils/convertData';
+import convertGender from '../../../../utils/convertGender';
+import convertPhoneNumber from '../../../../utils/convertPhoneNumber';
 
 const UserTableItem = ({ user }: { user: TUser }) => {
   const nav = useNavigate();

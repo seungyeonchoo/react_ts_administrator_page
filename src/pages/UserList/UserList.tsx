@@ -5,16 +5,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import useFetch from '../../hooks/useFetch';
 import useToggle from '../../hooks/useToggle';
 
-import { TUser } from '../../types/user_types';
 import { AppDispatch, ReducerType } from '../../store';
 
-import UserTableItem from './components/UserTableItem';
 import UserModal from './components/UserModal';
-import UserTableHead from './components/UserTableHead';
 import UserFilter from './components/UserFilter';
-import UserSearchInput from './components/UserSearchInput';
-import UserCreateButton from './components/UserCreateButton';
 import { updateUserParams } from '../../store/slices/paramSlice';
+import UserTable from './components/UserTable';
+import UserModalButton from './components/UserModal/UserModalButton';
 
 const UserList = () => {
   const nav = useNavigate();
@@ -22,40 +19,27 @@ const UserList = () => {
   const { userParams } = useSelector((state: ReducerType) => state.params);
   const { toggle: modalToggle, handleToggle: handleModalToggle } = useToggle(false);
 
-  const {
-    data: users,
-    error: usersError,
-    isLoading: usersIsLoading,
-    isError: usersIsError,
-  } = useFetch('/users', userParams);
+  const { data, error, isLoading, isError } = useFetch('/users', userParams);
 
   useEffect(() => {
     if (!sessionStorage.getItem('access_token')) nav('/');
   }, []);
 
-  if (usersIsLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
-  if (usersIsError) {
-    if (usersError?.response?.data === 'jwt expired') {
+  if (isError) {
+    if (error?.response?.data === 'jwt expired') {
       sessionStorage.clear();
       nav('/');
-    } else return <div>{`Error: ${usersError?.response?.data}`}</div>;
+    } else return <div>{`Error: ${error?.response?.data}`}</div>;
   }
 
   return (
     <>
-      <UserSearchInput />
       <UserFilter />
-      <UserCreateButton handleModalToggle={handleModalToggle} />
+      <button onClick={() => handleModalToggle()}>add</button>
       {modalToggle && <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />}
-      <table>
-        <UserTableHead />
-        <tbody>
-          {users?.map((user: TUser) => (
-            <UserTableItem key={user.id} user={user} />
-          ))}
-        </tbody>
-      </table>
+      <UserTable users={data} />
       <div>
         <button
           onClick={() => {
@@ -69,7 +53,7 @@ const UserList = () => {
           onClick={() => {
             dispatch(updateUserParams({ _page: userParams._page + 1 }));
           }}
-          disabled={users?.length < 20}
+          disabled={data?.length < 20}
         >
           next
         </button>

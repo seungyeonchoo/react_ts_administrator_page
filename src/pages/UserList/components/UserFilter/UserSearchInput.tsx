@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import useInput from '../../../hooks/useInput';
-import { AppDispatch } from '../../../store';
-import { updateUserParams } from '../../../store/slices/paramSlice';
+import useInput from '../../../../hooks/useInput';
+import { AppDispatch } from '../../../../store';
+import { updateUserParams } from '../../../../store/slices/paramSlice';
 
 const UserSearchInput = () => {
   const dispatch = useDispatch<AppDispatch>();
