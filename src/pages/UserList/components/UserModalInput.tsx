@@ -56,7 +56,7 @@ const UserModalInput = ({
 
       <LabelWithInput labelTitle="birth day">
         <Input
-          type="date"
+          type="text"
           name="birth_date"
           value={userInput.birth_date}
           onChange={handleUserInputChange}

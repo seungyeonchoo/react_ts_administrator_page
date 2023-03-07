@@ -54,18 +54,21 @@ const UserModal = ({
     handleInputChange: handleUserInputChange,
     handleCheckInputChange: handleSettingInputChange,
     handleSelectChange,
+    reset,
   } = useInput<InitialUser>(initialUser);
 
   const { mutate: createUser } = useMutate('/signup', 'post', userInput);
 
   const handleCreateUser = () => {
     createUser(userInput);
+    reset();
     handleShowModal();
   };
 
+  const { name, email, birth_date, phone_number, address, detail_address } = userInput;
+
   return (
     <dialog open={showModal}>
-      <h1>create new user</h1>
       <UserModalInput
         userInput={userInput}
         handleUserInputChange={handleUserInputChange}
@@ -73,7 +76,12 @@ const UserModal = ({
         handleSelectChange={handleSelectChange}
       />
       <div>
-        <button onClick={handleCreateUser}>create</button>
+        <button
+          onClick={handleCreateUser}
+          disabled={!(name && email && birth_date && phone_number && address && detail_address)}
+        >
+          create
+        </button>
         <button onClick={() => handleShowModal()}>cancel</button>
       </div>
       {/* button wrapper */}

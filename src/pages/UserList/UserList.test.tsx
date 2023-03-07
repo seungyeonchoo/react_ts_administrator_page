@@ -66,7 +66,7 @@ describe('UserList Page', () => {
   it('should show user create modal when add button is clicked', async () => {
     mock.onGet('/users').replyOnce(200, mockUsers);
 
-    const { getByText } = render(<UserList />, { wrapper: providerWrapper() });
+    const { getByText, getByRole } = render(<UserList />, { wrapper: providerWrapper() });
 
     await waitFor(() => expect(getByText(/Joey/)).toBeInTheDocument());
 
@@ -74,7 +74,7 @@ describe('UserList Page', () => {
 
     act(() => userEvent.click(getByText('add')));
 
-    expect(getByText('create new user')).toBeInTheDocument();
+    expect(getByRole('textbox', { name: 'name' })).toBeInTheDocument();
   });
 
   it('should delete user data when delete button is clicked', async () => {
