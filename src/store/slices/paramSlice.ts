@@ -9,15 +9,28 @@ const initialUserParams = {
   _page: 1,
 };
 
+const initialAccountParams = {
+  _expand: 'user',
+  q: '',
+  is_active: null,
+  broker_id: null,
+  status: null,
+  _limit: 20,
+  _page: 1,
+};
+
 const paramSlice = createSlice({
   name: 'params',
-  initialState: { userParams: initialUserParams },
+  initialState: { userParams: initialUserParams, accountParams: initialAccountParams },
   reducers: {
     updateUserParams: (state, action) => {
       state.userParams = { ...state.userParams, ...action.payload };
     },
+    updateAccountParams: (state, action) => {
+      state.accountParams = { ...state.accountParams, ...action.payload };
+    },
   },
 });
 
-export const { updateUserParams } = paramSlice.actions;
+export const { updateUserParams, updateAccountParams } = paramSlice.actions;
 export default paramSlice.reducer;

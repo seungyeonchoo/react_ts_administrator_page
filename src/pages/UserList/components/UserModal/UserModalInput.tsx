@@ -2,7 +2,7 @@ import React from 'react';
 import Input from '../../../../component/Common/Input';
 import LabelWithInput from '../../../../component/Common/LabelWithInput';
 
-interface InitialUser {
+export interface InitialUser {
   photo: string;
   name: string;
   password: string;
