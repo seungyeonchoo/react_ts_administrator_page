@@ -1,25 +1,15 @@
-import { useNavigate } from 'react-router-dom';
-import ACCOUNT_STATUS from '../../fixture/AccountStatus';
-import BROKER_LIST from '../../fixture/BrokerList';
 import useFetch from '../../hooks/useFetch';
-import { AppDispatch, ReducerType } from '../../store';
-import { TAccount } from '../../types/user_types';
-import { useDispatch, useSelector } from 'react-redux';
-import LabelWithInput from '../../component/Common/LabelWithInput';
-import { updateAccountParams } from '../../store/slices/paramSlice';
+
+import { useSelector } from 'react-redux';
+import { ReducerType } from '../../store';
+
+import AccountFilter from './components/AccountFilter';
+import AccountListPage from './components/AccountListPage';
+import AccountListTable from './components/AccountTable';
 
 const AccountList = () => {
-  const nav = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
   const { accountParams } = useSelector((state: ReducerType) => state.params);
   const { data, isError, isLoading } = useFetch('/accounts', accountParams);
-
-  const handleFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    if (value === 'null') dispatch(updateAccountParams({ ...accountParams, [name]: null }));
-    else dispatch(updateAccountParams({ ...accountParams, [name]: value }));
-  };
 
   if (isError) return <span>Error...</span>;
 
@@ -27,39 +17,9 @@ const AccountList = () => {
 
   return (
     <>
-      <LabelWithInput labelTitle="is active">
-        <select name="is_active" onChange={handleFilter} value={accountParams.is_active || 'null'}>
-          <option value="null">all</option>
-          <option value="true">active</option>
-          <option value="false">inactive</option>
-        </select>
-      </LabelWithInput>
-
-      <LabelWithInput labelTitle="account status">
-        <select name="status" onChange={handleFilter} value={accountParams.status || 'null'}>
-          {Object.keys(ACCOUNT_STATUS).map((status: string) => (
-            <option key={status} value={status}>
-              {ACCOUNT_STATUS[status]}
-            </option>
-          ))}
-        </select>
-      </LabelWithInput>
-
-      <table>
-        <tbody>
-          {data?.map((account: TAccount) => {
-            return (
-              <tr key={account.uuid}>
-                <td>{account.name}</td>
-                <td>{BROKER_LIST[account.broker_id]}</td>
-                <td>{ACCOUNT_STATUS[account.status]}</td>
-                <td onClick={() => nav(`/accounts/${account.id}`)}>{account.number}</td>
-                <td onClick={() => nav(`/users/${account.user.id}`)}>{account.user.name}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <AccountFilter />
+      <AccountListTable accounts={data} />
+      <AccountListPage page={accountParams._page} length={data?.length} />
     </>
   );
 };

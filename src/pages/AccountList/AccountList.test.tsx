@@ -1,4 +1,4 @@
-import { getByRole, render, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { mockAccounts } from '../../fixture/mockAccountData';
 import { mock, mockNav, providerWrapper } from '../../service/__mock__';
@@ -105,7 +105,27 @@ describe('Account List Page', () => {
         expect(activeOpt.selected).toBe(true);
         expect(queryByText('375178506564')).not.toBeInTheDocument();
       });
-      //   it('by broker_id', () => {});
+      it('by broker_id', async () => {
+        const { getByText, getByLabelText, queryByText, queryByRole } = render(<AccountList />, {
+          wrapper: providerWrapper(),
+        });
+
+        await waitFor(() => expect(getByText('375178506564')).toBeInTheDocument());
+
+        const brokerFilter = getByLabelText('broker id');
+
+        expect(brokerFilter).toBeInTheDocument();
+
+        userEvent.selectOptions(brokerFilter, ['하이투자증권']);
+
+        await waitFor(() => expect(queryByText('375178506564')).not.toBeInTheDocument());
+
+        const brokerOpt = queryByRole('option', { name: '하이투자증권' }) as HTMLOptionElement;
+
+        expect(brokerOpt.selected).toBe(true);
+        expect(queryByText('375178506564')).not.toBeInTheDocument();
+      });
+
       it('by status', async () => {
         const { getByText, getByLabelText, queryByText, queryByRole } = render(<AccountList />, {
           wrapper: providerWrapper(),
@@ -129,28 +149,6 @@ describe('Account List Page', () => {
       });
     });
   });
-  // should render account list data => success & loadling & error
-  // should navigate
-  // - to account detail page when account number is clicked
-  // - to user detail page when user name is clicked
-  // should filter is_active && broker_id && status
-  // could search
-  // should paginated
 });
 
 export default {};
-
-// {
-//     id: 1,
-//     userId: 1,
-//     uuid: '8910b399-935d-4200-898b-bb3da7c3bfc7',
-//     broker_id: '261',
-//     status: 2,
-//     number: '375178506564',
-//     name: 'Money Market Account',
-//     assets: '702487457.42',
-//     payments: '675311926.92',
-//     is_active: false,
-//     created_at: '2020-04-25T13:37:13.564Z',
-//     updated_at: '2020-11-21T06:11:57.543Z',
-//   },

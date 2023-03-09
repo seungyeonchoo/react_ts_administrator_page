@@ -12,6 +12,7 @@ import UserFilter from './components/UserFilter';
 import { updateUserParams } from '../../store/slices/paramSlice';
 import UserTable from './components/UserTable';
 import UserModalButton from './components/UserModal/UserModalButton';
+import UserListPage from './components/UseListPage';
 
 const UserList = () => {
   const nav = useNavigate();
@@ -40,24 +41,7 @@ const UserList = () => {
       <button onClick={() => handleModalToggle()}>add</button>
       {modalToggle && <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />}
       <UserTable users={data} />
-      <div>
-        <button
-          onClick={() => {
-            dispatch(updateUserParams({ _page: userParams._page - 1 }));
-          }}
-          disabled={userParams._page === 1}
-        >
-          prev
-        </button>
-        <button
-          onClick={() => {
-            dispatch(updateUserParams({ _page: userParams._page + 1 }));
-          }}
-          disabled={data?.length < 20}
-        >
-          next
-        </button>
-      </div>
+      <UserListPage page={userParams._page} length={data?.length} />
     </>
   );
 };
