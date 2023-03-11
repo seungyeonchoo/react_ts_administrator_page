@@ -20,24 +20,15 @@ const AccountTableItem = ({ account }: { account: TAccount }) => {
       />
       <AccountTableData data={addComma(account?.payments)} />
       <AccountTableData data={addComma(account?.assets)} />
-      <AccountTableData data={convertDate(account?.created_at)} />
+      <AccountTableData
+        data={`${(((+account?.assets - +account?.payments) / +account?.payments) * 100).toFixed(
+          2
+        )}%`}
+      />
+      <AccountTableData data={addComma((+account.assets - +account.payments).toString())} />
       <AccountTableData data={account?.is_active ? 'active' : 'inactive'} />
       <AccountTableData data={convertDate(account?.created_at)} />
       <AccountTableData data={convertDate(account?.updated_at)} />
-      {/* <td onClick={handleDelete}>delete</td> */}
-      {/* 
-      <TableHeadCell cell="Account Number" />
-        <TableHeadCell cell="Account Name" />
-        <TableHeadCell cell="Status" />
-        <TableHeadCell cell="Broker" />
-        <TableHeadCell cell="User Name" />
-        <TableHeadCell cell="Payments" />
-        <TableHeadCell cell="Assests" />
-        <TableHeadCell cell="Earnings rate" />
-        <TableHeadCell cell="Profit" />
-        <TableHeadCell cell="Active" />
-        <TableHeadCell cell="Created Date" />
-        <TableHeadCell cell="Updated Date" /> */}
     </tr>
   );
 };
