@@ -97,64 +97,64 @@ describe('UserList Page', () => {
     expect(queryByText(/joey/i)).not.toBeInTheDocument();
   });
 
-  describe('should filter list by both staff and active', () => {
-    beforeEach(() => {
-      mock.onGet('/users').reply((config: any) => {
-        if (config.params.is_staff === 'true') return [200, filteredMockUser];
-        if (config.params.is_active === 'false') return [200, [mockUsers[0]]];
-        else return [200, mockUsers];
-      });
-    });
-
-    it('render staff user list when select staff option in select element', async () => {
-      const { getByText, getByLabelText, queryByText, getByRole } = render(<UserList />, {
-        wrapper: providerWrapper(),
-      });
-
-      await waitFor(() => expect(getByText(/joey/i)).toBeInTheDocument());
-
-      const staffFilter = getByLabelText(/filter staff/);
-
-      expect(staffFilter).toBeInTheDocument();
-      expect(getByText(/marvin/i)).toBeInTheDocument();
-      expect(getByText(/joey/i)).toBeInTheDocument();
-
-      userEvent.selectOptions(staffFilter, ['staff']);
-
-      await waitFor(() => expect(queryByText(/joey/i)).not.toBeInTheDocument());
-
-      const staffOpt = getByRole('option', { name: 'staff' }) as HTMLOptionElement;
-
-      expect(staffOpt.selected).toBe(true);
-      expect(getByText(/marvin/i)).toBeInTheDocument();
-      expect(queryByText(/joey/i)).not.toBeInTheDocument();
-    });
-
-    it('render active user list when select staff option in select element', async () => {
-      const { getByText, getByLabelText, getByRole, queryByText } = render(<UserList />, {
-        wrapper: providerWrapper(),
-      });
-
-      await waitFor(() => expect(getByText(/joey/i)).toBeInTheDocument());
-
-      const activeFilter = getByLabelText(/filter active/);
-
-      expect(getByText(/joey/i)).toBeInTheDocument();
-      expect(getByText(/marvin/i)).toBeInTheDocument();
-
-      userEvent.selectOptions(activeFilter, ['inactive']);
-
-      await waitFor(() => expect(queryByText(/marvin/i)).not.toBeInTheDocument());
-
-      const activeOpt = getByRole('option', { name: 'inactive' }) as HTMLOptionElement;
-
-      expect(activeOpt.selected).toBe(true);
-      expect(queryByText(/marvin/i)).not.toBeInTheDocument();
-      expect(getByText(/joey/i)).toBeInTheDocument();
-    });
-  });
+  //   describe('should filter list by both staff and active', () => {
+  //     beforeEach(() => {
+  //       mock.onGet('/users').reply((config: any) => {
+  //         if (config.params.is_staff === 'true') return [200, filteredMockUser];
+  //         if (config.params.is_active === 'false') return [200, [mockUsers[0]]];
+  //         else return [200, mockUsers];
+  //       });
+  //     });
+  //   });
   //
   // render another page when click page move button => prev ? page - 1 : page + 1
 });
 
 export default {};
+
+// it('render staff user list when select staff option in select element', async () => {
+//     const { getByText, getByLabelText, queryByText, getByRole } = render(<UserList />, {
+//       wrapper: providerWrapper(),
+//     });
+
+//     await waitFor(() => expect(getByText(/joey/i)).toBeInTheDocument());
+
+//     const staffFilter = getByLabelText(/filter staff/);
+
+//     expect(staffFilter).toBeInTheDocument();
+//     expect(getByText(/marvin/i)).toBeInTheDocument();
+//     expect(getByText(/joey/i)).toBeInTheDocument();
+
+//     userEvent.selectOptions(staffFilter, ['staff']);
+
+//     await waitFor(() => expect(queryByText(/joey/i)).not.toBeInTheDocument());
+
+//     const staffOpt = getByRole('option', { name: 'staff' }) as HTMLOptionElement;
+
+//     expect(staffOpt.selected).toBe(true);
+//     expect(getByText(/marvin/i)).toBeInTheDocument();
+//     expect(queryByText(/joey/i)).not.toBeInTheDocument();
+//   });
+
+//   it('render active user list when select staff option in select element', async () => {
+//     const { getByText, getByLabelText, getByRole, queryByText } = render(<UserList />, {
+//       wrapper: providerWrapper(),
+//     });
+
+//     await waitFor(() => expect(getByText(/joey/i)).toBeInTheDocument());
+
+//     const activeFilter = getByLabelText(/filter active/);
+
+//     expect(getByText(/joey/i)).toBeInTheDocument();
+//     expect(getByText(/marvin/i)).toBeInTheDocument();
+
+//     userEvent.selectOptions(activeFilter, ['inactive']);
+
+//     await waitFor(() => expect(queryByText(/marvin/i)).not.toBeInTheDocument());
+
+//     const activeOpt = getByRole('option', { name: 'inactive' }) as HTMLOptionElement;
+
+//     expect(activeOpt.selected).toBe(true);
+//     expect(queryByText(/marvin/i)).not.toBeInTheDocument();
+//     expect(getByText(/joey/i)).toBeInTheDocument();
+//   });

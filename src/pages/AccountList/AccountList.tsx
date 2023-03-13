@@ -6,14 +6,15 @@ import { ReducerType } from '../../store';
 import AccountFilter from './components/AccountFilter';
 import AccountListPage from './components/AccountListPage';
 import AccountListTable from './components/AccountTable';
+import LoadingPage from '../../component/LoadingPage/LoadingPage';
+import ErrorPage from '../../component/ErrorPage/ErrorPage';
 
 const AccountList = () => {
   const { accountParams } = useSelector((state: ReducerType) => state.params);
-  const { data, isError, isLoading } = useFetch('/accounts', accountParams);
+  const { data, isError, isLoading, error } = useFetch('/accounts', accountParams);
 
-  if (isError) return <span>Error...</span>;
-
-  if (isLoading) return <span>Loading...</span>;
+  if (isLoading) return <LoadingPage />;
+  if (isError) return <ErrorPage error={error} />;
 
   return (
     <>

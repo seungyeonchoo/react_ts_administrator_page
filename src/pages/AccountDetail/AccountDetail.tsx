@@ -6,15 +6,17 @@ import convertDate from '../../utils/convertData';
 import addComma from '../../utils/addComma';
 import ACCOUNT_STATUS from '../../fixture/AccountStatus';
 import BROKER_LIST from '../../fixture/BrokerList';
+import LoadingPage from '../../component/LoadingPage/LoadingPage';
+import ErrorPage from '../../component/ErrorPage/ErrorPage';
 
 const AccountDetail = () => {
   const { id } = useParams();
   const nav = useNavigate();
   const { accountParams } = useSelector((state: ReducerType) => state.params);
-  const { data, isError, isLoading } = useFetch(`/accounts/${id}`, accountParams);
+  const { data, isError, isLoading, error } = useFetch(`/accounts/${id}`, accountParams);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error...</div>;
+  if (isLoading) return <LoadingPage />;
+  if (isError) return <ErrorPage error={error} />;
 
   return (
     <table>
@@ -48,9 +50,9 @@ const AccountDetail = () => {
         <td>{addComma(data?.assets)}</td>
       </tr>
       <tr>
-        <th>수익률</th>
+        <th>Earning Rate</th>
         <td>{(((+data?.assets - +data?.payments) / +data?.payments) * 100).toFixed(2)}%</td>
-        <th>수익금액</th>
+        <th>Profit</th>
         <td>{addComma((+data?.assets - +data?.payments).toString())}</td>
       </tr>
     </table>

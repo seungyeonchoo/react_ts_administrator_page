@@ -5,17 +5,16 @@ import { ReducerType } from '../../store';
 
 import UserInfoTable from './components/UserInfoTable';
 import UserAccountList from './components/UserAccountList';
+import LoadingPage from '../../component/LoadingPage/LoadingPage';
+import ErrorPage from '../../component/ErrorPage/ErrorPage';
 
 const UserDetail = () => {
   const { id } = useParams();
   const { userParams } = useSelector((state: ReducerType) => state.params);
   const { data, isError, isLoading, error } = useFetch(`/users/${id}`, userParams);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) {
-    if (error.response?.data === 'jwt expired') sessionStorage.clear();
-    else return <div>Error...</div>;
-  }
+  if (isLoading) return <LoadingPage />;
+  if (isError) return <ErrorPage error={error} />;
 
   return (
     <>

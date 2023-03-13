@@ -7,7 +7,7 @@ interface Props {
 
 const UserFilterActive = ({ is_active, handleFilter }: Props) => {
   return (
-    <LabelWithInput labelTitle="filter active">
+    <LabelWithInput labelTitle="active">
       <select name="is_active" onChange={handleFilter} value={is_active || 'all'}>
         <option value="all">all</option>
         <option value="true">active</option>

@@ -15,7 +15,15 @@ const UserSearchInput = () => {
     return () => clearTimeout(debounceHandler);
   }, [searchInput]);
 
-  return <input type="text" name="q" value={searchInput.q} onChange={handleSearchInputChange} />;
+  return (
+    <input
+      type="text"
+      name="q"
+      value={searchInput.q}
+      placeholder="search keyword"
+      onChange={handleSearchInputChange}
+    />
+  );
 };
 
 export default UserSearchInput;
