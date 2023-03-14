@@ -11,7 +11,7 @@ export interface TAccount {
   is_active: boolean;
   created_at: string;
   updated_at: string;
-  user: {
+  user?: {
     id: number;
     uuid: string;
     photo: string;
@@ -51,5 +51,5 @@ export interface TUser {
   allow_invest_push: boolean;
   is_active: boolean;
   is_staff: boolean;
-  accounts: TAccount[];
+  accounts?: TAccount[];
 }

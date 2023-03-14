@@ -16,7 +16,7 @@ const AccountTableItem = ({ account }: { account: TAccount }) => {
       <AccountTableData data={BROKER_LIST[account?.broker_id]} />
       <AccountTableData
         onClick={() => nav(`/users/${account?.userId}`)}
-        data={account?.user.name}
+        data={account?.user?.name as string}
       />
       <AccountTableData data={addComma(account?.payments)} />
       <AccountTableData data={addComma(account?.assets)} />

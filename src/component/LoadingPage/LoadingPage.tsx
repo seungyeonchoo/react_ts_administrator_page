@@ -1,5 +1,5 @@
 const LoadingPage = () => {
-  return <div>...Loading</div>;
+  return <main data-testid="loading-component">...Loading</main>;
 };
 
 export default LoadingPage;

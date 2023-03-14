@@ -28,13 +28,14 @@ const UserList = () => {
   if (isError) return <ErrorPage error={error} />;
 
   return (
-    <>
+    <main data-testid="data-component">
       <UserFilter />
       <button onClick={() => handleModalToggle()}>add</button>
-      {modalToggle && <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />}
+      <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />
+      {/* {modalToggle && <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />} */}
       <UserTable users={data} />
       <UserListPage page={userParams._page} length={data?.length} />
-    </>
+    </main>
   );
 };
 

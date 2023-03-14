@@ -26,7 +26,7 @@ const UserTableItem = ({ user }: { user: TUser }) => {
   return (
     <tr>
       <UserTableData onClick={() => nav(`/users/${user.id}`)} data={user?.name} />
-      <UserTableData data={user?.accounts.length} />
+      <UserTableData data={user?.accounts?.length as number} />
       <UserTableData data={user?.email} />
       <UserTableData data={convertGender(user?.gender_origin)} />
       <UserTableData data={convertDate(user?.birth_date)} />

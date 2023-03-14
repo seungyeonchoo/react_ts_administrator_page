@@ -8,7 +8,9 @@ const ErrorPage = ({ error }: { error: any }) => {
     nav('/');
   }
 
-  return <div>Error : {error?.response?.data || error?.message}</div>;
+  return (
+    <main data-testid="error-component">Error : {error?.response?.data || error?.message}</main>
+  );
 };
 
 export default ErrorPage;

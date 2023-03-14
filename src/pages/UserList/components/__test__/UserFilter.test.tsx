@@ -1,9 +1,9 @@
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { providerWrapper } from '../../../../service/__mock__';
+import store from '../../../../store';
+import { initialUserParams, updateUserParams } from '../../../../store/slices/paramSlice';
 import UserFilter from '../UserFilter';
-
-// const mockStore = confi;
 
 const setUp = () => {
   const { getByPlaceholderText, getByLabelText } = render(<UserFilter />, {
@@ -30,11 +30,14 @@ describe('UserFilter component', () => {
 
       expect(isActiveFilter.value).toBe('true');
       expect(isStaffFilter.value).toBe('false');
+
+      expect(store.getState().params.userParams.is_active).toBe('true');
+      expect(store.getState().params.userParams.is_staff).toBe('false');
     });
   });
 
   describe('SearchInput', () => {
-    it('should update input value when keyword is typed in search input', () => {
+    it('should update input value when keyword is typed in search input', async () => {
       const { searchInput } = setUp();
 
       expect(searchInput.name).toBe('q');
@@ -44,8 +47,11 @@ describe('UserFilter component', () => {
       userEvent.type(searchInput, 'marvin');
 
       expect(searchInput.value).toBe('marvin');
+
+      await waitFor(() => expect(store.getState().params.userParams.q).toBe('marvin'));
+
+      expect(store.getState().params.userParams.q).toBe('marvin');
     });
-    // it('should update userParams in 500ms after keyword is typed in search input', () => {});
   });
 });
 

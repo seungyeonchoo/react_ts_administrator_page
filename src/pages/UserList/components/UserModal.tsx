@@ -20,7 +20,7 @@ const UserModal = ({ showModal, handleShowModal }: Props) => {
   } = useInput(InitialUser);
 
   return (
-    <dialog open={showModal}>
+    <dialog open={showModal} data-testid="create-user-modal">
       <UserModalInput
         userInput={userInput}
         handleUserInputChange={handleUserInputChange}

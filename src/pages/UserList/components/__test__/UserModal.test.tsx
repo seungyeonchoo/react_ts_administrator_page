@@ -6,31 +6,41 @@ import UserModal from '../UserModal';
 const handleShowModal = jest.fn();
 
 const setUp = () => {
-  const { getByRole, queryByRole } = render(
+  const { getByRole, queryByRole, getByLabelText, getByText } = render(
     <UserModal showModal={true} handleShowModal={handleShowModal} />,
     {
       wrapper: providerWrapper(),
     }
   );
 
-  return { getByRole, queryByRole };
+  const createButton = getByText('create') as HTMLButtonElement;
+  const userNameInput = getByLabelText(/name/i) as HTMLInputElement;
+  const userEmailInput = getByLabelText(/email/i) as HTMLInputElement;
+  const userBirthInput = getByLabelText(/birth/i) as HTMLInputElement;
+  const userPhoneInput = getByLabelText(/phone/i) as HTMLInputElement;
+  const userAddressInput = getByLabelText(/^address/i) as HTMLInputElement;
+  const addressDetailInput = getByLabelText(/^detail/i) as HTMLInputElement;
+  const userGenderInput = getByLabelText(/gender/i) as HTMLSelectElement;
+  const isActiveCheck = getByLabelText(/active/i) as HTMLInputElement;
+
+  return {
+    getByRole,
+    queryByRole,
+    createButton,
+    userNameInput,
+    userEmailInput,
+    userBirthInput,
+    userPhoneInput,
+    userAddressInput,
+    addressDetailInput,
+    userGenderInput,
+    isActiveCheck,
+  };
 };
 
 describe('UserModal component', () => {
-  it('should render input for create new user', () => {
-    const { getByRole, queryByRole } = setUp();
-
-    const createButton = queryByRole('button', { name: 'create' }) as HTMLButtonElement;
-
-    expect(getByRole('textbox', { name: 'name' })).toBeInTheDocument();
-    expect(createButton.disabled).toBe(true);
-  });
-
   it('should update input value when input is typed', () => {
-    const { getByRole } = setUp();
-
-    const userNameInput = getByRole('textbox', { name: 'name' }) as HTMLInputElement;
-    const isActiveCheck = getByRole('checkbox', { name: 'is active' }) as HTMLInputElement;
+    const { userNameInput, isActiveCheck } = setUp();
 
     expect(userNameInput.value).toBe('');
     expect(isActiveCheck.checked).toBe(false);
@@ -45,18 +55,16 @@ describe('UserModal component', () => {
   it('should create new user when create button is clicked', async () => {
     mock.onPost('/users').reply(200);
 
-    const { queryByRole } = setUp();
-
-    const userNameInput = queryByRole('textbox', { name: 'name' }) as HTMLInputElement;
-    const userEmailInput = queryByRole('textbox', { name: 'email' }) as HTMLInputElement;
-    const userBirthInput = queryByRole('textbox', { name: 'birth day' }) as HTMLInputElement;
-    const userPhoneInput = queryByRole('textbox', { name: 'phone number' }) as HTMLInputElement;
-    const userAddressInput = queryByRole('textbox', { name: 'address' }) as HTMLInputElement;
-    const addressDetailInput = queryByRole('textbox', {
-      name: 'detail address',
-    }) as HTMLInputElement;
-    const userGenderInput = queryByRole('combobox', { name: 'gender' }) as HTMLSelectElement;
-    const createButton = queryByRole('button', { name: 'create' }) as HTMLButtonElement;
+    const {
+      userNameInput,
+      userPhoneInput,
+      userAddressInput,
+      userBirthInput,
+      userEmailInput,
+      userGenderInput,
+      addressDetailInput,
+      createButton,
+    } = setUp();
 
     expect(userNameInput).toBeInTheDocument();
     expect(userEmailInput).toBeInTheDocument();

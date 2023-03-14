@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialUserParams = {
+export const initialUserParams = {
   _embed: 'accounts',
   q: '',
   is_staff: null,
@@ -9,7 +9,7 @@ const initialUserParams = {
   _page: 1,
 };
 
-const initialAccountParams = {
+export const initialAccountParams = {
   _expand: 'user',
   q: '',
   is_active: null,
