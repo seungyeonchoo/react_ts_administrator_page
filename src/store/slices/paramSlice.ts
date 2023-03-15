@@ -11,7 +11,7 @@ export const initialUserParams = {
 
 export const initialAccountParams = {
   _expand: 'user',
-  q: '',
+  number_like: '',
   is_active: null,
   broker_id: null,
   status: null,

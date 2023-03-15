@@ -7,7 +7,7 @@ import { updateAccountParams } from '../../../../store/slices/paramSlice';
 const AccountSearchInput = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { inputValue: searchInput, handleInputChange: handleSearchInputChange } = useInput({
-    q: '',
+    number_like: '',
   });
 
   useEffect(() => {
@@ -15,7 +15,15 @@ const AccountSearchInput = () => {
     return () => clearTimeout(debounceHandler);
   }, [searchInput]);
 
-  return <input type="text" name="q" value={searchInput.q} onChange={handleSearchInputChange} />;
+  return (
+    <input
+      type="text"
+      name="number_like"
+      placeholder="search account number"
+      value={searchInput.number_like}
+      onChange={handleSearchInputChange}
+    />
+  );
 };
 
 export default AccountSearchInput;

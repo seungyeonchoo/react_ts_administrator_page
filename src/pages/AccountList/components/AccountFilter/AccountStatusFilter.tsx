@@ -10,7 +10,7 @@ interface Props {
 
 const AccountStatusFilter = ({ status, handleFilter }: Props) => {
   return (
-    <LabelWithInput labelTitle="account status">
+    <LabelWithInput labelTitle="status">
       <select name="status" onChange={handleFilter} value={status || 'null'}>
         <option value="null">total</option>
         {Object.keys(ACCOUNT_STATUS).map((status: string) => (

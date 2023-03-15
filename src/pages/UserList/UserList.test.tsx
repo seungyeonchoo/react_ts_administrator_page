@@ -1,8 +1,9 @@
 import { act, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import MockUserList from '../../fixture/MockUserList';
 import { mock, mockNav, providerWrapper } from '../../service/__mock__';
 import store from '../../store';
-import MockUserList from './components/fixture/MockUserList';
+
 import UserList from './UserList';
 
 const { userParams } = store.getState().params;

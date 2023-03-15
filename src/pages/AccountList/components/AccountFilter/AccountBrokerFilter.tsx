@@ -9,7 +9,7 @@ interface Props {
 
 const AccountBrokerFilter = ({ handleFilter, broker_id }: Props) => {
   return (
-    <LabelWithInput labelTitle="broker id">
+    <LabelWithInput labelTitle="broker">
       <select name="broker_id" onChange={handleFilter} value={broker_id || 'null'}>
         <option value="null">total</option>
         {Object.keys(BROKER_LIST).map((broker: string) => (

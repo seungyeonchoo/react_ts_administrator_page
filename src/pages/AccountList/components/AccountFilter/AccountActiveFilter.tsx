@@ -7,7 +7,7 @@ interface Props {
 
 const AccountActiveFilter = ({ handleFilter, is_active }: Props) => {
   return (
-    <LabelWithInput labelTitle="is active">
+    <LabelWithInput labelTitle="active">
       <select name="is_active" onChange={handleFilter} value={is_active || 'null'}>
         <option value="null">total</option>
         <option value="true">active</option>

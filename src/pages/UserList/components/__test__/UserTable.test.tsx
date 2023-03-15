@@ -1,7 +1,8 @@
-import { getAllByText, render, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import MockUserList from '../../../../fixture/MockUserList';
 import { mock, mockNav, providerWrapper } from '../../../../service/__mock__';
-import MockUserList from '../fixture/MockUserList';
+
 import UserTable from '../UserTable';
 
 const setUp = () => {

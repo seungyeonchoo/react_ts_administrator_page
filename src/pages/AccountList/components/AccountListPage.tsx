@@ -22,6 +22,7 @@ const AccountListPage = ({ page, length }: Props) => {
       <button onClick={handleToPrev} disabled={page === 1}>
         prev
       </button>
+      <span>{page}</span>
       <button onClick={handleToNext} disabled={length < 20}>
         next
       </button>
