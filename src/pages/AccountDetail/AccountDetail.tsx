@@ -8,12 +8,28 @@ import ACCOUNT_STATUS from '../../fixture/AccountStatus';
 import BROKER_LIST from '../../fixture/BrokerList';
 import LoadingPage from '../../component/LoadingPage/LoadingPage';
 import ErrorPage from '../../component/ErrorPage/ErrorPage';
+import useToggle from '../../hooks/useToggle';
+import useMutate from '../../hooks/useMutate';
+import useInput from '../../hooks/useInput';
 
 const AccountDetail = () => {
-  const { id } = useParams();
   const nav = useNavigate();
+  const { id } = useParams();
+  const { toggle, handleToggle } = useToggle(false);
   const { accountParams } = useSelector((state: ReducerType) => state.params);
   const { data, isError, isLoading, error } = useFetch(`/accounts/${id}`, accountParams);
+  const { inputValue, handleInputChange, handleSetInput } = useInput({ name: '' });
+  const { mutate } = useMutate(`/accounts/${id}`, 'patch', inputValue);
+
+  const handleSaveChange = () => {
+    mutate(inputValue);
+    handleToggle();
+  };
+
+  const handleUpdateName = () => {
+    handleSetInput({ name: data?.name });
+    handleToggle();
+  };
 
   if (isLoading) return <LoadingPage />;
   if (isError) return <ErrorPage error={error} />;
@@ -25,7 +41,17 @@ const AccountDetail = () => {
           <th>Account Number</th>
           <td>{data?.number}</td>
           <th>Account Name</th>
-          <td>{data?.name}</td>
+          {toggle ? (
+            <td>
+              <input type="text" name="name" value={inputValue.name} onChange={handleInputChange} />
+              <button onClick={handleSaveChange}>save</button>
+              <button onClick={handleToggle}>cancel</button>
+            </td>
+          ) : (
+            <td>
+              {data?.name} <button onClick={handleUpdateName}>update</button>
+            </td>
+          )}
         </tr>
         <tr>
           <th>Account status</th>

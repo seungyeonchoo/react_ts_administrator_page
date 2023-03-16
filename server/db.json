@@ -2034,12 +2034,13 @@
       "broker_id": "261",
       "status": 2,
       "number": "375178506564",
-      "name": "Money Market Account",
+      "name": "Money Market",
       "assets": "702487457.42",
       "payments": "675311926.92",
       "is_active": false,
       "created_at": "2020-04-25T13:37:13.564Z",
-      "updated_at": "2020-11-21T06:11:57.543Z"
+      "updated_at": "2020-11-21T06:11:57.543Z",
+      "": "Money Market Accountd"
     },
     {
       "id": 2,

@@ -75,13 +75,13 @@ describe('UserList Page', () => {
     expect(createUserModal.open).toBe(true);
   });
 
-  describe('Re-render when userParams is changed', () => {
+  describe('Re-render after selecting filter', () => {
     beforeEach(() => {
       mock
         .onGet('/users', { params: userParams })
-        .replyOnce(200, MockUserList)
+        .reply(200, MockUserList)
         .onGet('/users', { params: filteredParams })
-        .replyOnce(200, [MockUserList[1]]);
+        .reply(200, [MockUserList[1]]);
     });
 
     afterEach(() => {
@@ -120,7 +120,7 @@ describe('UserList Page', () => {
     });
   });
 
-  describe('Re-render after delete user', () => {
+  describe('Re-render after deleting user', () => {
     beforeAll(() => {
       mock
         .onGet('/users')

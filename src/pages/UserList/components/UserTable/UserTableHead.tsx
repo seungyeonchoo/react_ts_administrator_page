@@ -13,7 +13,8 @@ const UserTableHead = () => {
         <TableHeadCell cell="Last Login" />
         <TableHeadCell cell="Created Date" />
         <TableHeadCell cell="Marketing Push" />
-        <TableHeadCell cell="Status" />
+        <TableHeadCell cell="Active" />
+        <TableHeadCell cell="Staff" />
       </tr>
     </thead>
   );

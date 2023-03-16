@@ -23,6 +23,7 @@ describe('UserListPage component', () => {
   beforeEach(() => {
     store.dispatch(updateUserParams({ ...initialUserParams, _page: 2 }));
   });
+
   it('should have update page buttons and curr page', () => {
     const { nextButton, prevButton } = setUp();
 
