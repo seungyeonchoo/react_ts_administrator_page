@@ -3,7 +3,7 @@ import TableHeadCell from '../../../../component/Table/TableHeadCell';
 const UserTableHead = () => {
   return (
     <thead>
-      <tr>
+      <tr className="bg-slate-500 text-white">
         <TableHeadCell cell="Name" />
         <TableHeadCell cell="Accounts" />
         <TableHeadCell cell="E-mail" />

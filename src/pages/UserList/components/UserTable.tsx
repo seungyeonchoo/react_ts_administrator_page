@@ -8,7 +8,7 @@ interface Props {
 
 const UserTable = ({ users }: Props) => {
   return (
-    <table>
+    <table className="w-full text-center text-xs m-auto table table-auto">
       <UserTableHead />
       <tbody>
         {users?.map((user: TUser) => (

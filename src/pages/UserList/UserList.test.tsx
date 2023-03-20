@@ -63,7 +63,7 @@ describe('UserList Page', () => {
 
     await waitFor(() => getByTestId('data-component'));
 
-    const addUserButton = getByText('add') as HTMLButtonElement;
+    const addUserButton = getByText('New User') as HTMLButtonElement;
     const createUserModal = getByTestId('create-user-modal') as HTMLDialogElement;
 
     expect(addUserButton).toBeInTheDocument();
@@ -107,11 +107,11 @@ describe('UserList Page', () => {
       expect(getByText(/marvin/i)).toBeInTheDocument();
       expect(getByText(/kay/i)).toBeInTheDocument();
 
-      expect(getByLabelText('active')).toBeInTheDocument();
-      expect(getByLabelText('staff')).toBeInTheDocument();
+      expect(getByLabelText('Active')).toBeInTheDocument();
+      expect(getByLabelText('Staff')).toBeInTheDocument();
 
-      userEvent.selectOptions(getByLabelText('active'), 'false');
-      userEvent.selectOptions(getByLabelText('staff'), 'false');
+      userEvent.selectOptions(getByLabelText('Active'), 'false');
+      userEvent.selectOptions(getByLabelText('Staff'), 'false');
 
       await waitFor(() => getByText(/kay/i));
 

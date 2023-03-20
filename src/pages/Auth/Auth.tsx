@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import AuthInput from './components/AuthInput';
 import AuthButton from './components/AuthButton';
 import AuthErrorAlert from './components/AuthErrorAlert';
+import Footer from '../../component/Footer/Footer';
 
 interface InitialInput {
   email: string;
@@ -22,12 +23,12 @@ const Auth = () => {
   }, []);
 
   return (
-    <main>
+    <main className="flex flex-col justify-center items-center h-screen bg-slate-700">
       {isError && <AuthErrorAlert signinError={error} />}
-      <div>
+      <section className="w-96 h-80 p-8 flex flex-col justify-between items-center border border-gray-300 bg-white rounded-md">
         <AuthInput loginInput={loginInput} handleInputChange={handleInputChange} />
         <AuthButton loginInput={loginInput} handleSignin={mutate} reset={reset} />
-      </div>
+      </section>
     </main>
   );
 };

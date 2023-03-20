@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Side = () => {
   const nav = useNavigate();
   return (
-    <ul>
+    <aside>
       <li onClick={() => nav('/users')}>Users</li>
       <li onClick={() => nav('/accounts')}>Accounts</li>
       <li
@@ -15,7 +15,7 @@ const Side = () => {
       >
         Logout
       </li>
-    </ul>
+    </aside>
   );
 };
 

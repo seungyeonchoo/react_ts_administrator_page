@@ -24,7 +24,7 @@ const UserTableItem = ({ user }: { user: TUser }) => {
   };
 
   return (
-    <tr>
+    <tr className="bg-slate-100">
       <UserTableData onClick={() => nav(`/users/${user.id}`)} data={user?.name} />
       <UserTableData data={user?.accounts?.length as number} />
       <UserTableData data={user?.email} />
@@ -36,7 +36,9 @@ const UserTableItem = ({ user }: { user: TUser }) => {
       <UserTableData data={user?.allow_marketing_push ? 'allow' : 'not allow'} />
       <UserTableData data={user?.is_active ? 'active' : 'inactive'} />
       <UserTableData data={user?.is_staff ? 'staff' : '-'} />
-      <td onClick={handleDelete}>delete</td>
+      <td className="bg-white" onClick={handleDelete}>
+        delete
+      </td>
     </tr>
   );
 };

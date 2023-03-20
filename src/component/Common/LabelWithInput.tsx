@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 const LabelWithInput = ({ children, labelTitle }: { children: ReactNode; labelTitle: string }) => {
   return (
-    <label>
+    <label className="flex flex-col">
       <span>{labelTitle}</span>
       {children}
     </label>

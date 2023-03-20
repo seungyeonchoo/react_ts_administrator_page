@@ -55,16 +55,6 @@ describe('AccountList component', () => {
       expect(getByTestId('loading-component')).toBeInTheDocument();
     });
   });
-
-  describe('Re-render when accountParams is changed', () => {
-    beforeEach(() => {
-      mock
-        .onGet('/users', { params: accountParams })
-        .replyOnce(200, MockAccountList)
-        .onGet('/users', { params: filteredParams })
-        .replyOnce(200, [MockAccountList[1]]);
-    });
-  });
 });
 
 export default {};

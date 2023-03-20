@@ -1,5 +1,4 @@
 import React from 'react';
-import LabelWithInput from '../../../component/Common/LabelWithInput';
 
 interface Props {
   loginInput: { email: string; password: string };
@@ -9,24 +8,28 @@ interface Props {
 const AuthInput = ({ loginInput, handleInputChange }: Props) => {
   return (
     <>
-      <LabelWithInput labelTitle="email">
+      <label className="flex flex-col p-3 text-sm w-full font-bold text-gray-700">
+        email
         <input
+          className="h-9 mt-3 p-4 font-normal rounded-md border border-gray-400 outline-blue-800"
           type="email"
           name="email"
           aria-label="email"
           value={loginInput.email}
           onChange={handleInputChange}
         />
-      </LabelWithInput>
-      <LabelWithInput labelTitle="password">
+      </label>
+      <label className="flex flex-col p-3 text-sm w-full font-bold text-gray-700">
+        password
         <input
+          className="h-9 mt-3 p-4 font-normal rounded-md border border-gray-400 outline-blue-800"
           type="password"
           name="password"
           aria-label="password"
           value={loginInput.password}
           onChange={handleInputChange}
         />
-      </LabelWithInput>
+      </label>
     </>
   );
 };

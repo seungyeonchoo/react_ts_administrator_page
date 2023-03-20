@@ -12,8 +12,8 @@ const setUp = () => {
     wrapper: providerWrapper(),
   });
 
-  const isActiveFilter = getByLabelText('active') as HTMLSelectElement;
-  const isStaffFilter = getByLabelText('staff') as HTMLSelectElement;
+  const isActiveFilter = getByLabelText('Active') as HTMLSelectElement;
+  const isStaffFilter = getByLabelText('Staff') as HTMLSelectElement;
   const searchInput = getByPlaceholderText(/search/) as HTMLInputElement;
 
   return { isActiveFilter, isStaffFilter, searchInput };

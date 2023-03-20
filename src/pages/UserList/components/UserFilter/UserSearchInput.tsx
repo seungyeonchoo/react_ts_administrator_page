@@ -22,6 +22,7 @@ const UserSearchInput = () => {
       value={searchInput.q}
       placeholder="search keyword"
       onChange={handleSearchInputChange}
+      className="h-9 px-3 w-2/5 border border-slate-500 rounded-md"
     />
   );
 };

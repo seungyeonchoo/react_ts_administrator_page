@@ -18,11 +18,11 @@ const UserFilter = () => {
   };
 
   return (
-    <div>
-      <UserSearchInput />
+    <section className="flex w-2/5 justify-around items-center">
       <UserFilterStaff handleFilter={handleFilter} is_staff={userParams.is_staff} />
       <UserFilterActive handleFilter={handleFilter} is_active={userParams.is_active} />
-    </div>
+      <UserSearchInput />
+    </section>
   );
 };
 
