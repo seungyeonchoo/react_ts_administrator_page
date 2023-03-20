@@ -7,7 +7,7 @@ const setUp = () => {
   const { container, getByText } = render(<Auth />, { wrapper: providerWrapper() });
   const emailInput = container.querySelector(`input[name='email']`) as HTMLInputElement;
   const passwordInput = container.querySelector(`input[name='password']`) as HTMLInputElement;
-  const loginButton = getByText(/login/i) as HTMLButtonElement;
+  const loginButton = getByText(/sign/i) as HTMLButtonElement;
 
   return { emailInput, passwordInput, loginButton, getByText };
 };

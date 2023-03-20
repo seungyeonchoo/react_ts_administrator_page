@@ -32,7 +32,7 @@ const AuthButton = ({ loginInput, handleSignin, reset }: Props) => {
 
   return (
     <button disabled={inputIsValid} onClick={handleLogin}>
-      login
+      sign In
     </button>
   );
 };

@@ -4,6 +4,7 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { Provider } from 'react-redux';
 import App from './App';
 import store from './store';
+import './tailwind.css';
 import reportWebVitals from './reportWebVitals';
 
 const queryClient = new QueryClient();

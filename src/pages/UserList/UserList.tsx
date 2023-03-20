@@ -32,7 +32,7 @@ const UserList = () => {
       <UserFilter />
       <button onClick={() => handleModalToggle()}>add</button>
       <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />
-      {data.length === 0 ? <div>No Search Result</div> : <UserTable users={data} />}
+      {data?.length === 0 ? <div>No Search Result</div> : <UserTable users={data} />}
       <UserListPage page={userParams._page} length={data?.length} />
     </main>
   );

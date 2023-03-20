@@ -8,7 +8,7 @@ interface Props {
 
 const AuthInput = ({ loginInput, handleInputChange }: Props) => {
   return (
-    <div>
+    <>
       <LabelWithInput labelTitle="email">
         <input
           type="email"
@@ -27,7 +27,7 @@ const AuthInput = ({ loginInput, handleInputChange }: Props) => {
           onChange={handleInputChange}
         />
       </LabelWithInput>
-    </div>
+    </>
   );
 };
 

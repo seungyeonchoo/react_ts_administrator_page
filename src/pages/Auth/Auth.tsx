@@ -22,13 +22,13 @@ const Auth = () => {
   }, []);
 
   return (
-    <>
+    <main>
       {isError && <AuthErrorAlert signinError={error} />}
       <div>
         <AuthInput loginInput={loginInput} handleInputChange={handleInputChange} />
         <AuthButton loginInput={loginInput} handleSignin={mutate} reset={reset} />
       </div>
-    </>
+    </main>
   );
 };
 
