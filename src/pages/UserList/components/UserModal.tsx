@@ -1,9 +1,8 @@
 import useInput from '../../../hooks/useInput';
-import useMutate from '../../../hooks/useMutate';
-
 import UserModalInput from './UserModal/UserModalInput';
 import InitialUser from '../../../fixture/InitailUserInput';
 import UserModalButton from './UserModal/UserModalButton';
+import UserSettingInput from './UserModal/UserSettingInput';
 
 interface Props {
   showModal: boolean;
@@ -20,13 +19,19 @@ const UserModal = ({ showModal, handleShowModal }: Props) => {
   } = useInput(InitialUser);
 
   return (
-    <dialog open={showModal} data-testid="create-user-modal">
-      <UserModalInput
-        userInput={userInput}
-        handleUserInputChange={handleUserInputChange}
-        handleSettingInputChange={handleSettingInputChange}
-        handleSelectChange={handleSelectChange}
-      />
+    <dialog
+      open={showModal}
+      data-testid="create-user-modal"
+      className="flex flex-col items-center p-8 w-2/5 h-[30rem] overflow-auto border border-slate-600 rounded-md bg-slate-200"
+    >
+      <section className="flex flex-col items-center m-auto w-3/4">
+        <UserModalInput
+          userInput={userInput}
+          handleUserInputChange={handleUserInputChange}
+          handleSelectChange={handleSelectChange}
+        />
+        <UserSettingInput handleSettingInputChange={handleSettingInputChange} />
+      </section>
       <UserModalButton userInput={userInput} handleShowModal={handleShowModal} reset={reset} />
     </dialog>
   );

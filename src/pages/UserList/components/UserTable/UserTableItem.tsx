@@ -36,9 +36,7 @@ const UserTableItem = ({ user }: { user: TUser }) => {
       <UserTableData data={user?.allow_marketing_push ? 'allow' : 'not allow'} />
       <UserTableData data={user?.is_active ? 'active' : 'inactive'} />
       <UserTableData data={user?.is_staff ? 'staff' : '-'} />
-      <td className="bg-white" onClick={handleDelete}>
-        delete
-      </td>
+      <UserTableData onClick={handleDelete} data="Del" />
     </tr>
   );
 };

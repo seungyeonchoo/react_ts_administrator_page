@@ -17,7 +17,7 @@ const setUp = () => {
   const userNameInput = getByLabelText(/name/i) as HTMLInputElement;
   const userEmailInput = getByLabelText(/email/i) as HTMLInputElement;
   const userBirthInput = getByLabelText(/birth/i) as HTMLInputElement;
-  const userPhoneInput = getByLabelText(/phone/i) as HTMLInputElement;
+  const userPhoneInput = getByLabelText(/contact/i) as HTMLInputElement;
   const userAddressInput = getByLabelText(/^address/i) as HTMLInputElement;
   const addressDetailInput = getByLabelText(/^detail/i) as HTMLInputElement;
   const userGenderInput = getByLabelText(/gender/i) as HTMLSelectElement;

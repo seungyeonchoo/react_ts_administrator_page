@@ -19,7 +19,7 @@ const UserListPage = ({ page, length }: Props) => {
   };
 
   return (
-    <section className="flex justify-between text-xs w-1/5 m-auto p-3">
+    <section className="flex justify-between text-xs w-1/5 m-auto p-6">
       <button onClick={handleToPrev} disabled={page === 1}>
         prev
       </button>

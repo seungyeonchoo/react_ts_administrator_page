@@ -14,6 +14,7 @@ import UserListPage from './components/UseListPage';
 import ErrorPage from '../../component/ErrorPage/ErrorPage';
 import LoadingPage from '../../component/LoadingPage/LoadingPage';
 import Side from '../../component/Side/Side';
+import UserCreateButton from './components/UserCreateButton';
 
 const UserList = () => {
   const nav = useNavigate();
@@ -29,25 +30,18 @@ const UserList = () => {
   if (isError) return <ErrorPage error={error} />;
 
   return (
-    <main data-testid="data-component">
-      <section className="flex items-center justify-between text-sm p-4">
-        <button
-          onClick={handleModalToggle}
-          className="cursor-pointer text-xs p-3 h-1/2 rounded-md text-white bg-slate-600"
-        >
-          New User
-        </button>
-        <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />
+    <section data-testid="data-component" className="my-3 p-3 w-4/5">
+      {modalToggle && <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />}
+      <section className="w-full flex items-center justify-between text-sm py-5 m-auto ">
+        <UserCreateButton handleModalToggle={handleModalToggle} />
         <UserFilter />
       </section>
       {data?.length === 0 ? (
-        <section>No Search Result</section>
+        <section className="m-32 h-screen text-center">No Search Result</section>
       ) : (
-        <>
-          <UserTable users={data} /> <UserListPage page={userParams._page} length={data?.length} />
-        </>
+        <UserTable page={userParams._page} users={data} />
       )}
-    </main>
+    </section>
   );
 };
 

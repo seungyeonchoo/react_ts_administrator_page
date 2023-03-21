@@ -15,6 +15,7 @@ const UserTableHead = () => {
         <TableHeadCell cell="Marketing Push" />
         <TableHeadCell cell="Active" />
         <TableHeadCell cell="Staff" />
+        <TableHeadCell cell="Delete" />
       </tr>
     </thead>
   );

@@ -11,13 +11,15 @@ const AppRouter = () => {
   return (
     <>
       <Header />
-      <Side />
-      <Routes>
-        <Route path="/accounts" element={<AccountList />} />
-        <Route path="/accounts/:id" element={<AccountDetail />} />
-        <Route path="/users" element={<UserList />} />
-        <Route path="/users/:id" element={<UserDetail />} />
-      </Routes>
+      <main className="flex justify-between w-full">
+        <Side />
+        <Routes>
+          <Route path="/accounts" element={<AccountList />} />
+          <Route path="/accounts/:id" element={<AccountDetail />} />
+          <Route path="/users" element={<UserList />} />
+          <Route path="/users/:id" element={<UserDetail />} />
+        </Routes>
+      </main>
       <Footer />
     </>
   );

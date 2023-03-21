@@ -6,14 +6,14 @@ import { mock, mockNav, providerWrapper } from '../../../../service/__mock__';
 import UserTable from '../UserTable';
 
 const setUp = () => {
-  const { getByText, queryAllByText } = render(<UserTable users={MockUserList} />, {
+  const { getByText, queryAllByText } = render(<UserTable page={1} users={MockUserList} />, {
     wrapper: providerWrapper(),
   });
 
   const firstUserName = getByText(/marvin/i);
   const secondUserName = getByText(/kay/i);
-  const firstUserDelete = queryAllByText(/delete/i)[0];
-  const secondUserDelete = queryAllByText(/delete/i)[1];
+  const firstUserDelete = queryAllByText('Del')[0];
+  const secondUserDelete = queryAllByText('Del')[1];
 
   return { firstUserName, secondUserName, firstUserDelete, secondUserDelete };
 };

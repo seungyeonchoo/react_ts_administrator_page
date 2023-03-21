@@ -59,18 +59,19 @@ describe('UserList Page', () => {
   it('should open create user modal when add button is clicked', async () => {
     mock.onGet('/users').replyOnce(200);
 
-    const { getByTestId, getByText } = render(<UserList />, { wrapper: providerWrapper() });
+    const { getByTestId, getByText } = render(<UserList />, {
+      wrapper: providerWrapper(),
+    });
 
     await waitFor(() => getByTestId('data-component'));
 
     const addUserButton = getByText('New User') as HTMLButtonElement;
-    const createUserModal = getByTestId('create-user-modal') as HTMLDialogElement;
 
     expect(addUserButton).toBeInTheDocument();
 
-    expect(createUserModal.open).toBe(false);
-
     act(() => userEvent.click(addUserButton));
+
+    const createUserModal = getByTestId('create-user-modal') as HTMLDialogElement;
 
     expect(createUserModal.open).toBe(true);
   });
