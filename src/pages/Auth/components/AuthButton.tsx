@@ -25,6 +25,7 @@ const AuthButton = ({ loginInput, handleSignin, reset }: Props) => {
         nav('/users');
         sessionStorage.setItem('access_token', data.accessToken);
         sessionStorage.setItem('user_id', data.user.id);
+        sessionStorage.setItem('user_email', data.user.email);
         dispatch(updateUserEmail(data.user.email));
       },
       onSettled: () => {

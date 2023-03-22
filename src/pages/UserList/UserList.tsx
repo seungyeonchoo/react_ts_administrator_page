@@ -10,11 +10,10 @@ import useToggle from '../../hooks/useToggle';
 import UserModal from './components/UserModal';
 import UserFilter from './components/UserFilter';
 import UserTable from './components/UserTable';
-import UserListPage from './components/UseListPage';
 import ErrorPage from '../../component/ErrorPage/ErrorPage';
 import LoadingPage from '../../component/LoadingPage/LoadingPage';
-import Side from '../../component/Side/Side';
 import UserCreateButton from './components/UserCreateButton';
+import NoResult from '../../component/ErrorPage/NoResult';
 
 const UserList = () => {
   const nav = useNavigate();
@@ -30,17 +29,13 @@ const UserList = () => {
   if (isError) return <ErrorPage error={error} />;
 
   return (
-    <section data-testid="data-component" className="my-3 p-3 w-4/5">
+    <section data-testid="data-component" className="my-1 px-10 w-11/12 h-[33.5rem]">
       {modalToggle && <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />}
       <section className="w-full flex items-center justify-between text-sm py-5 m-auto ">
         <UserCreateButton handleModalToggle={handleModalToggle} />
         <UserFilter />
       </section>
-      {data?.length === 0 ? (
-        <section className="m-32 h-screen text-center">No Search Result</section>
-      ) : (
-        <UserTable page={userParams._page} users={data} />
-      )}
+      {data?.length === 0 ? <NoResult /> : <UserTable page={userParams._page} users={data} />}
     </section>
   );
 };

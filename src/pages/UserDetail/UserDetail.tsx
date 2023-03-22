@@ -17,10 +17,10 @@ const UserDetail = () => {
   if (isError) return <ErrorPage error={error} />;
 
   return (
-    <main data-testid="data-component">
+    <section data-testid="data-component" className="my-1 px-10 w-11/12 h-[33.5rem]">
       <UserInfoTable data={data} id={id as string} />
       <UserAccountList data={data} />
-    </main>
+    </section>
   );
 };
 

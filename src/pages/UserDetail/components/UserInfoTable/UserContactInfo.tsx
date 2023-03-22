@@ -6,16 +6,16 @@ import UserInfoTableRow from './components/UserInfoTableRow';
 
 const UserContactInfo = ({ data }: { data: TUser }) => {
   return (
-    <UserInfoTableRow>
-      <UserInfoTableHead headTitle="email" />
-      <UserInfoTableData>{data?.email}</UserInfoTableData>
-      <UserInfoTableHead headTitle="phone" />
-      <UserInfoTableData>{convertPhoneNumber(data?.phone_number)}</UserInfoTableData>
-      <UserInfoTableHead headTitle="address" />
-      <UserInfoTableData>{data?.address}</UserInfoTableData>
-      <UserInfoTableHead headTitle="detail" />
-      <UserInfoTableData>{data?.detail_address}</UserInfoTableData>
-    </UserInfoTableRow>
+    <div className="grid grid-cols-8 col-span-8">
+      <div>Email</div>
+      <div>{data?.email}</div>
+      <div>Contact</div>
+      <div>{convertPhoneNumber(data?.phone_number)}</div>
+      <div>Address</div>
+      <div>{data?.address}</div>
+      <div>Detail</div>
+      <div>{data?.detail_address}</div>
+    </div>
   );
 };
 

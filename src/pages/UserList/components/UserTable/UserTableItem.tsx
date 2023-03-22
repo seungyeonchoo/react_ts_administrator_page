@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 import useMutate from '../../../../hooks/useMutate';
 
-import UserTableData from './UserTableData';
 import { TUser } from '../../../../types/user_types';
 
 import convertDate from '../../../../utils/convertData';
@@ -25,18 +24,25 @@ const UserTableItem = ({ user }: { user: TUser }) => {
 
   return (
     <tr className="bg-slate-100">
-      <UserTableData onClick={() => nav(`/users/${user.id}`)} data={user?.name} />
-      <UserTableData data={user?.accounts?.length as number} />
-      <UserTableData data={user?.email} />
-      <UserTableData data={convertGender(user?.gender_origin)} />
-      <UserTableData data={convertDate(user?.birth_date)} />
-      <UserTableData data={convertPhoneNumber(user?.phone_number)} />
-      <UserTableData data={convertDate(user?.last_login)} />
-      <UserTableData data={convertDate(user?.created_at)} />
-      <UserTableData data={user?.allow_marketing_push ? 'allow' : 'not allow'} />
-      <UserTableData data={user?.is_active ? 'active' : 'inactive'} />
-      <UserTableData data={user?.is_staff ? 'staff' : '-'} />
-      <UserTableData onClick={handleDelete} data="Del" />
+      <td
+        className="border-b p-4 cursor-pointer hover:font-bold"
+        onClick={() => nav(`/users/${user.id}`)}
+      >
+        {user?.name}
+      </td>
+      <td className="border-b p-4">{user?.accounts?.length as number}</td>
+      <td className="border-b p-4">{user?.email}</td>
+      <td className="border-b p-4">{convertGender(user?.gender_origin)}</td>
+      <td className="border-b p-4">{convertDate(user?.birth_date)}</td>
+      <td className="border-b p-4">{convertPhoneNumber(user?.phone_number)}</td>
+      <td className="border-b p-4">{convertDate(user?.last_login)}</td>
+      <td className="border-b p-4">{convertDate(user?.created_at)}</td>
+      <td className="border-b p-4">{user?.allow_marketing_push ? 'allow' : 'not allow'}</td>
+      <td className="border-b p-4">{user?.is_active ? 'active' : 'inactive'}</td>
+      <td className="border-b p-4">{user?.is_staff ? 'staff' : '-'}</td>
+      <td className="border-b p-4 cursor-pointer hover:font-bold" onClick={handleDelete}>
+        Del
+      </td>
     </tr>
   );
 };

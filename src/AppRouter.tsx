@@ -11,7 +11,7 @@ const AppRouter = () => {
   return (
     <>
       <Header />
-      <main className="flex justify-between w-full">
+      <main className="flex justify-between w-full h-11/12">
         <Side />
         <Routes>
           <Route path="/accounts" element={<AccountList />} />

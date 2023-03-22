@@ -20,16 +20,16 @@ const UserInfoName = ({ id, data }: { id: string; data: TUser }) => {
   };
 
   return toggle ? (
-    <UserInfoTableData>
+    <div>
       <input type="text" name="name" value={inputValue.name} onChange={handleInputChange} />
       <button onClick={handleSaveChange}>save</button>
       <button onClick={handleToggle}>cancel</button>
-    </UserInfoTableData>
+    </div>
   ) : (
-    <UserInfoTableData>
+    <div>
       <span>{data?.name}</span>
       <button onClick={handleUpdateName}>update</button>
-    </UserInfoTableData>
+    </div>
   );
 };
 

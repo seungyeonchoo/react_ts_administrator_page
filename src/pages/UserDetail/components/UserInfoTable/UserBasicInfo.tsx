@@ -8,16 +8,16 @@ import UserInfoTableRow from './components/UserInfoTableRow';
 
 const UserBasicInfo = ({ id, data }: { id: string; data: TUser }) => {
   return (
-    <UserInfoTableRow>
-      <UserInfoTableHead headTitle="name" />
+    <div className="grid grid-cols-8 col-span-8">
+      <div>Name</div>
       <UserInfoName id={id} data={data} />
-      <UserInfoTableHead headTitle="gender" />
-      <UserInfoTableData>{convertGender(data?.gender_origin)}</UserInfoTableData>
-      <UserInfoTableHead headTitle="age" />
-      <UserInfoTableData>{data?.age}</UserInfoTableData>
-      <UserInfoTableHead headTitle="birth date" />
-      <UserInfoTableData>{convertDate(data?.birth_date)}</UserInfoTableData>
-    </UserInfoTableRow>
+      <div>Gender</div>
+      <div>{convertGender(data?.gender_origin)}</div>
+      <div>Age</div>
+      <div>{data?.age}</div>
+      <div>Birth Date</div>
+      <div>{convertDate(data?.birth_date)}</div>
+    </div>
   );
 };
 
