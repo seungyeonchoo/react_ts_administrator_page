@@ -26,11 +26,10 @@ const AccountList = () => {
   if (isError) return <ErrorPage error={error} />;
 
   return (
-    <main data-testid="data-component">
+    <section data-testid="data-component" className="my-1 px-5 w-11/12 h-[33.5rem]">
       <AccountFilter />
-      <AccountListTable accounts={data} />
-      <AccountListPage page={accountParams._page} length={data?.length} />
-    </main>
+      <AccountListTable page={accountParams._page} accounts={data} />
+    </section>
   );
 };
 

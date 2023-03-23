@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../store';
 import { updateAccountParams } from '../../../store/slices/paramSlice';
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
 }
 
 const AccountListPage = ({ page, length }: Props) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleToPrev = () => {
     dispatch(updateAccountParams({ _page: page - 1 }));
@@ -18,15 +19,23 @@ const AccountListPage = ({ page, length }: Props) => {
   };
 
   return (
-    <div>
-      <button onClick={handleToPrev} disabled={page === 1}>
+    <section className="flex justify-between items-center text-xs w-1/5 m-auto p-4">
+      <button
+        className="cursor-pointer bg-slate-500 text-white font-bold p-2 rounded-md hover:bg-slate-600 disabled:bg-slate-400"
+        onClick={handleToPrev}
+        disabled={page === 1}
+      >
         prev
       </button>
       <span>{page}</span>
-      <button onClick={handleToNext} disabled={length < 20}>
+      <button
+        className="cursor-pointer bg-slate-500 text-white font-bold p-2 rounded-md hover:bg-slate-600 disabled:bg-slate-400"
+        onClick={handleToNext}
+        disabled={length < 20}
+      >
         next
       </button>
-    </div>
+    </section>
   );
 };
 

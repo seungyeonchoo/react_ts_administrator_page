@@ -1,13 +1,6 @@
 import { render, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import MockAccountList from '../../fixture/MockAccountList';
 import { mock, mockNav, providerWrapper } from '../../service/__mock__';
-import store from '../../store';
 import AccountList from './AccountList';
-
-const { accountParams } = store.getState().params;
-const filteredParams = { ...accountParams, is_active: true, status: '9999', broker_id: '261' };
-const searchParams = { ...accountParams, number_like: '371' };
 
 describe('AccountList component', () => {
   it('should navigate to login page incase there is no token in sessionStorage.', () => {

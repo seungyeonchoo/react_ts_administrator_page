@@ -10,10 +10,10 @@ const setUp = () => {
     wrapper: providerWrapper(),
   });
 
-  const statusFilter = getByLabelText('status') as HTMLSelectElement;
-  const activeFilter = getByLabelText('active') as HTMLSelectElement;
-  const brokerFilter = getByLabelText('broker') as HTMLSelectElement;
-  const searchNumber = getByPlaceholderText(/search account/) as HTMLInputElement;
+  const statusFilter = getByLabelText('Status') as HTMLSelectElement;
+  const activeFilter = getByLabelText('Active') as HTMLSelectElement;
+  const brokerFilter = getByLabelText('Broker') as HTMLSelectElement;
+  const searchNumber = getByPlaceholderText(/search number/) as HTMLInputElement;
 
   return { statusFilter, brokerFilter, activeFilter, searchNumber };
 };

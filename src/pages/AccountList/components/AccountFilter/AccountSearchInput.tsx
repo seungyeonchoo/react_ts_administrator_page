@@ -19,9 +19,10 @@ const AccountSearchInput = () => {
     <input
       type="text"
       name="number_like"
-      placeholder="search account number"
+      placeholder="search number"
       value={searchInput.number_like}
       onChange={handleSearchInputChange}
+      className="h-9 px-3 w-48 border border-slate-500 rounded-md text-xs"
     />
   );
 };

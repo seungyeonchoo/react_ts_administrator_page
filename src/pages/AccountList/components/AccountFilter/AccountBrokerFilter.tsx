@@ -1,5 +1,4 @@
 import React from 'react';
-import LabelWithInput from '../../../../component/Common/LabelWithInput';
 import BROKER_LIST from '../../../../fixture/BrokerList';
 
 interface Props {
@@ -9,8 +8,14 @@ interface Props {
 
 const AccountBrokerFilter = ({ handleFilter, broker_id }: Props) => {
   return (
-    <LabelWithInput labelTitle="broker">
-      <select name="broker_id" onChange={handleFilter} value={broker_id || 'null'}>
+    <label className="flex flex-col text-center text-xs">
+      Broker
+      <select
+        name="broker_id"
+        onChange={handleFilter}
+        value={broker_id || 'null'}
+        className="text-center p-1 border border-slate-500 mt-1"
+      >
         <option value="null">total</option>
         {Object.keys(BROKER_LIST).map((broker: string) => (
           <option key={broker} value={broker}>
@@ -18,7 +23,7 @@ const AccountBrokerFilter = ({ handleFilter, broker_id }: Props) => {
           </option>
         ))}
       </select>
-    </LabelWithInput>
+    </label>
   );
 };
 

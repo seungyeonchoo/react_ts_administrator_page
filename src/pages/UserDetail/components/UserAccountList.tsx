@@ -4,10 +4,12 @@ import UserAccountListHead from './UserAccountList/UserAccountListHead';
 
 const UserAccountList = ({ data }: { data: TUser }) => {
   return (
-    <table>
-      <UserAccountListHead />
-      <UserAccountListBody accountList={data?.accounts as TAccount[]} />
-    </table>
+    <section className="h-1/2 overflow-auto">
+      <table className="w-full text-center text-xs m-auto table table-auto">
+        <UserAccountListHead />
+        <UserAccountListBody accountList={data?.accounts as TAccount[]} />
+      </table>
+    </section>
   );
 };
 

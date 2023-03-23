@@ -29,11 +29,11 @@ const UserList = () => {
   if (isError) return <ErrorPage error={error} />;
 
   return (
-    <section data-testid="data-component" className="my-1 px-10 w-11/12 h-[33.5rem]">
+    <section data-testid="data-component" className="my-1 px-5 w-11/12 h-[33.5rem]">
       {modalToggle && <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />}
       <section className="w-full flex items-center justify-between text-sm py-5 m-auto ">
-        <UserCreateButton handleModalToggle={handleModalToggle} />
         <UserFilter />
+        <UserCreateButton handleModalToggle={handleModalToggle} />
       </section>
       {data?.length === 0 ? <NoResult /> : <UserTable page={userParams._page} users={data} />}
     </section>

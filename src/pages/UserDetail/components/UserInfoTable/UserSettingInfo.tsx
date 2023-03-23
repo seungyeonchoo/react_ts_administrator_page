@@ -1,20 +1,25 @@
 import { TUser } from '../../../../types/user_types';
-import UserInfoTableData from './components/UserInfoTableData';
-import UserInfoTableHead from './components/UserInfoTableHead';
-import UserInfoTableRow from './components/UserInfoTableRow';
 
 const UserSettingInfo = ({ data }: { data: TUser }) => {
   return (
-    <UserInfoTableRow>
-      <UserInfoTableHead headTitle="marketing push allow" />
-      <UserInfoTableData>{data?.allow_marketing_push ? 'allow' : 'not allow'}</UserInfoTableData>
-      <UserInfoTableHead headTitle="invest push allow" />
-      <UserInfoTableData>{data?.allow_invest_push ? 'allow' : 'not allow'}</UserInfoTableData>
-      <UserInfoTableHead headTitle="staff" />
-      <UserInfoTableData>{data?.is_staff ? 'staff' : 'customer'}</UserInfoTableData>
-      <UserInfoTableHead headTitle="active" />
-      <UserInfoTableData>{data?.is_active ? 'active' : 'inactive'}</UserInfoTableData>
-    </UserInfoTableRow>
+    <div className="grid grid-cols-4 gap-5 col-span-4 px-2">
+      <div>
+        <div>Marketing Push</div>
+        <div>{data?.allow_marketing_push ? 'allow' : 'not allow'}</div>
+      </div>
+      <div>
+        <div>Invest Push</div>
+        <div>{data?.allow_invest_push ? 'allow' : 'not allow'}</div>
+      </div>
+      <div>
+        <div>Staff</div>
+        <div>{data?.is_staff ? 'staff' : 'customer'}</div>
+      </div>
+      <div>
+        <div>Active</div>
+        <div>{data?.is_active ? 'active' : 'inactive'}</div>
+      </div>
+    </div>
   );
 };
 

@@ -8,7 +8,7 @@ interface Props {
 }
 
 const UserListPage = ({ page, length }: Props) => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
 
   const handleToPrev = () => {
     dispatch(updateUserParams({ _page: page - 1 }));
@@ -21,7 +21,7 @@ const UserListPage = ({ page, length }: Props) => {
   return (
     <section className="flex justify-between items-center text-xs w-1/5 m-auto p-4">
       <button
-        className="cursor-pointer bg-slate-500 text-white font-bold p-2 rounded-md hover:bg-slate-600"
+        className="cursor-pointer bg-slate-500 text-white font-bold p-2 rounded-md hover:bg-slate-600 disabled:bg-slate-400"
         onClick={handleToPrev}
         disabled={page === 1}
       >
@@ -29,7 +29,7 @@ const UserListPage = ({ page, length }: Props) => {
       </button>
       <span>{page}</span>
       <button
-        className="cursor-pointer bg-slate-500 text-white font-bold p-2 rounded-md hover:bg-slate-600"
+        className="cursor-pointer bg-slate-500 text-white font-bold p-2 rounded-md hover:bg-slate-600 disabled:bg-slate-400"
         onClick={handleToNext}
         disabled={length < 20}
       >

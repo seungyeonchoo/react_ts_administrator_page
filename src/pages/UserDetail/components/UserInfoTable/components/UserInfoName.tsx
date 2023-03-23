@@ -20,14 +20,16 @@ const UserInfoName = ({ id, data }: { id: string; data: TUser }) => {
   };
 
   return toggle ? (
-    <div>
+    <div className="flex justify-between p-2">
       <input type="text" name="name" value={inputValue.name} onChange={handleInputChange} />
-      <button onClick={handleSaveChange}>save</button>
-      <button onClick={handleToggle}>cancel</button>
+      <div>
+        <button onClick={handleSaveChange}>save</button>
+        <button onClick={handleToggle}>cancel</button>
+      </div>
     </div>
   ) : (
-    <div>
-      <span>{data?.name}</span>
+    <div className="flex justify-between p-2">
+      <div>{data?.name}</div>
       <button onClick={handleUpdateName}>update</button>
     </div>
   );

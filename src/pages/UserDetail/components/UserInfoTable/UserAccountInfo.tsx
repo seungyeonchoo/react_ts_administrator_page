@@ -1,19 +1,22 @@
 import { TUser } from '../../../../types/user_types';
 import convertDate from '../../../../utils/convertData';
-import UserInfoTableData from './components/UserInfoTableData';
-import UserInfoTableHead from './components/UserInfoTableHead';
-import UserInfoTableRow from './components/UserInfoTableRow';
 
 const UserAccountInfo = ({ data }: { data: TUser }) => {
   return (
-    <UserInfoTableRow>
-      <UserInfoTableHead headTitle="created date" />
-      <UserInfoTableData>{convertDate(data?.created_at)}</UserInfoTableData>
-      <UserInfoTableHead headTitle="updated date" />
-      <UserInfoTableData>{convertDate(data?.updated_at)}</UserInfoTableData>
-      <UserInfoTableHead headTitle="last login date" />
-      <UserInfoTableData>{convertDate(data?.last_login)}</UserInfoTableData>
-    </UserInfoTableRow>
+    <div className="grid grid-cols-4 gap-5 col-span-4 px-2">
+      <div>
+        <div className="p-2">Created At</div>
+        <div className="p-2">{convertDate(data?.created_at)}</div>
+      </div>
+      <div>
+        <div className="p-2">Updated At</div>
+        <div className="p-2">{convertDate(data?.updated_at)}</div>
+      </div>
+      <div>
+        <div className="p-2">Last Login</div>
+        <div className="p-2">{convertDate(data?.last_login)}</div>
+      </div>
+    </div>
   );
 };
 

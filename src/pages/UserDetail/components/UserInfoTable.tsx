@@ -6,16 +6,14 @@ import UserSettingInfo from './UserInfoTable/UserSettingInfo';
 
 const UserInfoTable = ({ data, id }: { data: TUser; id: string }) => {
   return (
-    <section className="w-full py-10 px-15   text-sm text-center">
+    <section className="w-4/5 text-xs text-center m-auto">
       <span>user information</span>
-      <section>
-        <section className="grid grid-cols-10 grid-rows-4">
-          <img src={data?.photo} alt="img" className="col-span-2 row-span-4 rounded-full" />
-          <UserBasicInfo id={id} data={data} />
-          <UserContactInfo data={data} />
-          <UserAccountInfo data={data} />
-          <UserSettingInfo data={data} />
-        </section>
+      <section className="grid gap-2 grid-cols-5 grid-rows-4 items-center py-5 px-10 text-left h-fit">
+        <img src={data?.photo} alt="img" className="row-span-4 rounded-full m-auto w-4/5" />
+        <UserBasicInfo id={id} data={data} />
+        <UserContactInfo data={data} />
+        <UserSettingInfo data={data} />
+        <UserAccountInfo data={data} />
       </section>
     </section>
   );

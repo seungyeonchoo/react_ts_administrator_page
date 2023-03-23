@@ -1,19 +1,19 @@
+import TableHeadCell from '../../../../component/Table/TableHeadCell';
+
 const UserAccountListHead = () => {
   return (
     <thead>
-      <tr>
-        <th>No.</th>
-        <th>account number</th>
-        <th>broker</th>
-        <th>status</th>
-        <th>name</th>
-        <th>payments</th>
-        <th>assets</th>
-        <th>수익률</th>
-        <th>수익금액</th>
-        <th>active</th>
-        <th>created date</th>
-        <th>updated date</th>
+      <tr className="bg-slate-500 text-white">
+        <TableHeadCell cell="No." />
+        <TableHeadCell cell="Number" />
+        <TableHeadCell cell="Broker" />
+        <TableHeadCell cell="Status" />
+        <TableHeadCell cell="Name" />
+        <TableHeadCell cell="Payment" />
+        <TableHeadCell cell="Assets" />
+        <TableHeadCell cell="Earning Rate" />
+        <TableHeadCell cell="Profit" />
+        <TableHeadCell cell="Active" />
       </tr>
     </thead>
   );

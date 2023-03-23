@@ -19,12 +19,13 @@ const AccountFilter = () => {
   };
 
   return (
-    <div>
-      <AccountSearchInput />
+    <section className="flex w-1/2 text-sm items-center justify-between py-5">
+      {/* <section className="w-full flex items-center justify-between text-sm py-5 m-auto "> */}
       <AccountActiveFilter is_active={accountParams.is_active} handleFilter={handleFilter} />
       <AccountStatusFilter status={accountParams.status} handleFilter={handleFilter} />
       <AccountBrokerFilter broker_id={accountParams.broker_id} handleFilter={handleFilter} />
-    </div>
+      <AccountSearchInput />
+    </section>
   );
 };
 

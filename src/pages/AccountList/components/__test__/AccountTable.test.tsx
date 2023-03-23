@@ -1,11 +1,14 @@
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MockAccountList from '../../../../fixture/MockAccountList';
-import { mockNav } from '../../../../service/__mock__';
+import { mockNav, providerWrapper } from '../../../../service/__mock__';
 import AccountListTable from '../AccountListTable';
 
 const setUp = () => {
-  const { getByText, getAllByText } = render(<AccountListTable accounts={MockAccountList} />);
+  const { getByText, getAllByText } = render(
+    <AccountListTable page={1} accounts={MockAccountList} />,
+    { wrapper: providerWrapper() }
+  );
 
   const userName = getAllByText(/marvin/i);
   const firstAccountNumber = getByText('375178506564');
