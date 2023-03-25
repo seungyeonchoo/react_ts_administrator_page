@@ -20,19 +20,35 @@ const AccountTableItem = ({ account }: { account: TAccount }) => {
 
   return (
     <tr className="bg-slate-100">
-      <td className="border-b p-4" onClick={navAccountDetail}>
+      <td className="border-b p-4 cursor-pointer hover:font-bold" onClick={navAccountDetail}>
         {account?.number}
       </td>
       <td className="border-b p-4">{account?.name}</td>
       <td className="border-b p-4">{ACCOUNT_STATUS[account?.status]}</td>
       <td className="border-b p-4">{BROKER_LIST[account?.broker_id]}</td>
-      <td className="border-b p-4" onClick={navUserDetail}>
+      <td className="border-b p-4 cursor-pointer hover:font-bold" onClick={navUserDetail}>
         {account?.user?.name}
       </td>
       <td className="border-b p-4">{addComma(account?.payments)}</td>
       <td className="border-b p-4">{addComma(account?.assets)}</td>
-      <td className="border-b p-4">{profit.earningRate}</td>
-      <td className="border-b p-4">{profit.profit}</td>
+      <td
+        className={
+          +account?.assets - +account?.payments > 0
+            ? 'border-b p-4 text-red-500'
+            : 'border-b p-4 text-blue-500'
+        }
+      >
+        {profit.earningRate}
+      </td>
+      <td
+        className={
+          +account?.assets - +account?.payments > 0
+            ? 'border-b p-4 text-red-500'
+            : 'border-b p-4 text-blue-500'
+        }
+      >
+        {profit.profit}
+      </td>
       <td className="border-b p-4">{account?.is_active ? 'active' : 'inactive'}</td>
     </tr>
   );

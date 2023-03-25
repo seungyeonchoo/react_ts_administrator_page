@@ -19,7 +19,7 @@ const UserDetail = () => {
   return (
     <section
       data-testid="data-component"
-      className="my-1 px-5 flex flex-col justify-between w-11/12 h-[33.5rem]"
+      className="my-1 py-10 px-5 flex flex-col items-center w-11/12 h-[33.5rem] m-auto"
     >
       <UserInfoTable data={data} id={id as string} />
       <UserAccountList data={data} />

@@ -19,13 +19,13 @@ const UserInfoName = ({ id, data }: { id: string; data: TUser }) => {
   };
 
   return toggle ? (
-    <td className="p-1 bg-slate-100">
+    <td className="p-1 bg-slate-100 h-full">
       <input
         type="text"
         name="name"
         value={inputValue.name}
         onChange={handleInputChange}
-        className="text-center h-6 mb-2 border border-slate-500 rounded-md"
+        className="text-center w-full h-6 mb-2 border border-slate-500 rounded-md"
       />
       <div className="flex justify-evenly">
         <button
@@ -44,7 +44,7 @@ const UserInfoName = ({ id, data }: { id: string; data: TUser }) => {
       </div>
     </td>
   ) : (
-    <td className="p-2 bg-slate-100">
+    <td className="p-2 bg-slate-100 h-full flex-col justify-center">
       <div className="mb-2">{data?.name}</div>
       <button
         onClick={handleUpdateName}

@@ -6,9 +6,12 @@ import { initialAccountParams, updateAccountParams } from '../../../../store/sli
 import AccountFilter from '../AccountFilter';
 
 const setUp = () => {
-  const { getByLabelText, getByPlaceholderText } = render(<AccountFilter />, {
+  const { getByLabelText, getByPlaceholderText, getByText } = render(<AccountFilter />, {
     wrapper: providerWrapper(),
   });
+
+  userEvent.click(getByText(/glass/));
+  userEvent.click(getByText(/filter/));
 
   const statusFilter = getByLabelText('Status') as HTMLSelectElement;
   const activeFilter = getByLabelText('Active') as HTMLSelectElement;

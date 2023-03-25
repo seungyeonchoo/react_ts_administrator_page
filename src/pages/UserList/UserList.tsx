@@ -15,9 +15,6 @@ import LoadingPage from '../../component/LoadingPage/LoadingPage';
 import UserCreateButton from './components/UserCreateButton';
 import NoResult from '../../component/ErrorPage/NoResult';
 
-import { ReactComponent as Filter } from '../../assets/filter-solid.svg';
-import { ReactComponent as Search } from '../../assets/magnifying-glass-solid.svg';
-
 const UserList = () => {
   const nav = useNavigate();
   const { userParams } = useSelector((state: ReducerType) => state.params);
@@ -32,14 +29,9 @@ const UserList = () => {
   if (isError) return <ErrorPage error={error} />;
 
   return (
-    <section data-testid="data-component" className="my-1 px-5 w-11/12 h-[33.5rem]">
+    <section data-testid="data-component" className="my-1 px-5 w-11/12 h-[33.5rem] m-auto">
       {modalToggle && <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />}
-      <section className="w-full flex items-center justify-between text-sm py-5 m-auto ">
-        <Filter
-          className="hover:fill-red-500"
-          onClick={(e: React.MouseEvent) => console.log('click')}
-        />
-        <Search className="w-4 hover:fill-red-500" />
+      <section className="w-full h-24 flex items-center justify-between text-sm py-5 px-10 m-auto ">
         <UserFilter />
         <UserCreateButton handleModalToggle={handleModalToggle} />
       </section>

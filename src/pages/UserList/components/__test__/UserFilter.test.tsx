@@ -8,9 +8,12 @@ import { initialUserParams, updateUserParams } from '../../../../store/slices/pa
 import UserFilter from '../UserFilter';
 
 const setUp = () => {
-  const { getByPlaceholderText, getByLabelText } = render(<UserFilter />, {
+  const { getByPlaceholderText, getByLabelText, getByText } = render(<UserFilter />, {
     wrapper: providerWrapper(),
   });
+
+  userEvent.click(getByText(/filter/));
+  userEvent.click(getByText(/glass/));
 
   const isActiveFilter = getByLabelText('Active') as HTMLSelectElement;
   const isStaffFilter = getByLabelText('Staff') as HTMLSelectElement;

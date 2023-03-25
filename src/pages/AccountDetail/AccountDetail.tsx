@@ -35,54 +35,61 @@ const AccountDetail = () => {
   if (isError) return <ErrorPage error={error} />;
 
   return (
-    <table>
-      <tbody>
-        <tr>
-          <th>Account Number</th>
-          <td>{data?.number}</td>
-          <th>Account Name</th>
-          {toggle ? (
-            <td>
-              <input type="text" name="name" value={inputValue.name} onChange={handleInputChange} />
-              <button onClick={handleSaveChange}>save</button>
-              <button onClick={handleToggle}>cancel</button>
-            </td>
-          ) : (
-            <td>
-              {data?.name} <button onClick={handleUpdateName}>update</button>
-            </td>
-          )}
-        </tr>
-        <tr>
-          <th>Account status</th>
-          <td>{ACCOUNT_STATUS[data?.status]}</td>
-          <th>Broker</th>
-          <td>{BROKER_LIST[data?.broker_id]}</td>
-          <th>User Name</th>
-          <td onClick={() => nav(`/users/${data?.userId}`)}>{data?.user.name}</td>
-        </tr>
-        <tr>
-          <th>Created Date</th>
-          <td>{convertDate(data?.created_at)}</td>
-          <th>Updated Date</th>
-          <td>{convertDate(data?.updated_at)}</td>
-          <th>Active</th>
-          <td>{data?.is_active ? 'active' : 'inactive'}</td>
-        </tr>
-        <tr>
-          <th>Payments</th>
-          <td>{addComma(data?.payments)}</td>
-          <th>Assets</th>
-          <td>{addComma(data?.assets)}</td>
-        </tr>
-        <tr>
-          <th>Earning Rate</th>
-          <td>{(((+data?.assets - +data?.payments) / +data?.payments) * 100).toFixed(2)}%</td>
-          <th>Profit</th>
-          <td>{addComma((+data?.assets - +data?.payments).toString())}</td>
-        </tr>
-      </tbody>
-    </table>
+    <section className="my-1 px-5 flex flex-col justify-between w-11/12 h-[33.5rem]">
+      <table>
+        <tbody>
+          <tr>
+            <th>Account Number</th>
+            <td>{data?.number}</td>
+            <th>Account Name</th>
+            {toggle ? (
+              <td>
+                <input
+                  type="text"
+                  name="name"
+                  value={inputValue.name}
+                  onChange={handleInputChange}
+                />
+                <button onClick={handleSaveChange}>save</button>
+                <button onClick={handleToggle}>cancel</button>
+              </td>
+            ) : (
+              <td>
+                {data?.name} <button onClick={handleUpdateName}>update</button>
+              </td>
+            )}
+          </tr>
+          <tr>
+            <th>Account status</th>
+            <td>{ACCOUNT_STATUS[data?.status]}</td>
+            <th>Broker</th>
+            <td>{BROKER_LIST[data?.broker_id]}</td>
+            <th>User Name</th>
+            <td onClick={() => nav(`/users/${data?.userId}`)}>{data?.user.name}</td>
+          </tr>
+          <tr>
+            <th>Created Date</th>
+            <td>{convertDate(data?.created_at)}</td>
+            <th>Updated Date</th>
+            <td>{convertDate(data?.updated_at)}</td>
+            <th>Active</th>
+            <td>{data?.is_active ? 'active' : 'inactive'}</td>
+          </tr>
+          <tr>
+            <th>Payments</th>
+            <td>{addComma(data?.payments)}</td>
+            <th>Assets</th>
+            <td>{addComma(data?.assets)}</td>
+          </tr>
+          <tr>
+            <th>Earning Rate</th>
+            <td>{(((+data?.assets - +data?.payments) / +data?.payments) * 100).toFixed(2)}%</td>
+            <th>Profit</th>
+            <td>{addComma((+data?.assets - +data?.payments).toString())}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
   );
 };
 

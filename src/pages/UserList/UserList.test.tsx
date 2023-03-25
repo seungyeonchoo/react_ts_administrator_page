@@ -108,6 +108,9 @@ describe('UserList Page', () => {
       expect(getByText(/marvin/i)).toBeInTheDocument();
       expect(getByText(/kay/i)).toBeInTheDocument();
 
+      userEvent.click(getByText(/filter/));
+      userEvent.click(getByText(/glass/));
+
       expect(getByLabelText('Active')).toBeInTheDocument();
       expect(getByLabelText('Staff')).toBeInTheDocument();
 

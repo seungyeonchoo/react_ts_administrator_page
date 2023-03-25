@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.gain {
+  @apply border-b p-4 text-red-500;
+}
+
+.loss {
+  @apply border-b p-4 text-blue-500;
+}
