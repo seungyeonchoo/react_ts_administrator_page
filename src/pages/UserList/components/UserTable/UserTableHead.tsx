@@ -1,21 +1,19 @@
-import TableHeadCell from '../../../../component/Table/TableHeadCell';
-
 const UserTableHead = () => {
   return (
     <thead>
       <tr className="bg-slate-500 text-white">
-        <TableHeadCell cell="Name" />
-        <TableHeadCell cell="Accounts" />
-        <TableHeadCell cell="E-mail" />
-        <TableHeadCell cell="Gender" />
-        <TableHeadCell cell="Birth Date" />
-        <TableHeadCell cell="Phone Number" />
-        <TableHeadCell cell="Last Login" />
-        <TableHeadCell cell="Created Date" />
-        <TableHeadCell cell="Marketing Push" />
-        <TableHeadCell cell="Active" />
-        <TableHeadCell cell="Staff" />
-        <TableHeadCell cell="Delete" />
+        <th className="table_cell font-normal">Name</th>
+        <th className="table_cell font-normal">Accounts</th>
+        <th className="table_cell font-normal">E-mail</th>
+        <th className="table_cell font-normal">Gender</th>
+        <th className="table_cell font-normal">Birth Date</th>
+        <th className="table_cell font-normal">Phone Number</th>
+        <th className="table_cell font-normal">Last Login</th>
+        <th className="table_cell font-normal">Created Date</th>
+        <th className="table_cell font-normal">Marketing Push</th>
+        <th className="table_cell font-normal">Active</th>
+        <th className="table_cell font-normal">Staff</th>
+        <th className="table_cell font-normal">Delete</th>
       </tr>
     </thead>
   );

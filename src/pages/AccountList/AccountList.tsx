@@ -9,8 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import LoadingPage from '../../component/LoadingPage/LoadingPage';
 import ErrorPage from '../../component/ErrorPage/ErrorPage';
 
-import AccountFilter from './components/AccountFilter';
-import AccountListPage from './components/AccountListPage';
+import AccountFilter from './components/AccountToolbar';
 import AccountListTable from './components/AccountListTable';
 
 const AccountList = () => {
@@ -34,18 +33,3 @@ const AccountList = () => {
 };
 
 export default AccountList;
-
-// {
-//     id: 1,
-//     userId: 1,
-//     uuid: '8910b399-935d-4200-898b-bb3da7c3bfc7',
-//     broker_id: '261',
-//     status: 2,
-//     number: '375178506564',
-//     name: 'Money Market Account',
-//     assets: '702487457.42',
-//     payments: '675311926.92',
-//     is_active: false,
-//     created_at: '2020-04-25T13:37:13.564Z',
-//     updated_at: '2020-11-21T06:11:57.543Z',
-//   },

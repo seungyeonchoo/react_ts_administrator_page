@@ -1,19 +1,17 @@
-import TableHeadCell from '../../../../component/Table/TableHeadCell';
-
 const AccountTableHead = () => {
   return (
     <thead>
       <tr className="bg-slate-500 text-white">
-        <TableHeadCell cell="Account Number" />
-        <TableHeadCell cell="Account Name" />
-        <TableHeadCell cell="Status" />
-        <TableHeadCell cell="Broker" />
-        <TableHeadCell cell="User Name" />
-        <TableHeadCell cell="Payments" />
-        <TableHeadCell cell="Assests" />
-        <TableHeadCell cell="Earnings rate" />
-        <TableHeadCell cell="Profit" />
-        <TableHeadCell cell="Active" />
+        <th className="table_cell font-normal">Account Number</th>
+        <th className="table_cell font-normal">Account Name</th>
+        <th className="table_cell font-normal">Status</th>
+        <th className="table_cell font-normal">Broker</th>
+        <th className="table_cell font-normal">User Name</th>
+        <th className="table_cell font-normal">Payments</th>
+        <th className="table_cell font-normal">Assests</th>
+        <th className="table_cell font-normal">Earnings rate</th>
+        <th className="table_cell font-normal">Profit</th>
+        <th className="table_cell font-normal">Active</th>
       </tr>
     </thead>
   );

@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { providerWrapper } from '../../../../service/__mock__';
 import store from '../../../../store';
 import { initialUserParams, updateUserParams } from '../../../../store/slices/paramSlice';
-import UserListPage from '../UseListPage';
+import UserListPage from '../UserTable/UseListPage';
 
 const setUp = () => {
   const { getByText } = render(

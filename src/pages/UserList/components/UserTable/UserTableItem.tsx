@@ -24,23 +24,20 @@ const UserTableItem = ({ user }: { user: TUser }) => {
 
   return (
     <tr className="bg-slate-100">
-      <td
-        className="border-b p-4 cursor-pointer hover:font-bold"
-        onClick={() => nav(`/users/${user.id}`)}
-      >
+      <td className="table_cell cell_hover" onClick={() => nav(`/users/${user.id}`)}>
         {user?.name}
       </td>
-      <td className="border-b p-4">{user?.accounts?.length as number}</td>
-      <td className="border-b p-4">{user?.email}</td>
-      <td className="border-b p-4">{convertGender(user?.gender_origin)}</td>
-      <td className="border-b p-4">{convertDate(user?.birth_date)}</td>
-      <td className="border-b p-4">{convertPhoneNumber(user?.phone_number)}</td>
-      <td className="border-b p-4">{convertDate(user?.last_login)}</td>
-      <td className="border-b p-4">{convertDate(user?.created_at)}</td>
-      <td className="border-b p-4">{user?.allow_marketing_push ? 'allow' : 'not allow'}</td>
-      <td className="border-b p-4">{user?.is_active ? 'active' : 'inactive'}</td>
-      <td className="border-b p-4">{user?.is_staff ? 'staff' : '-'}</td>
-      <td className="border-b p-4 cursor-pointer hover:font-bold" onClick={handleDelete}>
+      <td className="table_cell">{user?.accounts?.length as number}</td>
+      <td className="table_cell">{user?.email}</td>
+      <td className="table_cell">{convertGender(user?.gender_origin)}</td>
+      <td className="table_cell">{convertDate(user?.birth_date)}</td>
+      <td className="table_cell">{convertPhoneNumber(user?.phone_number)}</td>
+      <td className="table_cell">{convertDate(user?.last_login)}</td>
+      <td className="table_cell">{convertDate(user?.created_at)}</td>
+      <td className="table_cell">{user?.allow_marketing_push ? 'allow' : 'not allow'}</td>
+      <td className="table_cell">{user?.is_active ? 'active' : 'inactive'}</td>
+      <td className="table_cell">{user?.is_staff ? 'staff' : '-'}</td>
+      <td className="table_cell cell_hover" onClick={handleDelete}>
         Del
       </td>
     </tr>

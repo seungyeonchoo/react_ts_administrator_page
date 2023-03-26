@@ -6,7 +6,7 @@ import { initialAccountParams, updateAccountParams } from '../../../../store/sli
 
 import { providerWrapper } from '../../../../service/__mock__';
 
-import AccountListPage from '../AccountListPage';
+import AccountListPage from '../AccountListTable/AccountListPage';
 
 const setUp = () => {
   const { getByText } = render(

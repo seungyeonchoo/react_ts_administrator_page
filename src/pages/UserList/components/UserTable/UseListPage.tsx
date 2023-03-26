@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../store';
-import { updateUserParams } from '../../../store/slices/paramSlice';
+import { updateUserParams } from '../../../../store/slices/paramSlice';
 
 interface Props {
   page: number;
@@ -20,19 +19,11 @@ const UserListPage = ({ page, length }: Props) => {
 
   return (
     <section className="flex justify-between items-center text-xs w-1/5 m-auto p-4">
-      <button
-        className="cursor-pointer bg-slate-500 text-white font-bold p-2 rounded-md hover:bg-slate-600 disabled:bg-slate-400"
-        onClick={handleToPrev}
-        disabled={page === 1}
-      >
+      <button className="hover_button button_page" onClick={handleToPrev} disabled={page === 1}>
         prev
       </button>
       <span>{page}</span>
-      <button
-        className="cursor-pointer bg-slate-500 text-white font-bold p-2 rounded-md hover:bg-slate-600 disabled:bg-slate-400"
-        onClick={handleToNext}
-        disabled={length < 20}
-      >
+      <button className="hover_button button_page" onClick={handleToNext} disabled={length < 20}>
         next
       </button>
     </section>

@@ -1,11 +1,12 @@
-import useMutate from '../../hooks/useMutate';
-import useInput from '../../hooks/useInput';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+
+import useMutate from '../../hooks/useMutate';
+import useInput from '../../hooks/useInput';
+
 import AuthInput from './components/AuthInput';
 import AuthButton from './components/AuthButton';
 import AuthErrorAlert from './components/AuthErrorAlert';
-import Footer from '../../component/Footer/Footer';
 
 interface InitialInput {
   email: string;

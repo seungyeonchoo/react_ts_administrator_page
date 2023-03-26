@@ -30,7 +30,7 @@ const UserSearchInput = ({ handleSearchToggle }: Props) => {
         onChange={handleSearchInputChange}
         className="h-9 px-3 w-48 border border-slate-500 rounded-md"
       />
-      <Cancel className="w-[15px] -ml-7" onClick={handleSearchToggle} />
+      <Cancel className="icon -m-6" onClick={handleSearchToggle} />
     </section>
   );
 };

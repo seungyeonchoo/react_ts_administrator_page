@@ -30,7 +30,7 @@ const AccountSearchInput = ({ handleSearchToggle }: Props) => {
         onChange={handleSearchInputChange}
         className="h-9 px-3 w-48 border border-slate-500 rounded-md text-xs"
       />
-      <Cancel onClick={handleSearchToggle} className="w-[15px] -ml-7" />
+      <Cancel onClick={handleSearchToggle} className="icon -ml-6" />
     </section>
   );
 };

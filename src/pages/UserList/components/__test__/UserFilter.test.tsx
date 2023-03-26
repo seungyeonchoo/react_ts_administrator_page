@@ -1,16 +1,22 @@
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import { providerWrapper } from '../../../../service/__mock__';
 
 import store from '../../../../store';
 import { initialUserParams, updateUserParams } from '../../../../store/slices/paramSlice';
 
-import UserFilter from '../UserFilter';
+import UserToolBar from '../UserToolBar';
+
+const handleModalToggle = jest.fn();
 
 const setUp = () => {
-  const { getByPlaceholderText, getByLabelText, getByText } = render(<UserFilter />, {
-    wrapper: providerWrapper(),
-  });
+  const { getByPlaceholderText, getByLabelText, getByText } = render(
+    <UserToolBar handleModalToggle={handleModalToggle} />,
+    {
+      wrapper: providerWrapper(),
+    }
+  );
 
   userEvent.click(getByText(/filter/));
   userEvent.click(getByText(/glass/));

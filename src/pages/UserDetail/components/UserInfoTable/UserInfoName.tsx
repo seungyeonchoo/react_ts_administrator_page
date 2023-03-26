@@ -25,20 +25,17 @@ const UserInfoName = ({ id, data }: { id: string; data: TUser }) => {
         name="name"
         value={inputValue.name}
         onChange={handleInputChange}
-        className="text-center w-full h-6 mb-2 border border-slate-500 rounded-md"
+        className="text-center w-full h-6 mb-2 border border-slate-500 rounded-sm bg-slate-100"
       />
       <div className="flex justify-evenly">
         <button
           disabled={inputValue.name === data?.name}
           onClick={handleSaveChange}
-          className="bg-slate-500 p-1 w-2/5 rounded-md text-white disabled:bg-slate-400 hover:bg-slate-600"
+          className="button_page hover_button"
         >
           save
         </button>
-        <button
-          onClick={handleToggle}
-          className="bg-slate-500 p-1 w-2/5 rounded-md text-white hover:bg-slate-600"
-        >
+        <button onClick={handleToggle} className="button_page hover_button">
           cancel
         </button>
       </div>
@@ -46,10 +43,7 @@ const UserInfoName = ({ id, data }: { id: string; data: TUser }) => {
   ) : (
     <td className="p-2 bg-slate-100 h-full flex-col justify-center">
       <div className="mb-2">{data?.name}</div>
-      <button
-        onClick={handleUpdateName}
-        className="bg-slate-500 p-1 w-1/2 rounded-md text-white hover:bg-slate-600"
-      >
+      <button onClick={handleUpdateName} className="button_page hover_button">
         update
       </button>
     </td>

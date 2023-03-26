@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { providerWrapper } from '../../../../service/__mock__';
 import store from '../../../../store';
 import { initialAccountParams, updateAccountParams } from '../../../../store/slices/paramSlice';
-import AccountFilter from '../AccountFilter';
+import AccountFilter from '../AccountToolbar';
 
 const setUp = () => {
   const { getByLabelText, getByPlaceholderText, getByText } = render(<AccountFilter />, {

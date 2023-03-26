@@ -1,55 +1,34 @@
 import { useNavigate } from 'react-router-dom';
+
+import { TAccount } from '../../../../types/user_types';
+
 import ACCOUNT_STATUS from '../../../../fixture/AccountStatus';
 import BROKER_LIST from '../../../../fixture/BrokerList';
-import { TAccount } from '../../../../types/user_types';
+
 import addComma from '../../../../utils/addComma';
 import calcEarningRate from '../../../../utils/calcEarningRate';
 
 const AccountTableItem = ({ account }: { account: TAccount }) => {
   const nav = useNavigate();
-
   const profit = calcEarningRate(account?.payments, account?.assets);
-
-  const navAccountDetail = () => {
-    nav(`/accounts/${account?.id}`);
-  };
-
-  const navUserDetail = () => {
-    nav(`/users/${account?.userId}`);
-  };
+  const isGain = +account?.assets - +account?.payments > 0;
 
   return (
     <tr className="bg-slate-100">
-      <td className="border-b p-4 cursor-pointer hover:font-bold" onClick={navAccountDetail}>
+      <td className="table_cell cell_hover" onClick={() => nav(`/accounts/${account?.id}`)}>
         {account?.number}
       </td>
-      <td className="border-b p-4">{account?.name}</td>
-      <td className="border-b p-4">{ACCOUNT_STATUS[account?.status]}</td>
-      <td className="border-b p-4">{BROKER_LIST[account?.broker_id]}</td>
-      <td className="border-b p-4 cursor-pointer hover:font-bold" onClick={navUserDetail}>
+      <td className="table_cell">{account?.name}</td>
+      <td className="table_cell">{ACCOUNT_STATUS[account?.status]}</td>
+      <td className="table_cell">{BROKER_LIST[account?.broker_id]}</td>
+      <td className="table_cell cell_hover" onClick={() => nav(`/users/${account?.userId}`)}>
         {account?.user?.name}
       </td>
-      <td className="border-b p-4">{addComma(account?.payments)}</td>
-      <td className="border-b p-4">{addComma(account?.assets)}</td>
-      <td
-        className={
-          +account?.assets - +account?.payments > 0
-            ? 'border-b p-4 text-red-500'
-            : 'border-b p-4 text-blue-500'
-        }
-      >
-        {profit.earningRate}
-      </td>
-      <td
-        className={
-          +account?.assets - +account?.payments > 0
-            ? 'border-b p-4 text-red-500'
-            : 'border-b p-4 text-blue-500'
-        }
-      >
-        {profit.profit}
-      </td>
-      <td className="border-b p-4">{account?.is_active ? 'active' : 'inactive'}</td>
+      <td className="table_cell">{addComma(account?.payments)}</td>
+      <td className="table_cell">{addComma(account?.assets)}</td>
+      <td className={isGain ? 'table_cell gain' : 'table_cell loss'}>{profit.earningRate}</td>
+      <td className={isGain ? 'table_cell gain' : 'table_cell loss'}>{profit.profit}</td>
+      <td className="table_cell">{account?.is_active ? 'active' : 'inactive'}</td>
     </tr>
   );
 };

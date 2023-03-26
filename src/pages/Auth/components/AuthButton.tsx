@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../store';
+
 import { updateUserEmail } from '../../../store/slices/currUserSlice';
 
 interface Props {

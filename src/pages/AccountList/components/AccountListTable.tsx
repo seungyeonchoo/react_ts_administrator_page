@@ -1,5 +1,6 @@
 import { TAccount } from '../../../types/user_types';
-import AccountListPage from './AccountListPage';
+
+import AccountListPage from './AccountListTable/AccountListPage';
 import AccountTableHead from './AccountListTable/AccountTableHead';
 import AccountTableItem from './AccountListTable/AccountTableItem';
 
