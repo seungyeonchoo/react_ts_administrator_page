@@ -11,6 +11,7 @@ import ErrorPage from '../../component/ErrorPage/ErrorPage';
 import useToggle from '../../hooks/useToggle';
 import useMutate from '../../hooks/useMutate';
 import useInput from '../../hooks/useInput';
+import calcEarningRate from '../../utils/calcEarningRate';
 
 const AccountDetail = () => {
   const nav = useNavigate();
@@ -20,6 +21,8 @@ const AccountDetail = () => {
   const { data, isError, isLoading, error } = useFetch(`/accounts/${id}`, accountParams);
   const { inputValue, handleInputChange, handleSetInput } = useInput({ name: '' });
   const { mutate } = useMutate(`/accounts/${id}`, 'patch', inputValue);
+  const profit = calcEarningRate(data?.payments, data?.assets);
+  const isGain = data?.assets - data?.payments >= 0;
 
   const handleSaveChange = () => {
     mutate(inputValue);
@@ -35,8 +38,71 @@ const AccountDetail = () => {
   if (isError) return <ErrorPage error={error} />;
 
   return (
-    <section className="my-1 px-5 flex flex-col justify-between w-11/12 h-[33.5rem]">
-      <table>
+    <section className="container_main flex justify-center">
+      <section className="w-1/3 m-auto text-xs grid grid-cols-5 text-center bg-slate-500">
+        <div className="col-span-3 table_cell text-white">Account Number</div>
+        <div className="col-span-2 table_cell text-white">Broker</div>
+        <div className="col-span-3 table_cell bg-slate-100">{data?.number}</div>
+        <div className="col-span-2 table_cell bg-slate-100">{BROKER_LIST[data?.broker_id]}</div>
+        <div className="col-span-3 table_cell text-white">Account Name</div>
+        <div className="col-span-2 table_cell text-white">Status</div>
+        <div className="col-span-3 table_cell bg-slate-100">
+          {toggle ? (
+            <>
+              <input type="text" name="name" value={inputValue.name} onChange={handleInputChange} />
+              <button onClick={handleSaveChange}>save</button>
+              <button onClick={handleToggle}>cancel</button>{' '}
+            </>
+          ) : (
+            <>
+              {data?.name} <button onClick={handleUpdateName}>update</button>
+            </>
+          )}
+        </div>
+        <div className="col-span-2 table_cell bg-slate-100">{ACCOUNT_STATUS[data?.status]}</div>
+        <div className="col-span-5 table_cell text-white">User Name</div>
+        <div
+          className="col-span-5 p-4 table_cell cell_hover bg-slate-100"
+          onClick={() => nav(`/users/${data?.userId}`)}
+        >
+          {data?.user.name}
+        </div>
+        <div className="col-span-2 table_cell text-white">Created Date</div>
+        <div className="col-span-2 table_cell text-white">Updated Date</div>
+        <div className="col-span-1 table_cell text-white">Active</div>
+        <div className="col-span-2 table_cell bg-slate-100">{convertDate(data?.created_at)}</div>
+        <div className="col-span-2 table_cell bg-slate-100">{convertDate(data?.updated_at)}</div>
+        <div className="col-span-1 table_cell bg-slate-100">
+          {data?.is_active ? 'active' : 'inactive'}
+        </div>
+      </section>
+      <section className="w-1/3 m-auto text-xs grid grid-cols-2 text-center bg-slate-500">
+        <div className="col-span-2 table_cell text-white">Payments</div>
+        <div className="col-span-2 table_cell bg-slate-100">{addComma(data?.payments)}</div>
+        <div className="col-span-2 table_cell text-white">Assets</div>
+        <div className="col-span-2 table_cell bg-slate-100">{addComma(data?.assets)}</div>
+        <div className="col-span-2 table_cell text-white">Earning Rate</div>
+        <div
+          className={
+            isGain
+              ? 'col-span-2 table_cell bg-slate-100 gain'
+              : 'col-span-2 table_cell bg-slate-100 loss'
+          }
+        >
+          {profit.earningRate}
+        </div>
+        <div className="col-span-2 table_cell text-white">Profit</div>
+        <div
+          className={
+            isGain
+              ? 'col-span-2 table_cell bg-slate-100 gain'
+              : 'col-span-2 table_cell bg-slate-100 loss'
+          }
+        >
+          {profit.profit}
+        </div>
+      </section>
+      {/* <table>
         <tbody>
           <tr>
             <th>Account Number</th>
@@ -88,7 +154,7 @@ const AccountDetail = () => {
             <td>{addComma((+data?.assets - +data?.payments).toString())}</td>
           </tr>
         </tbody>
-      </table>
+      </table> */}
     </section>
   );
 };

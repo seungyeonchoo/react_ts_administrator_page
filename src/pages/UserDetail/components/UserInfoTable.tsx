@@ -7,12 +7,6 @@ const UserInfoTable = ({ data, id }: { data: TUser; id: string }) => {
     <section className="w-11/12 text-xs text-center m-auto">
       <section className="flex items-center py-5 w-full m-auto text-left h-fit">
         <img src={data?.photo} alt="../../assets/user-solid.svg" className="rounded-full" />
-        {/* <table className="table table-fixed w-full ml-10">
-          <tbody>
-            <UserBasicInfo id={id} data={data} />
-            <UserSettingInfo data={data} />
-          </tbody>
-        </table> */}
         <section className="grid grid-cols-7 text-center items-center w-full ml-10">
           <UserBasicInfo id={id} data={data} />
           <UserSettingInfo data={data} />

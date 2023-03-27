@@ -30,10 +30,15 @@ const UserList = () => {
   if (isError) return <ErrorPage error={error} />;
 
   return (
-    <section data-testid="data-component" className="my-1 px-5 w-11/12 h-[33.5rem] m-auto">
-      {modalToggle && <UserModal showModal={modalToggle} handleShowModal={handleModalToggle} />}
+    <section data-testid="data-component" className="container_main">
       <UserToolBar handleModalToggle={handleModalToggle} />
-      {data?.length === 0 ? <NoResult /> : <UserTable page={userParams._page} users={data} />}
+      {modalToggle ? (
+        <UserModal handleShowModal={handleModalToggle} />
+      ) : data?.length === 0 ? (
+        <NoResult />
+      ) : (
+        <UserTable page={userParams._page} users={data} />
+      )}
     </section>
   );
 };

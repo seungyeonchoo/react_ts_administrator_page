@@ -71,9 +71,9 @@ describe('UserList Page', () => {
 
     act(() => userEvent.click(addUserButton));
 
-    const createUserModal = getByTestId('create-user-modal') as HTMLDialogElement;
+    const createUserModal = getByTestId('create-user-modal');
 
-    expect(createUserModal.open).toBe(true);
+    expect(createUserModal).toBeInTheDocument();
   });
 
   describe('Re-render after selecting filter', () => {

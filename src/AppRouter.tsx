@@ -14,7 +14,10 @@ const AppRouter = () => {
   return (
     <>
       <Header handleToggle={handleToggle} />
-      <main className="relative flex justify-between w-full h-11/12">
+      <main
+        className="relative flex justify-between w-full h-11/12"
+        onClick={toggle ? handleToggle : undefined}
+      >
         {toggle && <Side handleSideToggle={handleToggle} />}
         <Routes>
           <Route path="/accounts" element={<AccountList />} />

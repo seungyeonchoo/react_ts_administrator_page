@@ -7,7 +7,7 @@ const handleShowModal = jest.fn();
 
 const setUp = () => {
   const { getByRole, queryByRole, getByLabelText, getByText } = render(
-    <UserModal showModal={true} handleShowModal={handleShowModal} />,
+    <UserModal handleShowModal={handleShowModal} />,
     {
       wrapper: providerWrapper(),
     }

@@ -15,7 +15,7 @@ const Side = ({ handleSideToggle }: Props) => {
   };
 
   return (
-    <aside className="list-none text-xs w-48 flex flex-col justify-center items-center absolute top-40">
+    <aside className="list-none text-xs w-48 pr-2 flex flex-col justify-center items-center top-40 absolute">
       <div className="flex flex-col items-center justify-between h-60 rounded-r-md bg-slate-300 w-full py-3 shadow-md">
         <div className="justify-center w-full text-center">
           <li

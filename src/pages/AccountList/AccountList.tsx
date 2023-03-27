@@ -23,9 +23,8 @@ const AccountList = () => {
 
   if (isLoading) return <LoadingPage />;
   if (isError) return <ErrorPage error={error} />;
-
   return (
-    <section data-testid="data-component" className="my-1 px-5 w-11/12 h-[33.5rem] m-auto">
+    <section data-testid="data-component" className="container_main">
       <AccountFilter />
       <AccountListTable page={accountParams._page} accounts={data} />
     </section>

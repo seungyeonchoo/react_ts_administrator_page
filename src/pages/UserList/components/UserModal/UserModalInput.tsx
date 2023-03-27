@@ -31,7 +31,7 @@ interface TProps {
 const UserModalInput = ({ userInput, handleUserInputChange, handleSelectChange }: TProps) => {
   return (
     <>
-      <h2 className="text-lg font-bold text-slate-800 mb-8">User Info</h2>
+      {/* <h2 className="text-lg font-bold text-slate-800 mb-8">User Info</h2> */}
       <section className="grid grid-cols-2 justify-items-center w-full text-sm">
         <label className="grid grid-cols-1 col-span-2 p-3 w-full">
           name

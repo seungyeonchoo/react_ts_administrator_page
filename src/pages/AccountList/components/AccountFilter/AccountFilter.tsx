@@ -24,7 +24,7 @@ const AccountFilter = ({ handleFilterToggle }: Props) => {
   };
 
   return (
-    <section className="flex justify-between w-1/3">
+    <section className="box_filter">
       <AccountActiveFilter is_active={accountParams.is_active} handleFilter={handleFilter} />
       <AccountStatusFilter status={accountParams.status} handleFilter={handleFilter} />
       <AccountBrokerFilter broker_id={accountParams.broker_id} handleFilter={handleFilter} />

@@ -22,7 +22,7 @@ const UserFilter = ({ handleFilterToggle }: Props) => {
   };
 
   return (
-    <section className="flex w-1/3 justify-between">
+    <section className="flex w-1/3 justify-between border px-4 py-2 bg-slate-100">
       <UserFilterStaff handleFilter={handleFilter} is_staff={userParams.is_staff} />
       <UserFilterActive handleFilter={handleFilter} is_active={userParams.is_active} />
       <Cancel className="icon" onClick={handleFilterToggle} />
