@@ -16,7 +16,7 @@ const Side = ({ handleSideToggle }: Props) => {
 
   return (
     <aside className="list-none text-xs w-48 pr-2 flex flex-col justify-center items-center top-40 absolute">
-      <div className="flex flex-col items-center justify-between h-60 rounded-r-md bg-slate-300 w-full py-3 shadow-md">
+      <div className="flex flex-col items-center justify-between h-60 rounded-r-md bg-slate-300 w-full py-5 shadow-md">
         <div className="justify-center w-full text-center">
           <li
             className="cursor-pointer p-2 mt-1 hover:bg-slate-100 hover:font-bold"
@@ -31,8 +31,8 @@ const Side = ({ handleSideToggle }: Props) => {
             Accounts
           </li>
         </div>
-        <div className="grid grid-cols-1 gap-5 justify-between w-full text-center">
-          <li className="font-normal text-gray-500">{email}</li>
+        <div className="grid grid-cols-1 gap-5 w-full text-center">
+          <li className="font-normal text-gray-500 text-[10px]">{email}</li>
           <li
             className="cursor-pointer pb-3 hover:text-red-500 hover:font-bold "
             onClick={handleLogout}
