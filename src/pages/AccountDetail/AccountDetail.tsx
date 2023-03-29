@@ -1,9 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { ReducerType } from '../../store';
 
 import useFetch from '../../hooks/useFetch';
-
-import { ReducerType } from '../../store';
 
 import LoadingPage from '../../component/LoadingPage/LoadingPage';
 import ErrorPage from '../../component/ErrorPage/ErrorPage';

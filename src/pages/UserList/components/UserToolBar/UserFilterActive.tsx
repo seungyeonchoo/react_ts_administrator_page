@@ -1,5 +1,3 @@
-import LabelWithInput from '../../../../component/Common/LabelWithInput';
-
 interface Props {
   is_active: null | 'true' | 'false';
   handleFilter: (e: React.ChangeEvent<HTMLSelectElement>) => void;

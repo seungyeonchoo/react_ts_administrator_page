@@ -1,4 +1,5 @@
 import { TUser } from '../../../types/user_types';
+
 import UserBasicInfo from './UserInfoTable/UserBasicInfo';
 import UserSettingInfo from './UserInfoTable/UserSettingInfo';
 

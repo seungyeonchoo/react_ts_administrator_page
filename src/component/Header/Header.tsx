@@ -23,6 +23,11 @@ const Header = ({ handleToggle }: Props) => {
         >
           {currLocation}
         </span>
+        {location.pathname.split('/')[2] && (
+          <span className="text-slate-600">
+            {currLocation === 'users' ? ' / user-detail' : ' / account-detail'}
+          </span>
+        )}
       </section>
     </header>
   );

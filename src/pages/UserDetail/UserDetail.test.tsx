@@ -41,25 +41,29 @@ describe('UserDetail component', () => {
         .onGet('/users/1')
         .replyOnce(200, MockUserList[0])
         .onPatch('/users/1')
-        .replyOnce(200)
+        .reply(200)
         .onGet('/users/1')
-        .replyOnce(200, { ...MockUserList[0], name: 'Kevin' });
+        .reply(200, { ...MockUserList[0], name: 'Kevin' });
 
       const { getByText, getByRole } = setUp();
 
       await waitFor(() => expect(getByText(/marvin/i)).toBeInTheDocument());
 
-      expect(getByText('update')).toBeInTheDocument();
+      expect(getByText('pencil-solid.svg')).toBeInTheDocument();
 
-      userEvent.click(getByText('update'));
+      userEvent.click(getByText('pencil-solid.svg'));
 
-      expect(getByRole('textbox')).toBeInTheDocument();
+      const nameInput = getByRole('textbox') as HTMLInputElement;
+      const saveButton = getByText('circle-check-regular.svg');
 
-      userEvent.clear(getByRole('textbox'));
+      expect(nameInput).toBeInTheDocument();
+      expect(saveButton).toBeInTheDocument();
 
-      userEvent.type(getByRole('textbox'), 'Kevin');
+      userEvent.clear(nameInput);
 
-      userEvent.click(getByText('save'));
+      userEvent.type(nameInput, 'Kevin');
+
+      userEvent.click(saveButton);
 
       await waitFor(() => getByText('Kevin'));
 

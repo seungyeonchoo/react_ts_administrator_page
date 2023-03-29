@@ -1,5 +1,9 @@
 const NoResult = () => {
-  return <section className="m-32 h-[12rem] text-center">No Result</section>;
+  return (
+    <section className="h-96 flex flex-col justify-center items-center">
+      <span className="text-2xl text-slate-500 font-bold">No results found</span>
+    </section>
+  );
 };
 
 export default NoResult;

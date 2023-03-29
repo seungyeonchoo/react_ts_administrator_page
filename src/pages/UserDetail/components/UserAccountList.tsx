@@ -1,4 +1,5 @@
 import { TAccount, TUser } from '../../../types/user_types';
+
 import UserAccountListBody from './UserAccountList/UserAccountListBody';
 import UserAccountListHead from './UserAccountList/UserAccountListHead';
 

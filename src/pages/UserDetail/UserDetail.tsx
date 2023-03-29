@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom';
+
 import { useSelector } from 'react-redux';
-import useFetch from '../../hooks/useFetch';
 import { ReducerType } from '../../store';
+
+import useFetch from '../../hooks/useFetch';
 
 import UserInfoTable from './components/UserInfoTable';
 import UserAccountList from './components/UserAccountList';

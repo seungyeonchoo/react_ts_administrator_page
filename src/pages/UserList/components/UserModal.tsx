@@ -1,6 +1,8 @@
 import useInput from '../../../hooks/useInput';
-import UserModalInput from './UserModal/UserModalInput';
+
 import InitialUser from '../../../fixture/InitailUserInput';
+
+import UserModalInput from './UserModal/UserModalInput';
 import UserModalButton from './UserModal/UserModalButton';
 import UserSettingInput from './UserModal/UserSettingInput';
 
@@ -18,10 +20,6 @@ const UserModal = ({ handleShowModal }: Props) => {
   } = useInput(InitialUser);
 
   return (
-    // <dialog
-    //   data-testid="create-user-modal"
-    //   className="flex flex-col items-center p-8 w-2/5 h-[30rem] overflow-auto border border-slate-600 rounded-md bg-slate-200"
-    // >
     <>
       <section
         data-testid="create-user-modal"
@@ -38,7 +36,6 @@ const UserModal = ({ handleShowModal }: Props) => {
       </section>
       <UserModalButton userInput={userInput} handleShowModal={handleShowModal} reset={reset} />
     </>
-    // </dialog>
   );
 };
 

@@ -23,6 +23,7 @@ const AccountList = () => {
 
   if (isLoading) return <LoadingPage />;
   if (isError) return <ErrorPage error={error} />;
+
   return (
     <section data-testid="data-component" className="container_main">
       <AccountFilter />

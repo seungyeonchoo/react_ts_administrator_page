@@ -5,9 +5,11 @@ import useMutate from '../../../../hooks/useMutate';
 
 import { TUser } from '../../../../types/user_types';
 
-import convertDate from '../../../../utils/convertData';
+import convertDate from '../../../../utils/convertDate';
 import convertGender from '../../../../utils/convertGender';
 import convertPhoneNumber from '../../../../utils/convertPhoneNumber';
+
+import { ReactComponent as Delete } from '../../../../assets/circle-minus-solid.svg';
 
 const UserTableItem = ({ user }: { user: TUser }) => {
   const nav = useNavigate();
@@ -37,8 +39,8 @@ const UserTableItem = ({ user }: { user: TUser }) => {
       <td className="table_cell">{user?.allow_marketing_push ? 'allow' : 'not allow'}</td>
       <td className="table_cell">{user?.is_active ? 'active' : 'inactive'}</td>
       <td className="table_cell">{user?.is_staff ? 'staff' : '-'}</td>
-      <td className="table_cell cell_hover" onClick={handleDelete}>
-        Del
+      <td className="table_cell cell_hover">
+        <Delete data-testid="delete-icon" className="icon m-auto" onClick={handleDelete} />
       </td>
     </tr>
   );

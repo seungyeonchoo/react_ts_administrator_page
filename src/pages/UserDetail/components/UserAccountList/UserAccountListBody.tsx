@@ -1,4 +1,5 @@
 import { TAccount } from '../../../../types/user_types';
+
 import UserAccountItem from './UserAccountItem';
 
 const UserAccountListBody = ({ accountList }: { accountList: TAccount[] }) => {

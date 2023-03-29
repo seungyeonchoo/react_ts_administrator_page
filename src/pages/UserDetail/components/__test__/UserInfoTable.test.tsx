@@ -5,7 +5,7 @@ import { mock, providerWrapper } from '../../../../service/__mock__';
 import UserInfoTable from '../UserInfoTable';
 
 const setUp = () => {
-  const { getByText, queryByRole, getByRole } = render(
+  const { getByText, queryByRole, getByRole, getByTestId } = render(
     <UserInfoTable data={MockUserList[0]} id="1" />,
     {
       wrapper: providerWrapper(),
@@ -13,9 +13,9 @@ const setUp = () => {
   );
 
   const userName = getByText(/marvin/i);
-  const userNameUpdateButton = getByText('update');
+  const userNameUpdateButton = getByTestId('update-icon');
 
-  return { userName, userNameUpdateButton, queryByRole, getByRole, getByText };
+  return { userName, userNameUpdateButton, queryByRole, getByRole, getByText, getByTestId };
 };
 
 describe('UserInfoTable component', () => {
@@ -65,14 +65,14 @@ describe('UserInfoTable component', () => {
     it('should change user name when save button is clicked', async () => {
       mock.onPatch('/users/1').reply(200);
 
-      const { userName, userNameUpdateButton, getByRole, getByText } = setUp();
+      const { userName, userNameUpdateButton, getByRole, getByText, getByTestId } = setUp();
 
       expect(userName).toHaveTextContent('Marvin 범');
 
       userEvent.click(userNameUpdateButton);
 
       const nameInput = getByRole('textbox') as HTMLInputElement;
-      const saveButton = getByText('save') as HTMLButtonElement;
+      const saveButton = getByTestId('save-icon');
 
       expect(nameInput.value).toBe('Marvin 범');
 

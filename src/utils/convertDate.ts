@@ -5,6 +5,8 @@ const convertDate: (date: string) => string = date => {
     getDate.getMonth() + 1 < 10 ? `0${getDate.getMonth() + 1}` : getDate.getMonth() + 1;
   const getDay = getDate.getDate() < 10 ? `0${getDate.getDate()}` : getDate.getDate();
 
+  if (isNaN(getFullYear)) return '-';
+
   return `${getFullYear}-${getMonth}-${getDay}`;
 };
 

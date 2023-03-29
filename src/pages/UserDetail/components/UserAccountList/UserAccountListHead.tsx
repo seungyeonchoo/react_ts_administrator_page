@@ -2,16 +2,16 @@ const UserAccountListHead = () => {
   return (
     <thead>
       <tr className="bg-slate-500 text-white">
-        <th className="table_cell">No.</th>
-        <th className="table_cell">Number</th>
-        <th className="table_cell">Broker</th>
-        <th className="table_cell">Status</th>
-        <th className="table_cell">Name</th>
-        <th className="table_cell">Payment</th>
-        <th className="table_cell">Assets</th>
-        <th className="table_cell">Earning Rate</th>
-        <th className="table_cell">Profit</th>
-        <th className="table_cell">Active</th>
+        <th className="p-2 font-normal">No.</th>
+        <th className="p-2 font-normal">Number</th>
+        <th className="p-2 font-normal">Broker</th>
+        <th className="p-2 font-normal">Status</th>
+        <th className="p-2 font-normal">Name</th>
+        <th className="p-2 font-normal">Payment</th>
+        <th className="p-2 font-normal">Assets</th>
+        <th className="p-2 font-normal">Earning Rate</th>
+        <th className="p-2 font-normal">Profit</th>
+        <th className="p-2 font-normal">Active</th>
       </tr>
     </thead>
   );

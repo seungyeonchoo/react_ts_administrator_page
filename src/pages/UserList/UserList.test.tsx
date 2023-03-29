@@ -140,7 +140,7 @@ describe('UserList Page', () => {
     });
 
     it('should delete user data when delete button is clicked', async () => {
-      const { getByText, getByTestId, queryByText, queryAllByText } = render(<UserList />, {
+      const { getByText, getByTestId, queryByText, getAllByTestId } = render(<UserList />, {
         wrapper: providerWrapper(),
       });
 
@@ -149,7 +149,7 @@ describe('UserList Page', () => {
       expect(getByText(/marvin/i)).toBeInTheDocument();
       expect(getByText(/kay/i)).toBeInTheDocument();
 
-      userEvent.click(queryAllByText('active')[0]);
+      userEvent.click(getAllByTestId('delete-icon')[0]);
 
       await waitFor(() => getByText(/kay/i));
 

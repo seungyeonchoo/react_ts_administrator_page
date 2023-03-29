@@ -3,7 +3,7 @@ import { TAccount } from '../../../types/user_types';
 import ACCOUNT_STATUS from '../../../fixture/AccountStatus';
 import BROKER_LIST from '../../../fixture/BrokerList';
 
-import convertDate from '../../../utils/convertData';
+import convertDate from '../../../utils/convertDate';
 import AccountName from './AccountInfo/AccountName';
 import AccountUserName from './AccountInfo/AccountUserName';
 

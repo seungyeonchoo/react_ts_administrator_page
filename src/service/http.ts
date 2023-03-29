@@ -4,6 +4,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const axiosConfig = {
   baseURL: BASE_URL,
+  timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
   },

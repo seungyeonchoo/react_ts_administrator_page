@@ -1,4 +1,4 @@
-import convertDate from '../convertData';
+import convertDate from '../convertDate';
 
 describe('convertDate function', () => {
   it(`should return passed date as 'year-month-date' form`, () => {

@@ -1,7 +1,12 @@
 import useInput from '../../../../hooks/useInput';
 import useMutate from '../../../../hooks/useMutate';
 import useToggle from '../../../../hooks/useToggle';
+
 import { TUser } from '../../../../types/user_types';
+
+import { ReactComponent as Update } from '../../../../assets/pencil-solid.svg';
+import { ReactComponent as Save } from '../../../../assets/circle-check-regular.svg';
+import { ReactComponent as Cancel } from '../../../../assets/circle-xmark-solid.svg';
 
 const UserInfoName = ({ id, data }: { id: string; data: TUser }) => {
   const { toggle, handleToggle } = useToggle(false);
@@ -19,34 +24,28 @@ const UserInfoName = ({ id, data }: { id: string; data: TUser }) => {
   };
 
   return toggle ? (
-    <td className="p-1 bg-slate-100 h-full">
+    <div className="flex items-center justify-around col-span-2 bg-slate-100 h-full">
       <input
         type="text"
         name="name"
         value={inputValue.name}
         onChange={handleInputChange}
-        className="text-center w-full h-6 mb-2 border border-slate-500 rounded-sm bg-slate-100"
+        className="text-center h-1/2 border border-slate-500 rounded-sm bg-slate-100"
       />
-      <div className="flex justify-evenly">
-        <button
-          disabled={inputValue.name === data?.name}
-          onClick={handleSaveChange}
-          className="button_page hover_button"
-        >
-          save
-        </button>
-        <button onClick={handleToggle} className="button_page hover_button">
-          cancel
-        </button>
+      <div className="flex justify-between w-1/5">
+        <Save data-testid="save-icon" onClick={handleSaveChange} className="icon" />
+        <Cancel data-testid="cancel-icon" onClick={handleToggle} className="icon" />
       </div>
-    </td>
+    </div>
   ) : (
-    <td className="p-2 bg-slate-100 h-full flex-col justify-center">
-      <div className="mb-2">{data?.name}</div>
-      <button onClick={handleUpdateName} className="button_page hover_button">
-        update
-      </button>
-    </td>
+    <div className="col-span-2 bg-slate-100 h-full flex items-center justify-around">
+      <div>{data?.name}</div>
+      <Update
+        data-testid="update-icon"
+        onClick={handleUpdateName}
+        className="w-3 fill-slate-600 cursor-pointer hover:fill-slate-700"
+      />
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import useInput from '../../../../hooks/useInput';
 import { AppDispatch } from '../../../../store';
-import { updateUserParams } from '../../../../store/slices/paramSlice';
+import { initialUserParams, updateUserParams } from '../../../../store/slices/paramSlice';
 import { ReactComponent as Cancel } from '../../../../assets/circle-xmark-solid.svg';
 
 interface Props {
@@ -20,6 +20,11 @@ const UserSearchInput = ({ handleSearchToggle }: Props) => {
     return () => clearTimeout(debounceHandler);
   }, [searchInput]);
 
+  const handleCancel = () => {
+    handleSearchToggle();
+    dispatch(updateUserParams(initialUserParams));
+  };
+
   return (
     <section className="ml-5 flex">
       <input
@@ -30,7 +35,7 @@ const UserSearchInput = ({ handleSearchToggle }: Props) => {
         onChange={handleSearchInputChange}
         className="h-9 px-3 w-48 border border-slate-500 rounded-md"
       />
-      <Cancel className="icon -m-6" onClick={handleSearchToggle} />
+      <Cancel className="icon -m-6" onClick={handleCancel} />
     </section>
   );
 };

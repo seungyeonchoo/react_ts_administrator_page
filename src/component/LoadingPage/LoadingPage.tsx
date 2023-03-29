@@ -1,7 +1,12 @@
+import { ReactComponent as Spinner } from '../../assets/spinner-solid.svg';
+
 const LoadingPage = () => {
   return (
-    <section className="my-1 px-10 w-11/12 h-[33.5rem]" data-testid="loading-component">
-      ...Loading
+    <section
+      className="container_main bg-gray-50 rounded-lg flex justify-center items-center"
+      data-testid="loading-component"
+    >
+      <Spinner className="animate-spin w-10 fill-blue-500" />
     </section>
   );
 };

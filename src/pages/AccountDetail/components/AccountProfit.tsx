@@ -1,4 +1,5 @@
 import { TAccount } from '../../../types/user_types';
+
 import addComma from '../../../utils/addComma';
 import calcEarningRate from '../../../utils/calcEarningRate';
 
