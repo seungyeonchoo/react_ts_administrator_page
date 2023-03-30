@@ -89,7 +89,7 @@ describe('Auth Page', () => {
       await waitFor(() => userEvent.click(loginButton));
 
       await waitFor(() => expect(emailInput.value).toBe(''));
-      await waitFor(() => expect(getByText(/Error/)).toBeInTheDocument());
+      await waitFor(() => expect(getByText(/Error/i)).toBeInTheDocument());
     });
   });
 });

@@ -886,6 +886,10 @@ video {
   width: 3.5rem;
 }
 
+.w-28 {
+  width: 7rem;
+}
+
 .table-auto {
   table-layout: auto;
 }
