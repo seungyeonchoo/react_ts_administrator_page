@@ -1,8 +1,6 @@
 # Financial accounts adiministrator page
 
-## Demo
-
-img
+<br/>
 
 ## Quick Start
 
