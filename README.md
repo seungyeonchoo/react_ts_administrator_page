@@ -1,8 +1,8 @@
 ## 프로젝트 실행방법
 
 ```
-git clone https://github.com/seungyeonchoo/makemyhabits.git
-cd makemyhabits
+git clone https://github.com/seungyeonchoo/react_ts_administrator_page.git
+cd react_ts_administrator_page
 
 - json server 시작
 cd server
@@ -222,6 +222,7 @@ src
 
   <details>
     <summary>1. 로그인</summary>
+    https://github.com/seungyeonchoo/react_ts_administrator_page/assets/100207630/104bbe65-67cc-4a91-aa58-47b875c763aa
 
     1. 등록되어 있는 email과 password로 로그인 하도록 구현
     2. 관리자 계정 회원가입을 위한 회원가입 버튼 구현
@@ -248,6 +249,7 @@ src
   </details>
     <details>
     <summary>3. 사용자 상세 페이지 </summary>
+    https://github.com/seungyeonchoo/react_ts_administrator_page/assets/100207630/3e0f0bb1-043a-4dab-a927-b303e75ea3d5
 
     1. 사용자 기본정보
       - /users/[id] 결로에서 회원 상세 정보 fetch
@@ -265,11 +267,12 @@ src
     <summary>4. 계좌 목록 </summary>
 
     1. 계좌 목록
-      - /accounts 경로로 사용자 Data를 fetch하여 테이블로 보여줄 수 있도록 구현
+      - /accounts 경로로 사용자 Data를 fetch 하여 테이블로 보여줄 수 있도록 구현
       - Pagination 적용해 20개씩 데이터를 보여줄 수 있도록 구현
+      - 사용자 이름 클릭하는 경우 해당 사용자 상세 페이지로 이동
       - 계좌 번호 클릭하는 경우 해당 계좌 상세 정보 페이지로 이동
       - Delete 버튼 클릭 시 회원 정보 삭제 구현
-      - 마스킹처리와 손실, 이익여부에 따른 평가 금액 색깔 변화 구현
+      - 손실, 이익여부에 따른 평가 금액 및 수익률 색상 변화 구현
     2. Toolbar
       - 드롭다운 조건 선택 시 redux의 accountParams 업데이트를 통해 filtering 구현
       - 검색어 키워드 입력 시 redux의 accountParams 업데이트를 통해 해당 번호가 포함된 계좌 목록만 보여줄 수 있도록 구현
@@ -278,22 +281,11 @@ src
 
   <details>
     <summary>5. 계좌 상세 </summary>
+    https://github.com/seungyeonchoo/react_ts_administrator_page/assets/100207630/e5b66087-5dfd-4aac-9bc1-48ff7f4b6c19
 
-    1. table 태그로 계좌 목록을 받아온 다음 보여줄 수 있도록 구현
-
-    2. data는 json server의 expand 속성을 활용해서 요청 받아온 account list data 안에 user data를 자식 형태로 받아와 account.user로 활용할 수 있도록 api 요청 처리
-
-    3. 받아온 계좌 데이터들 중 broker_id, status, is_active와 같은 요소들은 해당 데이터의 실제 이름에 맞게 처리하여 표시하도록 구현
-
-    4. Search API를 통해 해당 text를 포함하는 데이터들을 모두 보여줄 수 있도록 구현
-
-    5. Pagination API를 적용해 10개씩 데이터를 보여줄 수 있도록 구현
-
-    6. Filtering 기능을 toolbar 형태로 각 항목을 선택하여 선택한 항목에 맞는 데이터들을 보여줄 수 있도록 구현
-
-    7. 마스킹처리와 손실, 이익여부에 따른 평가 금액 색깔 변화 구현
-
-    8. 고객명이나 계좌번호를 누를 시 해당 상세 페이지로 이동하도록 구현
+    1. 계좌 id로 계좌 상세정보 fetch 하여 보여줄 수 있도록 구현
+    2. 계좌 이름 변경 버튼으로 계좌 이름 변경 기능 구현
+    3. 손실, 이익여부에 따른 평가 금액 및 수익률 색상 변화 구현
 
   </details>
 

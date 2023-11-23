@@ -17,6 +17,7 @@ const AuthInput = ({ loginInput, handleInputChange }: Props) => {
           aria-label="email"
           value={loginInput.email}
           onChange={handleInputChange}
+          autoComplete="off"
         />
       </label>
       <label className="flex flex-col p-3 text-sm w-full font-bold text-gray-700">
@@ -28,6 +29,7 @@ const AuthInput = ({ loginInput, handleInputChange }: Props) => {
           aria-label="password"
           value={loginInput.password}
           onChange={handleInputChange}
+          autoComplete="off"
         />
       </label>
     </>
