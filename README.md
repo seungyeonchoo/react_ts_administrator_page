@@ -1,295 +1,300 @@
-# Financial accounts adiministrator page
-
-<br/>
-
-## Quick Start
+## 프로젝트 실행방법
 
 ```
-- clone project repo
-git clone https://github.com/seungyeonchoo/react_ts_administrator_page.git
-cd react_ts_administrator_page
+git clone https://github.com/seungyeonchoo/makemyhabits.git
+cd makemyhabits
 
-- start project
-npm install
-npm start
-
-- start server
+- json server 시작
 cd server
-npm run gen
-npm start
+npm run gen - mock db 생성
+npm run start - run server
 
-* In order to sign in this web page, it is needed to create administrator account with Postman
-url : localhost:4000/signup
-method : POST
-body : email / password
+- 프로젝트 시작
+npm run start
+
+- 관리자 회원가입
+로그인 페이지 내 회원가입 버튼 클릭시 관리자 로그인 정보로 자동 회원가입
+
+<!-- * 관리자 로그인 정보 *  -->
+{
+  email: admin@gmail.com,
+  password: admin1234!@#$
+}
 
 ```
 
-> ## Contents
+<br>
 
-- [Technical stack](#Technical-stack)
-- [Directories](#Directories)
-- [Functionality](#Functionality)
-- [Prettier, Eslint](#Prettier,-Eslint)
+> ## 목차
+
+- [프로젝트 개요](#프로젝트-개요)
+- [기술 스택](#기술-스택)
+- [폴더 구조](#폴더-구조)
+- [기능별 설명](#기능별-설명)
 
 <br>
 
-> ## Technical stack
+> ## 프로젝트 개요
 
- <br/>
+- 원티드 프리온보딩 코스 : december and company에서 제공한 json server을 활용한 admin 서비스 구현
+- 권한 있는 사용자만 이용할 수 있는 서비스로 계좌 목록 데이터와 사용자 데이터를 활용해 계좌목록, 사용자 목록, 계좌 상세, 사용자 상세 정보를 확인할 수 있는 서비스 구현
+- 웹페이지 전용 서비스
 
-<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white">
-<img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
-<img src="https://camo.githubusercontent.com/5d16e7fdd964ebca50ca82d6c8b081045630340427c463f4470050acd4e50ef3/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f7374796c653d666f722d7468652d6261646765266d6573736167653d5461696c77696e642b43535326636f6c6f723d323232323232266c6f676f3d5461696c77696e642b435353266c6f676f436f6c6f723d303642364434266c6162656c3d">
-<br>
-<img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white%22%3E">
-<img src="https://img.shields.io/badge/redux_toolkit-764ABC?style=for-the-badge&logo=redux&logoColor=white%22%3E">
-<img src='https://camo.githubusercontent.com/2c53895491eecd8aed53655963595ae41628198bd1d5939fa100b11ee9e2513f/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f7374796c653d666f722d7468652d6261646765266d6573736167653d52656163742b517565727926636f6c6f723d464634313534266c6f676f3d52656163742b5175657279266c6f676f436f6c6f723d464646464646266c6162656c3d'>
-<br>
 <br>
 
-> ## Directories
+> ## 기술 Stack
+
+- React
+- Typescript
+- tailwindcss
+- react-query
+- redux-toolkit
+
+<br>
+
+> ## 폴더 구조
 
 ```
 src
-|-App.tsx
-|-AppRouter.tsx
-|-Router.tsx
-|-assets
-| |-bars-solid.svg
-| |-circle-check-regular.svg
-| |-circle-exclamation-solid.svg
-| |-circle-minus-solid.svg
-| |-circle-xmark-solid.svg
-| |-filter-solid.svg
-| |-left-long-solid.svg
-| |-magnifying-glass-solid.svg
-| |-pencil-solid.svg
-| |-spinner-solid.svg
-| |-user-solid.svg
-|-component
-| |-Common
-| | |-Input.tsx
-| | |-LabelWithInput.tsx
-| |-ErrorPage
-| | |-ErrorPage.tsx
-| | |-NoResult.tsx
-| |-Footer
-| | |-Footer.tsx
-| |-Header
-| | |-Header.tsx
-| |-LoadingPage
-| | |-LoadingPage.tsx
-| |-Side
-| | |-Side.tsx
-|-fixture
-| |-AccountStatus.ts
-| |-BrokerList.ts
-| |-InitailUserInput.ts
-| |-MockAccountList.tsx
-| |-MockUserList.tsx
-| |-mockAccountData.ts
-|-hooks
-| |-__test__
-| | |-useFetch.test.tsx
-| | |-useInput.test.tsx
-| | |-useMutate.test.tsx
-| | |-useToggle.test.tsx
-| |-useFetch.tsx
-| |-useInput.tsx
-| |-useMutate.tsx
-| |-useToggle.tsx
-|-index.css
-|-index.tsx
-|-pages
-| |-AccountDetail
-| | |-AccountDetail.tsx
-| | |-components
-| | | |-AccountInfo
-| | | | |-AccountName.tsx
-| | | | |-AccountUserName.tsx
-| | | |-AccountInfo.tsx
-| | | |-AccountProfit.tsx
-| |-AccountList
-| | |-AccountList.test.tsx
-| | |-AccountList.tsx
-| | |-components
-| | | |-AccountFilter
-| | | | |-AccountActiveFilter.tsx
-| | | | |-AccountBrokerFilter.tsx
-| | | | |-AccountFilter.tsx
-| | | | |-AccountSearchInput.tsx
-| | | | |-AccountStatusFilter.tsx
-| | | |-AccountListTable
-| | | | |-AccountListPage.tsx
-| | | | |-AccountTableHead.tsx
-| | | | |-AccountTableItem.tsx
-| | | |-AccountListTable.tsx
-| | | |-AccountToolbar.tsx
-| | | |-__test__
-| | | | |-AccountFilter.test.tsx
-| | | | |-AccountListPage.test.tsx
-| | | | |-AccountTable.test.tsx
-| |-Auth
-| | |-Auth.test.tsx
-| | |-Auth.tsx
-| | |-components
-| | | |-AuthButton.tsx
-| | | |-AuthErrorAlert.tsx
-| | | |-AuthInput.tsx
-| |-UserDetail
-| | |-UserDetail.test.tsx
-| | |-UserDetail.tsx
-| | |-components
-| | | |-UserAccountList
-| | | | |-UserAccountItem.tsx
-| | | | |-UserAccountListBody.tsx
-| | | | |-UserAccountListHead.tsx
-| | | |-UserAccountList.tsx
-| | | |-UserInfoTable
-| | | | |-UserBasicInfo.tsx
-| | | | |-UserInfoName.tsx
-| | | | |-UserSettingInfo.tsx
-| | | |-UserInfoTable.tsx
-| | | |-__test__
-| | | | |-UserAccountList.test.tsx
-| | | | |-UserInfoTable.test.tsx
-| |-UserList
-| | |-UserList.test.tsx
-| | |-UserList.tsx
-| | |-components
-| | | |-UserModal
-| | | | |-UserModalButton.tsx
-| | | | |-UserModalInput.tsx
-| | | | |-UserSettingInput.tsx
-| | | |-UserModal.tsx
-| | | |-UserTable
-| | | | |-UseListPage.tsx
-| | | | |-UserTableHead.tsx
-| | | | |-UserTableItem.tsx
-| | | |-UserTable.tsx
-| | | |-UserToolBar
-| | | | |-UserCreateButton.tsx
-| | | | |-UserFilter.tsx
-| | | | |-UserFilterActive.tsx
-| | | | |-UserFilterStaff.tsx
-| | | | |-UserSearchInput.tsx
-| | | |-UserToolBar.tsx
-| | | |-__test__
-| | | | |-UserFilter.test.tsx
-| | | | |-UserListPage.test.tsx
-| | | | |-UserModal.test.tsx
-| | | | |-UserTable.test.tsx
-|-react-app-env.d.ts
-|-reportWebVitals.ts
-|-service
-| |-__mock__
-| | |-index.tsx
-| |-api.ts
-| |-http.ts
-|-setupTests.ts
-|-store
-| |-index.ts
-| |-slices
-| | |-currUserSlice.ts
-| | |-paramSlice.ts
-|-tailwind.css
-|-types
-| |-user_types.ts
-|-utils
-| |-__test__
-| | |-addComma.test.ts
-| | |-convertDate.test.ts
-| | |-convertGender.test.ts
-| | |-convertPhoneNumber.test.ts
-| |-addComma.ts
-| |-calcEarningRate.ts
-| |-convertAccountNumber.ts
-| |-convertDate.ts
-| |-convertGender.ts
-| |-convertPhoneNumber.ts
+├── App.tsx
+├── AppRouter.tsx
+├── Router.tsx
+├── assets
+│   ├── bars-solid.svg
+│   ├── circle-check-regular.svg
+│   ├── circle-exclamation-solid.svg
+│   ├── circle-minus-solid.svg
+│   ├── circle-xmark-solid.svg
+│   ├── filter-solid.svg
+│   ├── github.svg
+│   ├── left-long-solid.svg
+│   ├── linkedin-in.svg
+│   ├── magnifying-glass-solid.svg
+│   ├── pencil-solid.svg
+│   ├── spinner-solid.svg
+│   └── user-solid.svg
+├── component
+│   ├── Common
+│   │   ├── Input.tsx
+│   │   └── LabelWithInput.tsx
+│   ├── ErrorPage
+│   │   ├── ErrorPage.tsx
+│   │   └── NoResult.tsx
+│   ├── Footer
+│   │   └── Footer.tsx
+│   ├── Header
+│   │   └── Header.tsx
+│   ├── LoadingPage
+│   │   └── LoadingPage.tsx
+│   └── Side
+│       └── Side.tsx
+├── fixture
+│   ├── AccountStatus.ts
+│   ├── BrokerList.ts
+│   ├── InitailUserInput.ts
+│   ├── MockAccountList.tsx
+│   ├── MockUserList.tsx
+│   └── mockAccountData.ts
+├── hooks
+│   ├── __test__
+│   │   ├── useFetch.test.tsx
+│   │   ├── useInput.test.tsx
+│   │   ├── useMutate.test.tsx
+│   │   └── useToggle.test.tsx
+│   ├── useFetch.tsx
+│   ├── useInput.tsx
+│   ├── useMutate.tsx
+│   └── useToggle.tsx
+├── index.css
+├── index.tsx
+├── pages
+│   ├── AccountDetail
+│   │   ├── AccountDetail.tsx
+│   │   └── components
+│   │       ├── AccountInfo
+│   │       │   ├── AccountName.tsx
+│   │       │   └── AccountUserName.tsx
+│   │       ├── AccountInfo.tsx
+│   │       └── AccountProfit.tsx
+│   ├── AccountList
+│   │   ├── AccountList.test.tsx
+│   │   ├── AccountList.tsx
+│   │   └── components
+│   │       ├── AccountFilter
+│   │       │   ├── AccountActiveFilter.tsx
+│   │       │   ├── AccountBrokerFilter.tsx
+│   │       │   ├── AccountFilter.tsx
+│   │       │   ├── AccountSearchInput.tsx
+│   │       │   └── AccountStatusFilter.tsx
+│   │       ├── AccountListTable
+│   │       │   ├── AccountListPage.tsx
+│   │       │   ├── AccountTableHead.tsx
+│   │       │   └── AccountTableItem.tsx
+│   │       ├── AccountListTable.tsx
+│   │       ├── AccountToolbar.tsx
+│   │       └── __test__
+│   │           ├── AccountFilter.test.tsx
+│   │           ├── AccountListPage.test.tsx
+│   │           └── AccountTable.test.tsx
+│   ├── Auth
+│   │   ├── Auth.test.tsx
+│   │   ├── Auth.tsx
+│   │   └── components
+│   │       ├── AuthButton.tsx
+│   │       ├── AuthErrorAlert.tsx
+│   │       └── AuthInput.tsx
+│   ├── UserDetail
+│   │   ├── UserDetail.test.tsx
+│   │   ├── UserDetail.tsx
+│   │   └── components
+│   │       ├── UserAccountList
+│   │       │   ├── UserAccountItem.tsx
+│   │       │   ├── UserAccountListBody.tsx
+│   │       │   └── UserAccountListHead.tsx
+│   │       ├── UserAccountList.tsx
+│   │       ├── UserInfoTable
+│   │       │   ├── UserBasicInfo.tsx
+│   │       │   ├── UserInfoName.tsx
+│   │       │   └── UserSettingInfo.tsx
+│   │       ├── UserInfoTable.tsx
+│   │       └── __test__
+│   │           ├── UserAccountList.test.tsx
+│   │           └── UserInfoTable.test.tsx
+│   └── UserList
+│       ├── UserList.test.tsx
+│       ├── UserList.tsx
+│       └── components
+│           ├── UserModal
+│           │   ├── UserModalButton.tsx
+│           │   ├── UserModalInput.tsx
+│           │   └── UserSettingInput.tsx
+│           ├── UserModal.tsx
+│           ├── UserTable
+│           │   ├── UseListPage.tsx
+│           │   ├── UserTableHead.tsx
+│           │   └── UserTableItem.tsx
+│           ├── UserTable.tsx
+│           ├── UserToolBar
+│           │   ├── UserCreateButton.tsx
+│           │   ├── UserFilter.tsx
+│           │   ├── UserFilterActive.tsx
+│           │   ├── UserFilterStaff.tsx
+│           │   └── UserSearchInput.tsx
+│           ├── UserToolBar.tsx
+│           └── __test__
+│               ├── UserFilter.test.tsx
+│               ├── UserListPage.test.tsx
+│               ├── UserModal.test.tsx
+│               └── UserTable.test.tsx
+├── react-app-env.d.ts
+├── reportWebVitals.ts
+├── service
+│   ├── __mock__
+│   │   └── index.tsx
+│   ├── api.ts
+│   └── http.ts
+├── setupTests.ts
+├── store
+│   ├── index.ts
+│   └── slices
+│       ├── currUserSlice.ts
+│       └── paramSlice.ts
+├── tailwind.css
+├── types
+│   └── user_types.ts
+└── utils
+    ├── __test__
+    │   ├── addComma.test.ts
+    │   ├── convertDate.test.ts
+    │   ├── convertGender.test.ts
+    │   └── convertPhoneNumber.test.ts
+    ├── addComma.ts
+    ├── calcEarningRate.ts
+    ├── convertAccountNumber.ts
+    ├── convertDate.ts
+    ├── convertGender.ts
+    └── convertPhoneNumber.ts
+
 
 ```
 
-> ## Functionality
+> ## 기능별 설명
 
-- Account List
+  <details>
+    <summary>1. 로그인</summary>
 
-1. Displays account list table
-2. Filters list by broker_id, active, status
-3. Searches by account number
-4. Navigate to Account Detail or User Detail by clicking account number or user name
-5. Show next (previous) page when button is clicked
+    1. 등록되어 있는 email과 password로 로그인 하도록 구현
+    2. 관리자 계정 회원가입을 위한 회원가입 버튼 구현
+    3. 로그인 실패 - 화면에 에러코드와 에러메세지 출력
+    4. 로그인 성공 - 반환되는 accessToken을 sessionStorage에 저장하여 로그인 유지 및 사용자 목록으로 이동
 
-- Account Detail
+  </details>
 
-1. Displays account detail table
-2. Updates account name
-3. Navigate to User Detail by clicking user name
+  <details>
+    <summary>2. 사용자 목록 </summary>
 
-- User List
+    1. 사용자 목록
+      - /users 경로로 사용자 Data를 fetch하여 테이블로 보여줄 수 있도록 구현
+      - Pagination 적용해 20개씩 데이터를 보여줄 수 있도록 구현
+      - 사용자 이름 클릭하는 경우 해당 사용자 상세 정보 페이지로 이동
+      - Delete 버튼 클릭 시 회원 정보 삭제 구현
+    2. Toolbar
+      - 드롭다운 조건 선택 시 redux의 userParams 업데이트를 통해 filtering 구현
+      - 검색어 키워드 입력 시 redux의 userParams 업데이트를 통해 텍스트가 포함된 사용자 목록만 보여줄 수 있도록 구현
+    3. 신규 사용자 추가
+      - New User 버튼 클릭 시 새로운 사용자 정보 입력을 위한 Modal을 보여주도록 구현
+      - create 버튼 클릭 시 /users 경로로 신규 사용자 정보 post
 
-1. Displays user list table
-2. Filters list by active, staff
-3. Searches by keyword
-4. Navigate to User Detail by clicking user name
-5. Delete item by clicking delete button
-6. Show next (previous) page when button is clicked
-7. Create new user
+  </details>
+    <details>
+    <summary>3. 사용자 상세 페이지 </summary>
 
-- User Detail
+    1. 사용자 기본정보
+      - /users/[id] 결로에서 회원 상세 정보 fetch
+      - table 태그로 사용자 상세 정보를 보여줄 수 있도록 구현
+      - 사용자 이름 수정 버튼 -> patch 메서드를 통해 사용자 이름 수정 구현
 
-1. Displays user detail and user account list
-2. Navigate to User Detail (Account Detail) by clicking user name (account number)
-3. Update user name
+    2. 사용자 계좌정보
+      - 회원 상세 데이터를 fetch 하며 parameter로 사용자 계좌 리스트를 같이 fetch
+      - 수익률 및 손실, 이익여부에 따른 평가 금액 색깔 변화 구현
+      - 계좌번호 클릭 시 계좌 상세 페이지로 이동
 
-> ## Prettier, Eslint
+  </details>
 
-- ### Prettier
+  <details>
+    <summary>4. 계좌 목록 </summary>
 
-```javascript
-{
-  "printWidth": 100,
-  "tabWidth": 2,
-  "arrowParens": "avoid",
-  "singleQuote": true,
-  "endOfLine": "auto"
-}
-```
+    1. 계좌 목록
+      - /accounts 경로로 사용자 Data를 fetch하여 테이블로 보여줄 수 있도록 구현
+      - Pagination 적용해 20개씩 데이터를 보여줄 수 있도록 구현
+      - 계좌 번호 클릭하는 경우 해당 계좌 상세 정보 페이지로 이동
+      - Delete 버튼 클릭 시 회원 정보 삭제 구현
+      - 마스킹처리와 손실, 이익여부에 따른 평가 금액 색깔 변화 구현
+    2. Toolbar
+      - 드롭다운 조건 선택 시 redux의 accountParams 업데이트를 통해 filtering 구현
+      - 검색어 키워드 입력 시 redux의 accountParams 업데이트를 통해 해당 번호가 포함된 계좌 목록만 보여줄 수 있도록 구현
 
-- ### Eslint
+  </details>
 
-```javascript
-{
-  "parser": "@typescript-eslint/parser",
-  "extends": ["react-app", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
-  "plugins": ["@typescript-eslint", "prettier"],
-  "ignorePatterns": ["node_modules/"],
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "rules": {
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "no-var": "warn",
-    "no-multiple-empty-lines": "warn",
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
-    "eqeqeq": "warn",
-    "dot-notation": "warn",
-    "no-unused-vars": "warn",
-    "react/destructuring-assignment": "warn",
-    "react/jsx-pascal-case": "warn",
-    "react/no-direct-mutation-state": "warn",
-    "react/jsx-no-useless-fragment": "warn",
-    "react/no-unused-state": "warn",
-    "react/jsx-key": "warn",
-    "react/self-closing-comp": "warn",
-    "react/jsx-curly-brace-presence": "warn"
-  }
-}
+  <details>
+    <summary>5. 계좌 상세 </summary>
 
-```
+    1. table 태그로 계좌 목록을 받아온 다음 보여줄 수 있도록 구현
 
-```
+    2. data는 json server의 expand 속성을 활용해서 요청 받아온 account list data 안에 user data를 자식 형태로 받아와 account.user로 활용할 수 있도록 api 요청 처리
 
-```
+    3. 받아온 계좌 데이터들 중 broker_id, status, is_active와 같은 요소들은 해당 데이터의 실제 이름에 맞게 처리하여 표시하도록 구현
+
+    4. Search API를 통해 해당 text를 포함하는 데이터들을 모두 보여줄 수 있도록 구현
+
+    5. Pagination API를 적용해 10개씩 데이터를 보여줄 수 있도록 구현
+
+    6. Filtering 기능을 toolbar 형태로 각 항목을 선택하여 선택한 항목에 맞는 데이터들을 보여줄 수 있도록 구현
+
+    7. 마스킹처리와 손실, 이익여부에 따른 평가 금액 색깔 변화 구현
+
+    8. 고객명이나 계좌번호를 누를 시 해당 상세 페이지로 이동하도록 구현
+
+  </details>
+
+<br>
