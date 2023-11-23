@@ -36,6 +36,7 @@ const UserModalInput = ({ userInput, handleUserInputChange, handleSelectChange }
           value={userInput.name}
           onChange={handleUserInputChange}
           className="h-8 mt-2 px-3 font-normal rounded-md border border-gray-400 outline-blue-800"
+          required
         />
       </label>
 
@@ -53,7 +54,7 @@ const UserModalInput = ({ userInput, handleUserInputChange, handleSelectChange }
       <label className="grid grid-cols-1 p-3 w-full">
         birth day
         <input
-          type="text"
+          type="date"
           name="birth_date"
           value={userInput.birth_date}
           onChange={handleUserInputChange}
