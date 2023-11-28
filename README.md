@@ -1,206 +1,185 @@
-# Wanted Pre-Onboarding 6차 10팀 TenKeyLess, december_and_company 기업과제
-
-## How to start project
+## 프로젝트 실행방법
 
 ```
-git clone https://github.com/wanted-pre-onboarding-fe-6-10/pre-onboarding-assignment-week-4-1-team-10-TenKeyLess.git
-cd pre-onboarding-assignment-week-4-1-team-10-TenKeyLess
+git clone https://github.com/seungyeonchoo/react_ts_administrator_page.git
+cd react_ts_administrator_page
 
-- json server 시작(json server의 _expand 속성을 활용하기 위해 server 파일 일부 수정으로 해당 폴더에서 json server 구동 필요)
-json-server --watch ./data/db.json --port 4000 -m ./node_modules/json-server-auth
+- json server 시작
+cd server
+npm run gen - mock db 생성
+npm run start - run server
 
-- react 프로젝트 시작
-npm install
-npm start
+- 프로젝트 시작
+npm run start
 
-yarn install
-yarn start
+- 관리자 회원가입
+로그인 페이지 내 회원가입 버튼 클릭시 관리자 로그인 정보로 자동 회원가입
+
+<!-- * 관리자 로그인 정보 *  -->
+{
+  email: admin@gmail.com,
+  password: admin1234!@#$
+}
 
 ```
+
+<br>
 
 > ## 목차
 
-- [About this project](#About-this-project)
+- [프로젝트 개요](#프로젝트-개요)
+- [기술 스택](#기술-스택)
 - [폴더 구조](#폴더-구조)
 - [기능별 설명](#기능별-설명)
-- [미구현 내용](#미구현-내용)
-- [회고](#회고)
 
 <br>
 
-> ## About this project
+> ## 프로젝트 개요
 
-- Implement financial account administrator page
+- 원티드 프리온보딩 코스 : december and company에서 제공한 json server을 활용한 admin 서비스 구현
 - 권한 있는 사용자만 이용할 수 있는 서비스로 계좌 목록 데이터와 사용자 데이터를 활용해 계좌목록, 사용자 목록, 계좌 상세, 사용자 상세 정보를 확인할 수 있는 서비스 구현
+- 웹페이지 전용 서비스
 
-> ## 사용기술
-
- <br/>
-
-<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
-<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white">
-<!-- <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"> -->
-<img src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white%22%3E">
-<br>
-<img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white%22%3E">
-<img src="https://img.shields.io/badge/redux_toolkit-764ABC?style=for-the-badge&logo=redux&logoColor=white%22%3E">
-<br>
 <br>
 
-> ### 해당 기술 선택이유<br>
+> ## 기술 Stack
 
 - React
-
-  - 생태계가 넓고, 다양한 라이브러리 사용 가능
-  - virtual DOM을 활용하여 빠른 렌더링 가능
-  - 단방향 데이터 바인딩을 통한 디버깅 용이
-
+- Typescript
 - tailwindcss
+- react-query
+- redux-toolkit
 
-  - css를 컴포넌트화 하여 사용할 수 있다.
-
-- React-query
-
-  - 캐싱, 서버 state 관리
-
-- Redux
-
-  - 복잡한 State관리를 단방향 데이터 흐름체계로 만들 수 있다.
-
-- Redux Toolkit
-
-  - 순수 redux의 boilerplate 코드를 줄여주고, 상태관리 코드 부분의 가독성을 높여준다.
-
-- React-Testing-Library
-
-  -
-
-<br/>
-
-- <br>
+<br>
 
 > ## 폴더 구조
 
 ```
+src
+├── App.tsx
+├── AppRouter.tsx
+├── Router.tsx
+├── assets
+├── component
+│   ├── Common
+│   ├── ErrorPage
+│   ├── Footer
+│   ├── Header
+│   ├── LoadingPage
+│   └── Side
+├── fixture
+├── hooks
+│   ├── __test__
+│   │   ├── useFetch.test.tsx
+│   │   ├── useInput.test.tsx
+│   │   ├── useMutate.test.tsx
+│   │   └── useToggle.test.tsx
+│   ├── useFetch.tsx
+│   ├── useInput.tsx
+│   ├── useMutate.tsx
+│   └── useToggle.tsx
+├── index.css
+├── index.tsx
+├── pages
+│   ├── AccountDetail
+│   ├── AccountList
+│   ├── Auth
+│   ├── UserDetail
+│   └── UserList
+├── react-app-env.d.ts
+├── reportWebVitals.ts
+├── service
+├── setupTests.ts
+├── store
+├── tailwind.css
+├── types
+└── utils
+
+
 
 ```
 
 > ## 기능별 설명
 
-- json server의 경우 \_expand 속성을 활용하기 위해 generateData.ts 파일에서 user_id 부분을 userId로 수정
-- CORS 에러를 해결하기 위해 cors 라이브러리를 install한 다음 server.ts에 적용
-
-> ### 주요 기능
-
   <details>
-    <summary>1. Auth Page </summary>
-
-    1. POSTMAN으로 회원가입을 진행한 후 등록되어 있는 email과 password로 로그인 하도록 구현
-    2. 로그인 후 반환되는 accessToken을 Recoil로 저장하고 recoil-persist로 로컬 스토리지에 저장해서 새로고침해도 로그인이 유지되도록 구현
+    <summary>1. 로그인</summary>
+    <p align="center">
+    <img src="https://github.com/seungyeonchoo/react_ts_administrator_page/assets/100207630/104bbe65-67cc-4a91-aa58-47b875c763aa"/>
+    </p>
+    
+    1. 등록되어 있는 email과 password로 로그인 하도록 구현
+    2. 관리자 계정 회원가입을 위한 회원가입 버튼 구현
+    3. 로그인 실패 - 화면에 에러코드와 에러메세지 출력
+    4. 로그인 성공 - 반환되는 accessToken을 sessionStorage에 저장하여 로그인 유지 및 사용자 목록으로 이동
 
   </details>
 
   <details>
-    <summary>2. Account List Page </summary>
+    <summary>2. 사용자 목록 </summary>
+    <p align="center">
+    <img src="https://github.com/seungyeonchoo/makemyhabits/assets/100207630/34da3188-c53a-4371-8114-66cbfa4140ae"/>
+    </p>
 
-    1. table 태그로 계좌 목록을 받아온 다음 보여줄 수 있도록 구현
-    2. data는 json server의 expand 속성을 활용해서 요청 받아온 account list data 안에 user data를 자식 형태로 받아와 account.user로 활용할 수 있도록 api 요청 처리
-    3. 받아온 계좌 데이터들 중 broker_id, status, is_active와 같은 요소들은 해당 데이터의 실제 이름에 맞게 처리하여 표시하도록 구현
-    4. Search API를 통해 해당 text를 포함하는 데이터들을 모두 보여줄 수 있도록 구현
-    5. Pagination API를 적용해 10개씩 데이터를 보여줄 수 있도록 구현
-    6. Filtering 기능을 sidebar 형태로 각 항목을 선택하여 선택한 항목에 맞는 데이터들을 보여줄 수 있도록 구현, 초기화 버튼을 통해 가장 처음 보여주었던 10개 데이터를 다시 보여줄 수 있도록 구현
-    7. 마스킹처리와 손실, 이익여부에 따른 평가 금액 색깔 변화 구현
-    8. 고객명이나 계좌번호를 누를 시 해당 상세 페이지로 이동하도록 구현
+    1. 사용자 목록
+      - /users 경로로 사용자 Data를 fetch하여 테이블로 보여줄 수 있도록 구현
+      - Pagination 적용해 20개씩 데이터를 보여줄 수 있도록 구현
+      - 사용자 이름 클릭하는 경우 해당 사용자 상세 정보 페이지로 이동
+      - Delete 버튼 클릭 시 회원 정보 삭제 구현
+    2. Toolbar
+      - 드롭다운 조건 선택 시 redux의 userParams 업데이트를 통해 filtering 구현
+      - 검색어 키워드 입력 시 redux의 userParams 업데이트를 통해 텍스트가 포함된 사용자 목록만 보여줄 수 있도록 구현
+    3. 신규 사용자 추가
+      - New User 버튼 클릭 시 새로운 사용자 정보 입력을 위한 Modal을 보여주도록 구현
+      - create 버튼 클릭 시 /users 경로로 신규 사용자 정보 post
 
   </details>
     <details>
-    <summary>3. Account Detail Page </summary>
+    <summary>3. 사용자 상세 페이지 </summary>
+    <p align="center">
+    <img src="https://github.com/seungyeonchoo/react_ts_administrator_page/assets/100207630/3e0f0bb1-043a-4dab-a927-b303e75ea3d5"/>
+    </p>
 
-    1. 계좌 상세 페이지에서는 해당 유저의 정보와 계좌 상세 내용을 받아와서 표시하도록 구현
-    2. data의 경우 해당 계좌 상세 정보에 user를 expand해서 해당 계좌의 유저 데이터도 같이 받아와서 데이터를 표시
+    1. 사용자 기본정보
+      - /users/[id] 결로에서 회원 상세 정보 fetch
+      - table 태그로 사용자 상세 정보를 보여줄 수 있도록 구현
+      - 사용자 이름 수정 버튼 -> patch 메서드를 통해 사용자 이름 수정 구현
 
-  </details>
-    <details>
-    <summary>4. User List Page </summary>
-
-    1. table 태그로 사용자 목록을 보여주도록 구현
-    2. data는 user list 정보와 userSetting 정보를 동시에 받아와서 혜택 수신 동의 여부와 같은 데이터들을 추가적으로 함께 처리할 수 있도록 구현
-    3. 검색과 filtering과 pagination도 account와 동일하게 구현
+    2. 사용자 계좌정보
+      - 회원 상세 데이터를 fetch 하며 parameter로 사용자 계좌 리스트를 같이 fetch
+      - 수익률 및 손실, 이익여부에 따른 평가 금액 색깔 변화 구현
+      - 계좌번호 클릭 시 계좌 상세 페이지로 이동
 
   </details>
 
   <details>
-    <summary>5. User Detail Page </summary>
+    <summary>4. 계좌 목록 </summary>
+    <p align="center">
+    <img src="https://github.com/seungyeonchoo/makemyhabits/assets/100207630/191bf2e3-7fe4-4948-8f64-76d35e0842b1"/>
+    </p>
 
-    1. 사용자 상세의 경우 필요한 user data와 해당 유저가 소유한 계좌 data를 함께 받아온 후 사용자 정보는 위에 표시하고 목록은 아래에 표시할 수 있도록 구현
-    2. 사용자 이름을 변경하거나 사용자를 삭제할 수 있는 기능 구현
+    1. 계좌 목록
+      - /accounts 경로로 사용자 Data를 fetch 하여 테이블로 보여줄 수 있도록 구현
+      - Pagination 적용해 20개씩 데이터를 보여줄 수 있도록 구현
+      - 사용자 이름 클릭하는 경우 해당 사용자 상세 페이지로 이동
+      - 계좌 번호 클릭하는 경우 해당 계좌 상세 정보 페이지로 이동
+      - Delete 버튼 클릭 시 회원 정보 삭제 구현
+      - 손실, 이익여부에 따른 평가 금액 및 수익률 색상 변화 구현
+    2. Toolbar
+      - 드롭다운 조건 선택 시 redux의 accountParams 업데이트를 통해 filtering 구현
+      - 검색어 키워드 입력 시 redux의 accountParams 업데이트를 통해 해당 번호가 포함된 계좌 목록만 보여줄 수 있도록 구현
 
   </details>
 
-<br/>
+  <details>
+    <summary>5. 계좌 상세 </summary>
+    <p align="center">
+    <img src=" https://github.com/seungyeonchoo/react_ts_administrator_page/assets/100207630/e5b66087-5dfd-4aac-9bc1-48ff7f4b6c19"/>
+    </p>
 
-### 추가 기능
-
-<details>
-    <summary>1.  </summary>
-
-    1.
+    1. 계좌 id로 계좌 상세정보 fetch 하여 보여줄 수 있도록 구현
+    2. 계좌 이름 변경 버튼으로 계좌 이름 변경 기능 구현
+    3. 손실, 이익여부에 따른 평가 금액 및 수익률 색상 변화 구현
 
   </details>
 
 <br>
-
-> ## Git
-
-- ### [Git branch 전략](https://github.com/wanted-pre-onboarding-fe-6-10/I.M.LAB/wiki/Git-branch-%EC%A0%84%EB%9E%B5)
-
-- ### [커밋 컨벤션](https://github.com/wanted-pre-onboarding-fe-6-10/I.M.LAB/wiki/%EC%BB%A4%EB%B0%8B-%EC%BB%A8%EB%B2%A4%EC%85%98)
-
-<br>
-
-> ## Prettier, Eslint
-
-- ### Prettier
-
-```javascript
-{
-  "printWidth": 100,
-  "tabWidth": 2,
-  "arrowParens": "avoid",
-  "singleQuote": true,
-  "endOfLine": "auto"
-}
-```
-
-- ### Eslint
-
-```javascript
-{
-  "parser": "@typescript-eslint/parser",
-  "extends": ["react-app", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
-  "plugins": ["@typescript-eslint", "prettier"],
-  "ignorePatterns": ["node_modules/"],
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "rules": {
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "no-var": "warn",
-    "no-multiple-empty-lines": "warn",
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
-    "eqeqeq": "warn",
-    "dot-notation": "warn",
-    "no-unused-vars": "warn",
-    "react/destructuring-assignment": "warn",
-    "react/jsx-pascal-case": "warn",
-    "react/no-direct-mutation-state": "warn",
-    "react/jsx-no-useless-fragment": "warn",
-    "react/no-unused-state": "warn",
-    "react/jsx-key": "warn",
-    "react/self-closing-comp": "warn",
-    "react/jsx-curly-brace-presence": "warn"
-  }
-}
-
-```

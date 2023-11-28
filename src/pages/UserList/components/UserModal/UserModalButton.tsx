@@ -17,7 +17,19 @@ const UserModalButton = ({ userInput, handleShowModal, reset }: Props) => {
     handleShowModal();
   };
 
-  const inputValidation = name && email && birth_date && phone_number && address && detail_address;
+  const checkIsValidInput = (userInput: InitialUser) => {
+    const regEmail = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    const regContact = /^01([0|1|6|7|8|9])+-([0-9]{3,4})+-([0-9]{4})$/;
+
+    const isValidName = userInput.name?.length > 0;
+    const isValidEmail = regEmail.test(userInput.email);
+    const isValidContact = regContact.test(userInput.phone_number);
+    const isValidAddress = userInput.address?.length > 0;
+
+    return isValidAddress && isValidContact && isValidEmail && isValidName;
+  };
+
+  const inputValidation = checkIsValidInput(userInput);
 
   return (
     <section className="mx-auto p-5 w-1/2 grid grid-cols-2 gap-6 text-sm text-white">

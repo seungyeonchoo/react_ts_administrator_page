@@ -13,7 +13,6 @@ const accountStatusCode = Object.values(accountStatus)
 
 for (let i = 1; i < 101; i++) {
   // generate fake users and settings
-  const id = faker.datatype.number()
   const uuid = faker.datatype.uuid()
   const user = {
     id: i,

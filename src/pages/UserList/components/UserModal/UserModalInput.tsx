@@ -32,6 +32,7 @@ const UserModalInput = ({ userInput, handleUserInputChange, handleSelectChange }
         name
         <input
           type="text"
+          autoComplete="off"
           name="name"
           value={userInput.name}
           onChange={handleUserInputChange}
@@ -43,6 +44,7 @@ const UserModalInput = ({ userInput, handleUserInputChange, handleSelectChange }
         contact
         <input
           type="text"
+          autoComplete="off"
           name="phone_number"
           value={userInput.phone_number}
           onChange={handleUserInputChange}
@@ -53,7 +55,8 @@ const UserModalInput = ({ userInput, handleUserInputChange, handleSelectChange }
       <label className="grid grid-cols-1 p-3 w-full">
         birth day
         <input
-          type="text"
+          type="date"
+          autoComplete="off"
           name="birth_date"
           value={userInput.birth_date}
           onChange={handleUserInputChange}
@@ -65,6 +68,7 @@ const UserModalInput = ({ userInput, handleUserInputChange, handleSelectChange }
         email
         <input
           type="email"
+          autoComplete="off"
           name="email"
           value={userInput.email}
           onChange={handleUserInputChange}
@@ -76,6 +80,7 @@ const UserModalInput = ({ userInput, handleUserInputChange, handleSelectChange }
         gender
         <select
           name="gender_origin"
+          autoComplete="off"
           value={userInput.gender_origin}
           onChange={handleSelectChange}
           className="h-8 mt-2 text-center font-normal rounded-md border border-gray-400 outline-blue-800"
@@ -89,6 +94,7 @@ const UserModalInput = ({ userInput, handleUserInputChange, handleSelectChange }
         address
         <input
           type="text"
+          autoComplete="off"
           name="address"
           value={userInput.address}
           onChange={handleUserInputChange}
@@ -100,6 +106,7 @@ const UserModalInput = ({ userInput, handleUserInputChange, handleSelectChange }
         detail address
         <input
           type="text"
+          autoComplete="off"
           name="detail_address"
           value={userInput.detail_address}
           onChange={handleUserInputChange}
