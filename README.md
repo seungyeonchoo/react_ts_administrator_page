@@ -60,41 +60,14 @@ src
 ├── AppRouter.tsx
 ├── Router.tsx
 ├── assets
-│   ├── bars-solid.svg
-│   ├── circle-check-regular.svg
-│   ├── circle-exclamation-solid.svg
-│   ├── circle-minus-solid.svg
-│   ├── circle-xmark-solid.svg
-│   ├── filter-solid.svg
-│   ├── github.svg
-│   ├── left-long-solid.svg
-│   ├── linkedin-in.svg
-│   ├── magnifying-glass-solid.svg
-│   ├── pencil-solid.svg
-│   ├── spinner-solid.svg
-│   └── user-solid.svg
 ├── component
 │   ├── Common
-│   │   ├── Input.tsx
-│   │   └── LabelWithInput.tsx
 │   ├── ErrorPage
-│   │   ├── ErrorPage.tsx
-│   │   └── NoResult.tsx
 │   ├── Footer
-│   │   └── Footer.tsx
 │   ├── Header
-│   │   └── Header.tsx
 │   ├── LoadingPage
-│   │   └── LoadingPage.tsx
 │   └── Side
-│       └── Side.tsx
 ├── fixture
-│   ├── AccountStatus.ts
-│   ├── BrokerList.ts
-│   ├── InitailUserInput.ts
-│   ├── MockAccountList.tsx
-│   ├── MockUserList.tsx
-│   └── mockAccountData.ts
 ├── hooks
 │   ├── __test__
 │   │   ├── useFetch.test.tsx
@@ -109,111 +82,19 @@ src
 ├── index.tsx
 ├── pages
 │   ├── AccountDetail
-│   │   ├── AccountDetail.tsx
-│   │   └── components
-│   │       ├── AccountInfo
-│   │       │   ├── AccountName.tsx
-│   │       │   └── AccountUserName.tsx
-│   │       ├── AccountInfo.tsx
-│   │       └── AccountProfit.tsx
 │   ├── AccountList
-│   │   ├── AccountList.test.tsx
-│   │   ├── AccountList.tsx
-│   │   └── components
-│   │       ├── AccountFilter
-│   │       │   ├── AccountActiveFilter.tsx
-│   │       │   ├── AccountBrokerFilter.tsx
-│   │       │   ├── AccountFilter.tsx
-│   │       │   ├── AccountSearchInput.tsx
-│   │       │   └── AccountStatusFilter.tsx
-│   │       ├── AccountListTable
-│   │       │   ├── AccountListPage.tsx
-│   │       │   ├── AccountTableHead.tsx
-│   │       │   └── AccountTableItem.tsx
-│   │       ├── AccountListTable.tsx
-│   │       ├── AccountToolbar.tsx
-│   │       └── __test__
-│   │           ├── AccountFilter.test.tsx
-│   │           ├── AccountListPage.test.tsx
-│   │           └── AccountTable.test.tsx
 │   ├── Auth
-│   │   ├── Auth.test.tsx
-│   │   ├── Auth.tsx
-│   │   └── components
-│   │       ├── AuthButton.tsx
-│   │       ├── AuthErrorAlert.tsx
-│   │       └── AuthInput.tsx
 │   ├── UserDetail
-│   │   ├── UserDetail.test.tsx
-│   │   ├── UserDetail.tsx
-│   │   └── components
-│   │       ├── UserAccountList
-│   │       │   ├── UserAccountItem.tsx
-│   │       │   ├── UserAccountListBody.tsx
-│   │       │   └── UserAccountListHead.tsx
-│   │       ├── UserAccountList.tsx
-│   │       ├── UserInfoTable
-│   │       │   ├── UserBasicInfo.tsx
-│   │       │   ├── UserInfoName.tsx
-│   │       │   └── UserSettingInfo.tsx
-│   │       ├── UserInfoTable.tsx
-│   │       └── __test__
-│   │           ├── UserAccountList.test.tsx
-│   │           └── UserInfoTable.test.tsx
 │   └── UserList
-│       ├── UserList.test.tsx
-│       ├── UserList.tsx
-│       └── components
-│           ├── UserModal
-│           │   ├── UserModalButton.tsx
-│           │   ├── UserModalInput.tsx
-│           │   └── UserSettingInput.tsx
-│           ├── UserModal.tsx
-│           ├── UserTable
-│           │   ├── UseListPage.tsx
-│           │   ├── UserTableHead.tsx
-│           │   └── UserTableItem.tsx
-│           ├── UserTable.tsx
-│           ├── UserToolBar
-│           │   ├── UserCreateButton.tsx
-│           │   ├── UserFilter.tsx
-│           │   ├── UserFilterActive.tsx
-│           │   ├── UserFilterStaff.tsx
-│           │   └── UserSearchInput.tsx
-│           ├── UserToolBar.tsx
-│           └── __test__
-│               ├── UserFilter.test.tsx
-│               ├── UserListPage.test.tsx
-│               ├── UserModal.test.tsx
-│               └── UserTable.test.tsx
 ├── react-app-env.d.ts
 ├── reportWebVitals.ts
 ├── service
-│   ├── __mock__
-│   │   └── index.tsx
-│   ├── api.ts
-│   └── http.ts
 ├── setupTests.ts
 ├── store
-│   ├── index.ts
-│   └── slices
-│       ├── currUserSlice.ts
-│       └── paramSlice.ts
 ├── tailwind.css
 ├── types
-│   └── user_types.ts
 └── utils
-    ├── __test__
-    │   ├── addComma.test.ts
-    │   ├── convertDate.test.ts
-    │   ├── convertGender.test.ts
-    │   └── convertPhoneNumber.test.ts
-    ├── addComma.ts
-    ├── calcEarningRate.ts
-    ├── convertAccountNumber.ts
-    ├── convertDate.ts
-    ├── convertGender.ts
-    └── convertPhoneNumber.ts
+
 
 
 ```
@@ -222,8 +103,10 @@ src
 
   <details>
     <summary>1. 로그인</summary>
-    https://github.com/seungyeonchoo/react_ts_administrator_page/assets/100207630/104bbe65-67cc-4a91-aa58-47b875c763aa
-
+    <p align="center">
+    <img src="https://github.com/seungyeonchoo/react_ts_administrator_page/assets/100207630/104bbe65-67cc-4a91-aa58-47b875c763aa"/>
+    </p>
+    
     1. 등록되어 있는 email과 password로 로그인 하도록 구현
     2. 관리자 계정 회원가입을 위한 회원가입 버튼 구현
     3. 로그인 실패 - 화면에 에러코드와 에러메세지 출력
@@ -233,6 +116,9 @@ src
 
   <details>
     <summary>2. 사용자 목록 </summary>
+    <p align="center">
+    <img src="https://github.com/seungyeonchoo/makemyhabits/assets/100207630/34da3188-c53a-4371-8114-66cbfa4140ae"/>
+    </p>
 
     1. 사용자 목록
       - /users 경로로 사용자 Data를 fetch하여 테이블로 보여줄 수 있도록 구현
@@ -249,7 +135,9 @@ src
   </details>
     <details>
     <summary>3. 사용자 상세 페이지 </summary>
-    https://github.com/seungyeonchoo/react_ts_administrator_page/assets/100207630/3e0f0bb1-043a-4dab-a927-b303e75ea3d5
+    <p align="center">
+    <img src="https://github.com/seungyeonchoo/react_ts_administrator_page/assets/100207630/3e0f0bb1-043a-4dab-a927-b303e75ea3d5"/>
+    </p>
 
     1. 사용자 기본정보
       - /users/[id] 결로에서 회원 상세 정보 fetch
@@ -265,6 +153,9 @@ src
 
   <details>
     <summary>4. 계좌 목록 </summary>
+    <p align="center">
+    <img src="https://github.com/seungyeonchoo/makemyhabits/assets/100207630/191bf2e3-7fe4-4948-8f64-76d35e0842b1"/>
+    </p>
 
     1. 계좌 목록
       - /accounts 경로로 사용자 Data를 fetch 하여 테이블로 보여줄 수 있도록 구현
@@ -281,7 +172,9 @@ src
 
   <details>
     <summary>5. 계좌 상세 </summary>
-    https://github.com/seungyeonchoo/react_ts_administrator_page/assets/100207630/e5b66087-5dfd-4aac-9bc1-48ff7f4b6c19
+    <p align="center">
+    <img src=" https://github.com/seungyeonchoo/react_ts_administrator_page/assets/100207630/e5b66087-5dfd-4aac-9bc1-48ff7f4b6c19"/>
+    </p>
 
     1. 계좌 id로 계좌 상세정보 fetch 하여 보여줄 수 있도록 구현
     2. 계좌 이름 변경 버튼으로 계좌 이름 변경 기능 구현
